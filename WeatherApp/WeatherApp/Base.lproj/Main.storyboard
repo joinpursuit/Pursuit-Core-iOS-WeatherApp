@@ -64,7 +64,7 @@
         <!--Search-->
         <scene sceneID="1MZ-4W-U8S">
             <objects>
-                <viewController title="Search" id="w0D-8w-cXc" sceneMemberID="viewController">
+                <viewController title="Search" id="w0D-8w-cXc" customClass="MainWeatherViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f9h-uP-Eom">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

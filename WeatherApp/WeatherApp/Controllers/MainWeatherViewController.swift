@@ -9,10 +9,19 @@
 import UIKit
 
 class MainWeatherViewController: UIViewController {
+    
+    private var dailyForecast = [DailyForecast]()
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        AerisAPIClient.searchLocation(keyword: "11219", isZipcode: true) { (appError, dailyForecast) in
+            if let appError = appError {
+                print(appError)
+            } else if let dailyForecast = dailyForecast {
+                self.dailyForecast = dailyForecast
+            }
+        }
+        print(dailyForecast.count)
   }
 
 

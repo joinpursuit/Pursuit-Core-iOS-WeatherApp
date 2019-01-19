@@ -9,11 +9,11 @@
 import Foundation
 
 struct WeatherData: Codable {
-    let response: [ResponseWrapper]
+    let response: [ResponseWrapper]?
 }
 
 struct ResponseWrapper: Codable {
-    let periods: [DailyForecast]
+    let periods: [DailyForecast]?
 }
 
 struct DailyForecast: Codable {
@@ -27,8 +27,8 @@ struct DailyForecast: Codable {
     let sunsetISO: String
     let windSpeedMPH: Int
     let windSpeedKPH: Int
-    let precipIN: Int
-    let precipMM: Int
+    let precipIN: Double
+    let precipMM: Double
     let weather: String
     let icon: String
 }

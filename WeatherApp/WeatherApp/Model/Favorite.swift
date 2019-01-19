@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct FavoritedImage: Codable {
+struct Favorite: Codable {
     let lastUpdated: String
     let imageData: Data
     

@@ -37,9 +37,12 @@ final class AerisAPIClient {
             if let data = data {
                 do {
                     let weatherData = try JSONDecoder().decode(WeatherData.self, from: data)
-                    let dailyForecasts = weatherData.response.first?.periods
+                    if let responseExists = weatherData.response {
+                        if let periodExists = responseExists[0].periods {
                       //  daily = events.sorted { $0.dates.start.dateTime.dateFromISODateString() < $1.dates.start.dateTime.dateFromISODateString() }
-                        completionHandler(nil, dailyForecasts)
+                            completionHandler(nil, periodExists)
+                        }
+                    }
                 } catch {
                     completionHandler(AppError.jsonDecodingError(error), nil)
                 }

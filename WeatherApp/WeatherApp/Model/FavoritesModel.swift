@@ -8,17 +8,17 @@
 
 import Foundation
 
-struct FavoritedImageModel {
-    static var favoritedImages = [FavoritedImage]()
+struct FavoritesModel {
+    static var favoritedImages = [Favorite]()
     static let filename = "Favorites.plist"
     
-    static func getFavoritedImages() -> [FavoritedImage] {
+    static func getFavoritedImages() -> [Favorite] {
         let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename).path
         
         if FileManager.default.fileExists(atPath: path) {
             if let data = FileManager.default.contents(atPath: path) {
                 do {
-                    favoritedImages = try PropertyListDecoder().decode([FavoritedImage].self, from: data)
+                    favoritedImages = try PropertyListDecoder().decode([Favorite].self, from: data)
                 } catch {
                     print("property list decoding error = getFavoritedImages() \(error)")
                 }
@@ -42,7 +42,7 @@ struct FavoritedImageModel {
         }
     }
     
-    static func addFavoriteImage(favoriteImage: FavoritedImage) {
+    static func addFavoriteImage(favoriteImage: Favorite) {
         favoritedImages.append(favoriteImage)
         saveData()
     }
