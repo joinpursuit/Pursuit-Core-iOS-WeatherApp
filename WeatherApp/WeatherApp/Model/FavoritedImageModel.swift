@@ -32,4 +32,19 @@ struct FavoritedImageModel {
         return favoritedImages
     }
     
+    static func saveData() {
+        let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename)
+        do {
+            let data = try PropertyListEncoder().encode(favoritedImages)
+            try data.write(to: path, options: Data.WritingOptions.atomic)
+        } catch {
+            print("property list encoding error at saveFavoritedImage - \(error)")
+        }
+    }
+    
+    static func addFavoriteImage(favoriteImage: FavoritedImage) {
+        favoritedImages.append(favoriteImage)
+        saveData()
+    }
+    
 }
