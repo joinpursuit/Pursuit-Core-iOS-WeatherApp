@@ -21,6 +21,10 @@
 		A5AE319521F2D78C0096AA4E /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE319421F2D78C0096AA4E /* DayCell.swift */; };
 		A5AE319821F2D84F0096AA4E /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE319721F2D84F0096AA4E /* AppError.swift */; };
 		A5AE319C21F2D9000096AA4E /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE319B21F2D9000096AA4E /* WeatherData.swift */; };
+		A5AE319E21F2E04A0096AA4E /* FavoriteImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE319D21F2E04A0096AA4E /* FavoriteImageCell.swift */; };
+		A5AE31A021F2E1A70096AA4E /* FavoritedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE319F21F2E1A70096AA4E /* FavoritedImage.swift */; };
+		A5AE31A221F2E2200096AA4E /* FavoritedImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE31A121F2E2200096AA4E /* FavoritedImageModel.swift */; };
+		A5AE31A421F2E2D80096AA4E /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE31A321F2E2D80096AA4E /* DataPersistenceManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +56,10 @@
 		A5AE319421F2D78C0096AA4E /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
 		A5AE319721F2D84F0096AA4E /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		A5AE319B21F2D9000096AA4E /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
+		A5AE319D21F2E04A0096AA4E /* FavoriteImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteImageCell.swift; sourceTree = "<group>"; };
+		A5AE319F21F2E1A70096AA4E /* FavoritedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritedImage.swift; sourceTree = "<group>"; };
+		A5AE31A121F2E2200096AA4E /* FavoritedImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritedImageModel.swift; sourceTree = "<group>"; };
+		A5AE31A321F2E2D80096AA4E /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,7 @@
 				A5AE318A21F2CE0C0096AA4E /* Controllers */,
 				57EE009F21F15E0F00D76A6E /* ZipCodeHelper.swift */,
 				A5AE318E21F2D06F0096AA4E /* SecretKeys.swift */,
+				A5AE31A321F2E2D80096AA4E /* DataPersistenceManager.swift */,
 				57EE00AF21F160D400D76A6E /* Supporting Files */,
 				57EE009921F15D7100D76A6E /* Info.plist */,
 			);
@@ -147,7 +156,10 @@
 			isa = PBXGroup;
 			children = (
 				A5AE319421F2D78C0096AA4E /* DayCell.swift */,
+				A5AE319D21F2E04A0096AA4E /* FavoriteImageCell.swift */,
 				A5AE319B21F2D9000096AA4E /* WeatherData.swift */,
+				A5AE319F21F2E1A70096AA4E /* FavoritedImage.swift */,
+				A5AE31A121F2E2200096AA4E /* FavoritedImageModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -254,14 +266,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5AE319121F2D2070096AA4E /* WeatherDetailViewController.swift in Sources */,
+				A5AE319E21F2E04A0096AA4E /* FavoriteImageCell.swift in Sources */,
 				A5AE318C21F2CFC20096AA4E /* AerisAPIClient.swift in Sources */,
+				A5AE31A421F2E2D80096AA4E /* DataPersistenceManager.swift in Sources */,
 				A5AE319821F2D84F0096AA4E /* AppError.swift in Sources */,
+				A5AE31A221F2E2200096AA4E /* FavoritedImageModel.swift in Sources */,
 				57EE00A021F15E0F00D76A6E /* ZipCodeHelper.swift in Sources */,
 				57EE009021F15D7000D76A6E /* MainWeatherViewController.swift in Sources */,
 				57EE008E21F15D7000D76A6E /* AppDelegate.swift in Sources */,
 				A5AE319C21F2D9000096AA4E /* WeatherData.swift in Sources */,
 				A5AE318F21F2D06F0096AA4E /* SecretKeys.swift in Sources */,
 				A5AE319521F2D78C0096AA4E /* DayCell.swift in Sources */,
+				A5AE31A021F2E1A70096AA4E /* FavoritedImage.swift in Sources */,
 				A5AE319321F2D23D0096AA4E /* FavoriteImagesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

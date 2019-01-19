@@ -29,4 +29,6 @@ struct DailyForecast: Codable {
     let windSpeedKPH: Int
     let precipIN: Int
     let precipMM: Int
+    let weather: String
+    let icon: String
 }

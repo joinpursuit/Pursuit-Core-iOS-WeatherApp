@@ -16,14 +16,50 @@
                     <view key="view" contentMode="scaleToFill" id="9M6-dm-xAf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PY6-4n-32R">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FavoriteImageCell" rowHeight="256" id="Mrs-On-qzC" customClass="FavoriteImageCell" customModule="WeatherApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="256"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mrs-On-qzC" id="gdf-T7-LXh">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="255.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="870-4x-2CK">
+                                                    <rect key="frame" x="20" y="11" width="374" height="234"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="870-4x-2CK" firstAttribute="top" secondItem="gdf-T7-LXh" secondAttribute="topMargin" id="3Tw-8L-Ebh"/>
+                                                <constraint firstItem="870-4x-2CK" firstAttribute="leading" secondItem="gdf-T7-LXh" secondAttribute="leadingMargin" id="8nX-md-rMR"/>
+                                                <constraint firstItem="870-4x-2CK" firstAttribute="trailing" secondItem="gdf-T7-LXh" secondAttribute="trailingMargin" id="OvW-hi-e3h"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="870-4x-2CK" secondAttribute="bottom" id="hNY-v2-mAv"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="favoritedImage" destination="870-4x-2CK" id="211-XK-vfa"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4WG-nJ-jsO" firstAttribute="bottom" secondItem="PY6-4n-32R" secondAttribute="bottom" id="1Dk-dP-TTP"/>
+                            <constraint firstItem="PY6-4n-32R" firstAttribute="top" secondItem="4WG-nJ-jsO" secondAttribute="top" id="RC9-Nn-Xx7"/>
+                            <constraint firstItem="4WG-nJ-jsO" firstAttribute="trailing" secondItem="PY6-4n-32R" secondAttribute="trailing" id="p77-m1-8Qj"/>
+                            <constraint firstItem="PY6-4n-32R" firstAttribute="leading" secondItem="4WG-nJ-jsO" secondAttribute="leading" id="uBS-ab-qNS"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="4WG-nJ-jsO"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Favorites" image="favoritesIcon" id="LUZ-1x-9KS"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZdD-1k-zBG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="561" y="31"/>
+            <point key="canvasLocation" x="560.86956521739137" y="30.803571428571427"/>
         </scene>
         <!--Search-->
         <scene sceneID="1MZ-4W-U8S">
@@ -153,7 +189,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeHolder" translatesAutoresizingMaskIntoConstraints="NO" id="orq-JS-TjD">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeHolder" translatesAutoresizingMaskIntoConstraints="NO" id="orq-JS-TjD">
                                 <rect key="frame" x="20.5" y="179" width="373" height="372.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="orq-JS-TjD" secondAttribute="height" multiplier="1:1" id="72f-oM-tqQ"/>
@@ -184,6 +220,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KQw-mz-PFq">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -206,6 +246,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tuf-Mc-wh5"/>
                     </view>
+                    <navigationItem key="navigationItem" id="lTL-qN-3ye">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Cau-6v-bz4"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="dateLabel" destination="3zg-nt-gI3" id="mHs-nJ-AMC"/>
+                        <outlet property="imageOfLocation" destination="orq-JS-TjD" id="G5D-h7-Bff"/>
+                        <outlet property="locationLabel" destination="X7N-2K-9FT" id="YOt-Z2-rbn"/>
+                        <outlet property="weatherDetailLabel" destination="vzo-Km-GKU" id="gYY-Vu-hdQ"/>
+                        <outlet property="weatherMoreInfoTextView" destination="qne-RA-uFZ" id="Gaa-Gm-rB2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="flG-wO-b3w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
