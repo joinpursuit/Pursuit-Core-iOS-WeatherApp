@@ -13,6 +13,8 @@ class MainWeatherViewController: UIViewController {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var forecastCollectionView: UICollectionView!
     @IBOutlet weak var locationTextField: UITextField!
+    public var isValidZipcode = true
+    private var defaultZipcode = "11219"
     
     private var dailyForecast = [DailyForecast]() {
         didSet {
@@ -21,9 +23,48 @@ class MainWeatherViewController: UIViewController {
             }
         }
     }
-
-    fileprivate func getWeatherData() {
-        AerisAPIClient.searchLocation(keyword: "11219", isZipcode: true) { (appError, dailyForecast) in
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        searchForDefaultSearchSettings()
+        forecastCollectionView.dataSource = self
+        forecastCollectionView.delegate = self
+        locationTextField.delegate = self
+     //   checkForNewLocationEntered()
+    
+    }
+    
+    
+    
+    private func checkForNewLocationEntered() {
+        if var keywordEntered = locationTextField.text {
+            if keywordEntered == "" {
+                keywordEntered = "10023"
+                self.isValidZipcode = true
+            } else {
+                isValidZipcode = true
+                for char in keywordEntered {
+                    if Int(String(char)) == nil {
+                        isValidZipcode = false
+                        break
+                    }
+                }
+            }
+        if isValidZipcode {
+            searchWeather(keyword: keywordEntered)
+            print("now searching for \(keywordEntered)'s weather")
+        }
+        UserDefaults.standard.set(keywordEntered, forKey: "Location")
+        }
+    }
+    
+    
+    private func searchWeather(keyword: String) {
+        guard let encodedSearchTerm = keyword.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
+            print("percent encoding failed")
+            return
+        }
+        AerisAPIClient.searchLocation(keyword: encodedSearchTerm, isZipcode: isValidZipcode) { (appError, dailyForecast) in
             if let appError = appError {
                 print(appError)
             } else if let dailyForecast = dailyForecast {
@@ -31,16 +72,28 @@ class MainWeatherViewController: UIViewController {
             }
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        getWeatherData()
-        forecastCollectionView.dataSource = self
-        forecastCollectionView.delegate = self
-        locationTextField.delegate = self
-        
-    }
 
+    private func searchForDefaultSearchSettings() {
+        var zipcodeToSearch = ""
+        if let searchWord = UserDefaults.standard.object(forKey: "Location") as? String {
+            zipcodeToSearch = searchWord
+        } else {
+            zipcodeToSearch = defaultZipcode
+        }
+        setupView(zipcode: zipcodeToSearch)
+    }
+    
+    private func setupView(zipcode: String) {
+        ZipCodeHelper.getLocationName(from: zipcode) { (appError, location) in
+            if let appError = appError {
+                print("appError in finding zipcode in setupView - \(appError)")
+            } else if let location = location {
+                self.locationLabel.text = "Weather Forecast for \(location)"
+            }
+        }
+        locationTextField.text = zipcode
+        searchWeather(keyword: zipcode)
+    }
 
 }
 
@@ -61,16 +114,17 @@ extension MainWeatherViewController: UICollectionViewDataSource, UICollectionVie
         }
         let dayToSet = dailyForecast[indexPath.row]
         cell.date.text = dayToSet.dateTimeISO
-        cell.high.text = "High: " +  dayToSet.maxTempF.description + "° F"
-        cell.low.text = "Low: " + dayToSet.minTempF.description + "° F"
+        cell.high.text = "High: " +  dayToSet.maxTempF.description + "°F"
+        cell.low.text = "Low: " + dayToSet.minTempF.description + "°F"
         cell.weatherImage.image = UIImage(named: dayToSet.icon)
         return cell
     }
 }
 
 extension MainWeatherViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        // need to fix this
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        checkForNewLocationEntered()
+        return true
     }
 }
