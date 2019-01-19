@@ -152,7 +152,58 @@
                     <view key="view" contentMode="scaleToFill" id="XKu-Mg-Jcl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeHolder" translatesAutoresizingMaskIntoConstraints="NO" id="orq-JS-TjD">
+                                <rect key="frame" x="20.5" y="179" width="373" height="372.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="orq-JS-TjD" secondAttribute="height" multiplier="1:1" id="72f-oM-tqQ"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather Forecast for New York" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7N-2K-9FT">
+                                <rect key="frame" x="8" y="99" width="398" height="29"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019-01-19" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zg-nt-gI3">
+                                <rect key="frame" x="8" y="139" width="398" height="29"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qne-RA-uFZ">
+                                <rect key="frame" x="20.5" y="602.5" width="373" height="199.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Partly cloudy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzo-Km-GKU">
+                                <rect key="frame" x="8" y="562.5" width="398" height="29"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qne-RA-uFZ" firstAttribute="leading" secondItem="orq-JS-TjD" secondAttribute="leading" id="2W2-Ic-3AC"/>
+                            <constraint firstItem="3zg-nt-gI3" firstAttribute="leading" secondItem="tuf-Mc-wh5" secondAttribute="leading" constant="8" id="5Al-dJ-ECs"/>
+                            <constraint firstItem="tuf-Mc-wh5" firstAttribute="bottom" secondItem="qne-RA-uFZ" secondAttribute="bottom" constant="11" id="6cw-0a-KLb"/>
+                            <constraint firstItem="orq-JS-TjD" firstAttribute="centerX" secondItem="tuf-Mc-wh5" secondAttribute="centerX" id="6qi-Y6-upl"/>
+                            <constraint firstItem="X7N-2K-9FT" firstAttribute="top" secondItem="tuf-Mc-wh5" secondAttribute="top" constant="11" id="7bN-Bd-HRC"/>
+                            <constraint firstItem="X7N-2K-9FT" firstAttribute="leading" secondItem="XKu-Mg-Jcl" secondAttribute="leading" constant="8" id="CYA-Gy-rYA"/>
+                            <constraint firstItem="orq-JS-TjD" firstAttribute="width" secondItem="XKu-Mg-Jcl" secondAttribute="width" multiplier="0.9" id="D58-Lp-P4D"/>
+                            <constraint firstItem="qne-RA-uFZ" firstAttribute="trailing" secondItem="orq-JS-TjD" secondAttribute="trailing" id="DG2-jn-I44"/>
+                            <constraint firstItem="qne-RA-uFZ" firstAttribute="top" secondItem="vzo-Km-GKU" secondAttribute="bottom" constant="11" id="WMG-Rg-X7Z"/>
+                            <constraint firstItem="orq-JS-TjD" firstAttribute="top" secondItem="3zg-nt-gI3" secondAttribute="bottom" constant="11" id="eSt-JG-Ynf"/>
+                            <constraint firstItem="tuf-Mc-wh5" firstAttribute="trailing" secondItem="vzo-Km-GKU" secondAttribute="trailing" constant="8" id="eef-bU-jIg"/>
+                            <constraint firstItem="tuf-Mc-wh5" firstAttribute="trailing" secondItem="X7N-2K-9FT" secondAttribute="trailing" constant="8" id="hIx-yP-R01"/>
+                            <constraint firstItem="tuf-Mc-wh5" firstAttribute="trailing" secondItem="3zg-nt-gI3" secondAttribute="trailing" constant="8" id="l6k-aX-jWy"/>
+                            <constraint firstItem="3zg-nt-gI3" firstAttribute="top" secondItem="X7N-2K-9FT" secondAttribute="bottom" constant="11" id="oJJ-kJ-RKh"/>
+                            <constraint firstItem="vzo-Km-GKU" firstAttribute="leading" secondItem="tuf-Mc-wh5" secondAttribute="leading" constant="8" id="xsA-95-6jq"/>
+                            <constraint firstItem="vzo-Km-GKU" firstAttribute="top" secondItem="orq-JS-TjD" secondAttribute="bottom" constant="11" id="zUb-Ud-kMI"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="tuf-Mc-wh5"/>
                     </view>
                 </viewController>
