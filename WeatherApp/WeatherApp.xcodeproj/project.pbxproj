@@ -8,12 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		57EE008E21F15D7000D76A6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE008D21F15D7000D76A6E /* AppDelegate.swift */; };
-		57EE009021F15D7000D76A6E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE008F21F15D7000D76A6E /* ViewController.swift */; };
+		57EE009021F15D7000D76A6E /* MainWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE008F21F15D7000D76A6E /* MainWeatherViewController.swift */; };
 		57EE009321F15D7100D76A6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57EE009121F15D7100D76A6E /* Main.storyboard */; };
 		57EE009521F15D7100D76A6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57EE009421F15D7100D76A6E /* Assets.xcassets */; };
 		57EE009821F15D7100D76A6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57EE009621F15D7100D76A6E /* LaunchScreen.storyboard */; };
 		57EE00A021F15E0F00D76A6E /* ZipCodeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE009F21F15E0F00D76A6E /* ZipCodeHelper.swift */; };
 		57EE00A821F15F4E00D76A6E /* WeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE00A721F15F4E00D76A6E /* WeatherAppTests.swift */; };
+		A5AE318C21F2CFC20096AA4E /* AerisAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE318B21F2CFC20096AA4E /* AerisAPIClient.swift */; };
+		A5AE318F21F2D06F0096AA4E /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE318E21F2D06F0096AA4E /* SecretKeys.swift */; };
+		A5AE319121F2D2070096AA4E /* WeatherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE319021F2D2070096AA4E /* WeatherDetailViewController.swift */; };
+		A5AE319321F2D23D0096AA4E /* FavoriteImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE319221F2D23D0096AA4E /* FavoriteImagesViewController.swift */; };
+		A5AE319521F2D78C0096AA4E /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE319421F2D78C0096AA4E /* DayCell.swift */; };
+		A5AE319821F2D84F0096AA4E /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE319721F2D84F0096AA4E /* AppError.swift */; };
+		A5AE319C21F2D9000096AA4E /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE319B21F2D9000096AA4E /* WeatherData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +36,7 @@
 /* Begin PBXFileReference section */
 		57EE008A21F15D7000D76A6E /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57EE008D21F15D7000D76A6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		57EE008F21F15D7000D76A6E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		57EE008F21F15D7000D76A6E /* MainWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeatherViewController.swift; sourceTree = "<group>"; };
 		57EE009221F15D7100D76A6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		57EE009421F15D7100D76A6E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57EE009721F15D7100D76A6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -38,6 +45,13 @@
 		57EE00A521F15F4E00D76A6E /* WeatherAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		57EE00A721F15F4E00D76A6E /* WeatherAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppTests.swift; sourceTree = "<group>"; };
 		57EE00A921F15F4E00D76A6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5AE318B21F2CFC20096AA4E /* AerisAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AerisAPIClient.swift; sourceTree = "<group>"; };
+		A5AE318E21F2D06F0096AA4E /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
+		A5AE319021F2D2070096AA4E /* WeatherDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailViewController.swift; sourceTree = "<group>"; };
+		A5AE319221F2D23D0096AA4E /* FavoriteImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteImagesViewController.swift; sourceTree = "<group>"; };
+		A5AE319421F2D78C0096AA4E /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
+		A5AE319721F2D84F0096AA4E /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		A5AE319B21F2D9000096AA4E /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,9 +93,12 @@
 		57EE008C21F15D7000D76A6E /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				57EE009F21F15E0F00D76A6E /* ZipCodeHelper.swift */,
-				57EE008F21F15D7000D76A6E /* ViewController.swift */,
 				57EE009121F15D7100D76A6E /* Main.storyboard */,
+				A5AE318D21F2CFF00096AA4E /* Network Helper */,
+				A5AE319621F2D7920096AA4E /* Model */,
+				A5AE318A21F2CE0C0096AA4E /* Controllers */,
+				57EE009F21F15E0F00D76A6E /* ZipCodeHelper.swift */,
+				A5AE318E21F2D06F0096AA4E /* SecretKeys.swift */,
 				57EE00AF21F160D400D76A6E /* Supporting Files */,
 				57EE009921F15D7100D76A6E /* Info.plist */,
 			);
@@ -105,6 +122,34 @@
 				57EE009621F15D7100D76A6E /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A5AE318A21F2CE0C0096AA4E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				57EE008F21F15D7000D76A6E /* MainWeatherViewController.swift */,
+				A5AE319021F2D2070096AA4E /* WeatherDetailViewController.swift */,
+				A5AE319221F2D23D0096AA4E /* FavoriteImagesViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A5AE318D21F2CFF00096AA4E /* Network Helper */ = {
+			isa = PBXGroup;
+			children = (
+				A5AE318B21F2CFC20096AA4E /* AerisAPIClient.swift */,
+				A5AE319721F2D84F0096AA4E /* AppError.swift */,
+			);
+			path = "Network Helper";
+			sourceTree = "<group>";
+		};
+		A5AE319621F2D7920096AA4E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A5AE319421F2D78C0096AA4E /* DayCell.swift */,
+				A5AE319B21F2D9000096AA4E /* WeatherData.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,9 +253,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5AE319121F2D2070096AA4E /* WeatherDetailViewController.swift in Sources */,
+				A5AE318C21F2CFC20096AA4E /* AerisAPIClient.swift in Sources */,
+				A5AE319821F2D84F0096AA4E /* AppError.swift in Sources */,
 				57EE00A021F15E0F00D76A6E /* ZipCodeHelper.swift in Sources */,
-				57EE009021F15D7000D76A6E /* ViewController.swift in Sources */,
+				57EE009021F15D7000D76A6E /* MainWeatherViewController.swift in Sources */,
 				57EE008E21F15D7000D76A6E /* AppDelegate.swift in Sources */,
+				A5AE319C21F2D9000096AA4E /* WeatherData.swift in Sources */,
+				A5AE318F21F2D06F0096AA4E /* SecretKeys.swift in Sources */,
+				A5AE319521F2D78C0096AA4E /* DayCell.swift in Sources */,
+				A5AE319321F2D23D0096AA4E /* FavoriteImagesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
