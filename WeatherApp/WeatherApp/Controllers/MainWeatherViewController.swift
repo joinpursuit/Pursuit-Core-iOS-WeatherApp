@@ -18,7 +18,7 @@ class MainWeatherViewController: UIViewController {
     @IBOutlet weak var forecastCollectionView: UICollectionView!
     @IBOutlet weak var locationTextField: UITextField!
     public var isValidZipcode = true
-    private var presetDefaultZipcode = "74134"
+    private var presetZipcode = "74134"
     public var location = ""
     weak var delegate: WeatherHelperDelegate?
     
@@ -41,7 +41,7 @@ class MainWeatherViewController: UIViewController {
     private func checkForValidZipcode() -> Bool {
         if var keyword = locationTextField.text {
             if keyword == "" {
-                keyword = presetDefaultZipcode
+                keyword = presetZipcode
                 isValidZipcode = true
             } else {
                 isValidZipcode = true
@@ -60,22 +60,22 @@ class MainWeatherViewController: UIViewController {
         return isValidZipcode
     }
     
-    private func useValidZipcodeSetupViewAndUpdateUserDefaults(isValid: Bool, keyword: String) {
-        if isValid {
-            searchWeather(keyword: keyword)
-            UserDefaults.standard.set(keyword, forKey: "Location")
+    private func useValidZipcodeSetupViewAndUpdateUserDefaults(zipcodeIsValid: Bool, zipcode: String) {
+        if zipcodeIsValid {
+            searchWeather(fromZipcode: zipcode)
+            UserDefaults.standard.set(zipcode, forKey: "Location")
+            setupView(zipcode: zipcode)
         } else {
             showAlert()
         }
     }
     
-    private func searchWeather(keyword: String) {
-        AerisAPIClient.searchLocation(keyword: keyword, isZipcode: isValidZipcode) { (appError, dailyForecast) in
+    private func searchWeather(fromZipcode: String) {
+        AerisAPIClient.searchLocation(keyword: fromZipcode, isZipcode: isValidZipcode) { (appError, dailyForecast) in
             if let appError = appError {
                 print("searchWeather app error - \(appError)")
             } else if let dailyForecast = dailyForecast {
                 self.dailyForecast = dailyForecast
-               // self.setupView(zipcode: keyword)
             }
         }
     }
@@ -85,7 +85,7 @@ class MainWeatherViewController: UIViewController {
         if let searchWord = UserDefaults.standard.object(forKey: "Location") as? String {
             zipcodeToSearch = searchWord
         } else {
-            zipcodeToSearch = presetDefaultZipcode
+            zipcodeToSearch = presetZipcode
         }
         setupView(zipcode: zipcodeToSearch)
     }
@@ -101,7 +101,7 @@ class MainWeatherViewController: UIViewController {
             }
         }
         locationTextField.text = zipcode
-        searchWeather(keyword: zipcode)
+        searchWeather(fromZipcode: zipcode)
     }
     
     private func showAlert() {
@@ -110,12 +110,6 @@ class MainWeatherViewController: UIViewController {
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        guard let cellSender = sender as? UICollectionViewCell, let destination = segue.destination as? WeatherDetailViewController else { return }
-//        destination.dayWeather = dailyForecast[indexPathOfSelectedItem]
-//        destination.location = location
-//    }
 
 }
 
@@ -161,7 +155,7 @@ extension MainWeatherViewController: UITextFieldDelegate {
             return false
         }
         textField.resignFirstResponder()
-        useValidZipcodeSetupViewAndUpdateUserDefaults(isValid: checkForValidZipcode(), keyword: keyword)
+        useValidZipcodeSetupViewAndUpdateUserDefaults(zipcodeIsValid: checkForValidZipcode(), zipcode: keyword)
         return true
     }
 }
