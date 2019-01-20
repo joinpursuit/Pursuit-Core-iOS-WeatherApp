@@ -21,9 +21,21 @@ class WeatherDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dateLabel.text = "Weather Forecast for \(location) \n \(WeatherDataHelper.formatISOToDate(dateString: dayWeather.dateTimeISO))"
-        imageOfLocation.image = UIImage(named: dayWeather.icon)
         weatherDetailLabel.text = dayWeather.weather
         weatherMoreInfoTextView.text = WeatherDataHelper.formatMoreInfo(dailyForecast: dayWeather)
+        PixabayAPIClient.getImageURLString(ofLocation: location) { (appError, urlString) in
+            if let appError = appError {
+                print("error getting pixabay image url string - \(appError)")
+            } else if let urlString = urlString {
+                ImageHelper.shared.fetchImage(urlString: urlString, completionHandler: { (appError, image) in
+                    if let appError = appError {
+                        print("error trying to get image out of pixabay url - \(appError)")
+                    } else if let image = image {
+                        self.imageOfLocation.image = image
+                    }
+                })
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

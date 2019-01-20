@@ -1,24 +1,18 @@
 //
-//  AerisAPIClient.swift
+//  PixabyHelper.swift
 //  WeatherApp
 //
-//  Created by Jane Zhu on 1/18/19.
+//  Created by Jane Zhu on 1/20/19.
 //  Copyright © 2019 Pursuit. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-final class AerisAPIClient {
+final class PixabayAPIClient {
     private init() {}
-    static func searchLocation(zipcode: String, isZipcode: Bool, completionHandler: @escaping (AppError?, [DailyForecast]?) -> Void) {
-        var endpointURLString = ""
-        if isZipcode {
-            endpointURLString = "http://api.aerisapi.com/forecasts/\(zipcode)?client_id=\(SecretKeys.aerisAPIid)&client_secret=\(SecretKeys.aerisAPISecret)"
-        }
-//        else {
-//            endpointURLString = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=\(SecretKeys.APIKey)&city=\(keyword)&radius=500&unit=miles"
-//        }
-        
+    
+    static func getImageURLString(ofLocation: String, completionHandler: @escaping (AppError?, String?) -> Void) {
+        let endpointURLString = "https://pixabay.com/api/?key=11327400-0df301945e305d94d5f34b096&q=\(ofLocation)"
         guard let url = URL(string: endpointURLString) else {
             completionHandler(AppError.badURL(endpointURLString), nil)
             return
@@ -36,16 +30,12 @@ final class AerisAPIClient {
             }
             if let data = data {
                 do {
-                    let weatherData = try JSONDecoder().decode(WeatherData.self, from: data)
-                    if let responseExists = weatherData.response {
-                        if let periodExists = responseExists.first?.periods {
-                            completionHandler(nil, periodExists)
-                        }
-                    }
+                    let imageData = try JSONDecoder().decode(PixabayImageData.self, from: data)
+                    completionHandler(nil, imageData.hits[Int.random(in: 0...imageData.totalHits - 1)].largeImageURL)
                 } catch {
                     completionHandler(AppError.decodingError(error), nil)
                 }
             }
-            }.resume()
+        }.resume()
     }
 }

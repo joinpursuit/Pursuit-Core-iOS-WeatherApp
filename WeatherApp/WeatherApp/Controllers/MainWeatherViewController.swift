@@ -71,7 +71,7 @@ class MainWeatherViewController: UIViewController {
     }
     
     private func searchWeather(fromZipcode: String) {
-        AerisAPIClient.searchLocation(keyword: fromZipcode, isZipcode: isValidZipcode) { (appError, dailyForecast) in
+        AerisAPIClient.searchLocation(zipcode: fromZipcode, isZipcode: isValidZipcode) { (appError, dailyForecast) in
             if let appError = appError {
                 print("searchWeather app error - \(appError)")
             } else if let dailyForecast = dailyForecast {

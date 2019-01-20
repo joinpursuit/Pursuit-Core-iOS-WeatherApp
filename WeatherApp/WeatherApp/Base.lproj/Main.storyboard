@@ -238,6 +238,7 @@
                                                 <segue destination="sR8-JU-P3E" kind="unwind" unwindAction="doneViewing:" id="nFt-XK-QIc"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Favorite" id="1Qf-nE-86D"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
