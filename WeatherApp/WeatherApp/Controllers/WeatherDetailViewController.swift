@@ -15,9 +15,28 @@ class WeatherDetailViewController: UIViewController {
     @IBOutlet weak var weatherDetailLabel: UILabel!
     @IBOutlet weak var weatherMoreInfoTextView: UITextView!
     
+    public var location = ""
+    public var dayWeather: DailyForecast!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(location)
+        dateLabel.text = dayWeather.dateTimeISO
+        imageOfLocation.image = UIImage(named: dayWeather.icon)
+        weatherDetailLabel.text = dayWeather.weather
+        weatherMoreInfoTextView.text = WeatherDataHelper.formatMoreInfo(dailyForecast: dayWeather)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let vc = segue.destination as? MainWeatherViewController else { return }
+        vc.delegate = self
+    }
+    
+}
+
+extension WeatherDetailViewController: WeatherHelperDelegate {
+    func sendLocation(location: String) {
+        self.locationLabel.text = "Weather Forecast for \(location)"
+        self.location = location
+    }
 }

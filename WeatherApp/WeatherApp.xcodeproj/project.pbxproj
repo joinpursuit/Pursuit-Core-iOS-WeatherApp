@@ -25,6 +25,7 @@
 		A5AE31A021F2E1A70096AA4E /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE319F21F2E1A70096AA4E /* Favorite.swift */; };
 		A5AE31A221F2E2200096AA4E /* FavoritesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE31A121F2E2200096AA4E /* FavoritesModel.swift */; };
 		A5AE31A421F2E2D80096AA4E /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE31A321F2E2D80096AA4E /* DataPersistenceManager.swift */; };
+		A5AE31AA21F4FC540096AA4E /* WeatherDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE31A921F4FC540096AA4E /* WeatherDataHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		A5AE319F21F2E1A70096AA4E /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		A5AE31A121F2E2200096AA4E /* FavoritesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesModel.swift; sourceTree = "<group>"; };
 		A5AE31A321F2E2D80096AA4E /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
+		A5AE31A921F4FC540096AA4E /* WeatherDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 				A5AE319421F2D78C0096AA4E /* DayCell.swift */,
 				A5AE319D21F2E04A0096AA4E /* FavoriteImageCell.swift */,
 				A5AE319B21F2D9000096AA4E /* WeatherData.swift */,
+				A5AE31A921F4FC540096AA4E /* WeatherDataHelper.swift */,
 				A5AE319F21F2E1A70096AA4E /* Favorite.swift */,
 				A5AE31A121F2E2200096AA4E /* FavoritesModel.swift */,
 			);
@@ -272,6 +275,7 @@
 				A5AE319821F2D84F0096AA4E /* AppError.swift in Sources */,
 				A5AE31A221F2E2200096AA4E /* FavoritesModel.swift in Sources */,
 				57EE00A021F15E0F00D76A6E /* ZipCodeHelper.swift in Sources */,
+				A5AE31AA21F4FC540096AA4E /* WeatherDataHelper.swift in Sources */,
 				57EE009021F15D7000D76A6E /* MainWeatherViewController.swift in Sources */,
 				57EE008E21F15D7000D76A6E /* AppDelegate.swift in Sources */,
 				A5AE319C21F2D9000096AA4E /* WeatherData.swift in Sources */,
