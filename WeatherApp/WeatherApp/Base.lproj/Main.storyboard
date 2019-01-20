@@ -105,13 +105,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High: 35°F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3r1-Tc-rEp">
-                                                    <rect key="frame" x="13" y="210" width="125" height="23"/>
+                                                    <rect key="frame" x="13" y="212" width="125" height="23"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Low: 10°F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S8v-8R-Vhw">
-                                                    <rect key="frame" x="13" y="238" width="125" height="23"/>
+                                                    <rect key="frame" x="13" y="240" width="125" height="23"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -122,6 +122,7 @@
                                         <constraints>
                                             <constraint firstItem="3r1-Tc-rEp" firstAttribute="leading" secondItem="ZKh-fU-aoy" secondAttribute="leadingMargin" constant="5" id="0Bg-US-YLP"/>
                                             <constraint firstItem="4rG-Su-ytA" firstAttribute="top" secondItem="ZKh-fU-aoy" secondAttribute="topMargin" id="2WS-Du-fm2"/>
+                                            <constraint firstAttribute="bottom" secondItem="S8v-8R-Vhw" secondAttribute="bottom" constant="5" id="8zq-Ch-7XE"/>
                                             <constraint firstItem="S8v-8R-Vhw" firstAttribute="top" secondItem="3r1-Tc-rEp" secondAttribute="bottom" constant="5" id="9Th-IU-70E"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="3r1-Tc-rEp" secondAttribute="trailing" constant="5" id="EmY-l8-jGX"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="fS3-P4-Rbd" secondAttribute="trailing" constant="5" id="Vsv-87-CVe"/>
@@ -131,7 +132,6 @@
                                             <constraint firstItem="4rG-Su-ytA" firstAttribute="leading" secondItem="ZKh-fU-aoy" secondAttribute="leadingMargin" constant="5" id="hW6-Mv-sg3"/>
                                             <constraint firstItem="S8v-8R-Vhw" firstAttribute="leading" secondItem="ZKh-fU-aoy" secondAttribute="leadingMargin" constant="5" id="o2s-bb-fJc"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="S8v-8R-Vhw" secondAttribute="trailing" constant="5" id="pKz-2d-iVN"/>
-                                            <constraint firstItem="3r1-Tc-rEp" firstAttribute="top" secondItem="fS3-P4-Rbd" secondAttribute="bottom" constant="5" id="uon-pe-fM8"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="date" destination="4rG-Su-ytA" id="ykc-Yg-uZ8"/>
@@ -157,6 +157,7 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="MMg-3w-De8" firstAttribute="top" secondItem="ibD-xZ-dPt" secondAttribute="top" constant="22" id="4f5-jo-GoC"/>
                             <constraint firstItem="1A3-r1-g3Y" firstAttribute="width" secondItem="f9h-uP-Eom" secondAttribute="width" multiplier="0.35" id="Ht4-SJ-o0A"/>
@@ -238,7 +239,7 @@
                                                 <segue destination="sR8-JU-P3E" kind="unwind" unwindAction="doneViewing:" id="nFt-XK-QIc"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Favorite" id="1Qf-nE-86D"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="1Qf-nE-86D"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>

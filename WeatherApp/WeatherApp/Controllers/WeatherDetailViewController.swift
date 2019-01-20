@@ -32,6 +32,8 @@ class WeatherDetailViewController: UIViewController {
                 ImageHelper.shared.fetchImage(urlString: urlString, completionHandler: { (appError, image) in
                     if let appError = appError {
                         print("error trying to get image out of pixabay url - \(appError)")
+                        self.imageActivityIndicator.stopAnimating()
+                        self.imageOfLocation.image = UIImage(named: "placeHolder")
                     } else if let image = image {
                         self.imageActivityIndicator.stopAnimating()
                         self.imageOfLocation.image = image
@@ -42,16 +44,4 @@ class WeatherDetailViewController: UIViewController {
         imageActivityIndicator.hidesWhenStopped = true
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let vc = segue.destination as? MainWeatherViewController else { return }
-        vc.delegate = self
-    }
-    
-}
-
-extension WeatherDetailViewController: WeatherHelperDelegate {
-    func sendLocation(location: String) {
-        self.locationLabel.text = "Weather Forecast for \(location)"
-        self.location = location
-    }
 }

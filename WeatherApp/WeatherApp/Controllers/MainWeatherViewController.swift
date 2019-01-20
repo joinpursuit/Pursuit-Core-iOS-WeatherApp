@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol WeatherHelperDelegate: AnyObject {
-    func sendLocation(location: String)
-}
-
 class MainWeatherViewController: UIViewController {
     
     @IBOutlet weak var locationLabel: UILabel!
@@ -20,7 +16,6 @@ class MainWeatherViewController: UIViewController {
     public var isValidZipcode = true
     private var presetZipcode = "74134"
     public var location = ""
-    weak var delegate: WeatherHelperDelegate?
     
     private var dailyForecast = [DailyForecast]() {
         didSet {
@@ -97,7 +92,6 @@ class MainWeatherViewController: UIViewController {
             } else if let location = location {
                 self.locationLabel.text = "Weather Forecast for \(location)"
                 self.location = location
-                self.delegate?.sendLocation(location: location)
             }
         }
         locationTextField.text = zipcode
