@@ -43,5 +43,35 @@ class WeatherDetailViewController: UIViewController {
         }
         imageActivityIndicator.hidesWhenStopped = true
     }
+    @IBAction func saveImage(_ sender: UIBarButtonItem) {
+        if let image = imageOfLocation.image {
+            if let imageToSave = image.jpegData(compressionQuality: 0.5) {
+                let date = Date()
+                let isoDateFormatter = ISO8601DateFormatter()
+                isoDateFormatter.formatOptions = [.withFullDate,
+                                                  .withFullTime,
+                                                  .withInternetDateTime,
+                                                  .withTimeZone,
+                                                  .withDashSeparatorInDate]
+                let timeStamp = isoDateFormatter.string(from: date)
+                let favoriteImage = Favorite.init(addedDate: timeStamp, imageData: imageToSave)
+                FavoritesModel.addFavoriteImage(favoriteImage: favoriteImage)
+                showAlert(message: "Successfully favorited image")
+            } else {
+                print("image can't be compressed to jpeg")
+                showAlert(message: "Can not favorite image")
+            }
+        } else {
+            print("image does not exist")
+            showAlert(message: "Can not favorite image")
+        }
+    }
+    
+    private func showAlert(message: String) {
+        let alertController = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
     
 }

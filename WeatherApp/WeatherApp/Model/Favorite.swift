@@ -9,13 +9,13 @@
 import Foundation
 
 struct Favorite: Codable {
-    let lastUpdated: String
+    let addedDate: String
     let imageData: Data
     
     public var date: Date {
         let isoDateFormatter = ISO8601DateFormatter()
         var formattedDate = Date()
-        if let date = isoDateFormatter.date(from: lastUpdated) {
+        if let date = isoDateFormatter.date(from: addedDate) {
             formattedDate = date
         }
         return formattedDate

@@ -21,15 +21,15 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FavoriteImageCell" rowHeight="256" id="Mrs-On-qzC" customClass="FavoriteImageCell" customModule="WeatherApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="256"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FavoriteCell" rowHeight="150" id="Mrs-On-qzC" customClass="FavoriteImageCell" customModule="WeatherApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mrs-On-qzC" id="gdf-T7-LXh">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="255.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="149.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="870-4x-2CK">
-                                                    <rect key="frame" x="20" y="11" width="374" height="234"/>
+                                                    <rect key="frame" x="20" y="11" width="374" height="128"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -56,6 +56,9 @@
                         <viewLayoutGuide key="safeArea" id="4WG-nJ-jsO"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Favorites" image="favoritesIcon" id="LUZ-1x-9KS"/>
+                    <connections>
+                        <outlet property="favoriteImagesTableView" destination="PY6-4n-32R" id="hti-m7-Zcy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZdD-1k-zBG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -239,7 +242,11 @@
                                                 <segue destination="sR8-JU-P3E" kind="unwind" unwindAction="doneViewing:" id="nFt-XK-QIc"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="1Qf-nE-86D"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="1Qf-nE-86D">
+                                            <connections>
+                                                <action selector="saveImage:" destination="Fxs-KG-uAq" id="gbg-Qa-wpQ"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
