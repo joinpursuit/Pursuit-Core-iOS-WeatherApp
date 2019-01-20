@@ -14,6 +14,7 @@ class WeatherDetailViewController: UIViewController {
     @IBOutlet weak var imageOfLocation: UIImageView!
     @IBOutlet weak var weatherDetailLabel: UILabel!
     @IBOutlet weak var weatherMoreInfoTextView: UITextView!
+    @IBOutlet weak var imageActivityIndicator: UIActivityIndicatorView!
     
     public var location = ""
     public var dayWeather: DailyForecast!
@@ -23,6 +24,7 @@ class WeatherDetailViewController: UIViewController {
         dateLabel.text = "Weather Forecast for \(location) \n \(WeatherDataHelper.formatISOToDate(dateString: dayWeather.dateTimeISO))"
         weatherDetailLabel.text = dayWeather.weather
         weatherMoreInfoTextView.text = WeatherDataHelper.formatMoreInfo(dailyForecast: dayWeather)
+        imageActivityIndicator.startAnimating()
         PixabayAPIClient.getImageURLString(ofLocation: location) { (appError, urlString) in
             if let appError = appError {
                 print("error getting pixabay image url string - \(appError)")
@@ -31,11 +33,13 @@ class WeatherDetailViewController: UIViewController {
                     if let appError = appError {
                         print("error trying to get image out of pixabay url - \(appError)")
                     } else if let image = image {
+                        self.imageActivityIndicator.stopAnimating()
                         self.imageOfLocation.image = image
                     }
                 })
             }
         }
+        imageActivityIndicator.hidesWhenStopped = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
