@@ -14,6 +14,7 @@ struct WeatherModel: Codable {
 
 struct WeatherInfo: Codable {
   let periods: [WeatherDetails]
+  let profile: CityName
 }
 
 struct WeatherDetails: Codable {
@@ -34,11 +35,7 @@ struct WeatherDetails: Codable {
   let sunsetISO: String
 }
 
-//  fecha
-//  high
-//  low
-//  zipcode
-//  sunrise
-//  sunset
-//  windspeed
-//  inchesofprecipitation
+struct CityName: Codable {
+  let tz: String
+}
+

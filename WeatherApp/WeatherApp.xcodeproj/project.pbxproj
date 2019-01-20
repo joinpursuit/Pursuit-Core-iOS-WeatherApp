@@ -17,6 +17,8 @@
 		1E1148CF21F40F43008E19D2 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1148CE21F40F43008E19D2 /* ImageHelper.swift */; };
 		1E1148D121F41D25008E19D2 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1148D021F41D25008E19D2 /* WeatherModel.swift */; };
 		1E1148D321F41D36008E19D2 /* ImagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1148D221F41D36008E19D2 /* ImagesModel.swift */; };
+		1E1148D621F429A4008E19D2 /* WeatherClientAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1148D521F429A4008E19D2 /* WeatherClientAPI.swift */; };
+		1E1148D821F429B6008E19D2 /* ImageClientAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1148D721F429B6008E19D2 /* ImageClientAPI.swift */; };
 		57EE008E21F15D7000D76A6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE008D21F15D7000D76A6E /* AppDelegate.swift */; };
 		57EE009021F15D7000D76A6E /* MainWeatherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE008F21F15D7000D76A6E /* MainWeatherController.swift */; };
 		57EE009321F15D7100D76A6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57EE009121F15D7100D76A6E /* Main.storyboard */; };
@@ -47,6 +49,8 @@
 		1E1148CE21F40F43008E19D2 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		1E1148D021F41D25008E19D2 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		1E1148D221F41D36008E19D2 /* ImagesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesModel.swift; sourceTree = "<group>"; };
+		1E1148D521F429A4008E19D2 /* WeatherClientAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherClientAPI.swift; sourceTree = "<group>"; };
+		1E1148D721F429B6008E19D2 /* ImageClientAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClientAPI.swift; sourceTree = "<group>"; };
 		57EE008A21F15D7000D76A6E /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57EE008D21F15D7000D76A6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57EE008F21F15D7000D76A6E /* MainWeatherController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeatherController.swift; sourceTree = "<group>"; };
@@ -100,9 +104,12 @@
 		1E1148CA21F409CC008E19D2 /* Network Docs */ = {
 			isa = PBXGroup;
 			children = (
-				1E1148CE21F40F43008E19D2 /* ImageHelper.swift */,
 				1E1148BC21F2BF13008E19D2 /* NetworkHelper.swift */,
+				1E1148D521F429A4008E19D2 /* WeatherClientAPI.swift */,
+				1E1148D721F429B6008E19D2 /* ImageClientAPI.swift */,
+				1E1148CE21F40F43008E19D2 /* ImageHelper.swift */,
 				1E1148BE21F2BF28008E19D2 /* AppError.swift */,
+				57EE009F21F15E0F00D76A6E /* ZipCodeHelper.swift */,
 			);
 			path = "Network Docs";
 			sourceTree = "<group>";
@@ -145,11 +152,10 @@
 		57EE008C21F15D7000D76A6E /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				57EE009F21F15E0F00D76A6E /* ZipCodeHelper.swift */,
+				57EE009121F15D7100D76A6E /* Main.storyboard */,
 				1E1148D421F41D3F008E19D2 /* Model */,
 				1E1148CD21F40B54008E19D2 /* File Manager Services */,
 				1E1148C621F40978008E19D2 /* Controller */,
-				57EE009121F15D7100D76A6E /* Main.storyboard */,
 				1E1148C721F40992008E19D2 /* Views */,
 				1E1148CA21F409CC008E19D2 /* Network Docs */,
 				57EE00AF21F160D400D76A6E /* Supporting Files */,
@@ -288,7 +294,9 @@
 				57EE009021F15D7000D76A6E /* MainWeatherController.swift in Sources */,
 				1E1148D321F41D36008E19D2 /* ImagesModel.swift in Sources */,
 				57EE008E21F15D7000D76A6E /* AppDelegate.swift in Sources */,
+				1E1148D621F429A4008E19D2 /* WeatherClientAPI.swift in Sources */,
 				1E1148CC21F40B48008E19D2 /* DataPersistenceManager.swift in Sources */,
+				1E1148D821F429B6008E19D2 /* ImageClientAPI.swift in Sources */,
 				1E1148D121F41D25008E19D2 /* WeatherModel.swift in Sources */,
 				1E1148CF21F40F43008E19D2 /* ImageHelper.swift in Sources */,
 			);
