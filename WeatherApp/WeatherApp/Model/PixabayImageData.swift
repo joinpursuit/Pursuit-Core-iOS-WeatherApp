@@ -9,7 +9,6 @@
 import Foundation
 
 struct PixabayImageData: Codable {
-    let totalHits: Int
     let hits: [PixabayImages]
 }
 
