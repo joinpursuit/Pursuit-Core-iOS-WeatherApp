@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainWeatherController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
