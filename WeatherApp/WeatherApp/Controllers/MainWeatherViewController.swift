@@ -132,7 +132,7 @@ extension MainWeatherViewController: UICollectionViewDataSource, UICollectionVie
         guard let cell = forecastCollectionView.dequeueReusableCell(withReuseIdentifier: "DayCell", for: indexPath) as? DayCell
             else { return UICollectionViewCell() }
         let dayToSet = dailyForecast[indexPath.row]
-        cell.date.text = dayToSet.dateTimeISO
+        cell.date.text = WeatherDataHelper.formatISOToDate(dateString: dayToSet.dateTimeISO)
         cell.high.text = "High: " +  dayToSet.maxTempF.description + "°F"
         cell.low.text = "Low: " + dayToSet.minTempF.description + "°F"
         cell.weatherImage.image = UIImage(named: dayToSet.icon)
@@ -144,6 +144,7 @@ extension MainWeatherViewController: UICollectionViewDataSource, UICollectionVie
         guard let destinationViewController = storyBoard.instantiateViewController(withIdentifier: "WeatherDetailViewController") as? WeatherDetailViewController else { return }
         destinationViewController.modalPresentationStyle = .overCurrentContext
         destinationViewController.dayWeather = dailyForecast[indexPath.row]
+        destinationViewController.location = location
         self.present(destinationViewController, animated: true, completion: nil)
     }
 }

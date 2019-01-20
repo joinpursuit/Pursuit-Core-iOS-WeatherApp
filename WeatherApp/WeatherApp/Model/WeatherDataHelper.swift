@@ -9,6 +9,17 @@
 import Foundation
 
 struct WeatherDataHelper {
+    static func formatISOToDate(dateString: String) -> String {
+        let isoDateFormatter = ISO8601DateFormatter()
+        var formattedDate = dateString
+        if let date = isoDateFormatter.date(from: dateString) {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM/dd/yyyy"
+            formattedDate = dateFormatter.string(from: date)
+        }
+        return formattedDate
+        
+    }
     static func formatISOToTime(dateString: String) -> String {
         let isoDateFormatter = ISO8601DateFormatter()
         var formattedDate = dateString
@@ -18,7 +29,6 @@ struct WeatherDataHelper {
             formattedDate = dateFormatter.string(from: date)
         }
         return formattedDate
-        
     }
     static func formatMoreInfo(dailyForecast: DailyForecast) -> String {
         return "High: \(dailyForecast.maxTempF)°F \nLow: \(dailyForecast.minTempF)°F \nSunrise: \(WeatherDataHelper.formatISOToTime(dateString: dailyForecast.sunriseISO)) \nSunset: \(WeatherDataHelper.formatISOToTime(dateString: dailyForecast.sunsetISO)) \nWindspeed: \(dailyForecast.windSpeedMPH) MPH \nPrecipitation: \(dailyForecast.precipIN) in"

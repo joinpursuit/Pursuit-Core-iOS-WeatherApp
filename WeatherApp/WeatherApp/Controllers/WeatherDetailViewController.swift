@@ -20,8 +20,7 @@ class WeatherDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(location)
-        dateLabel.text = dayWeather.dateTimeISO
+        dateLabel.text = "Weather Forecast for \(location) \n \(WeatherDataHelper.formatISOToDate(dateString: dayWeather.dateTimeISO))"
         imageOfLocation.image = UIImage(named: dayWeather.icon)
         weatherDetailLabel.text = dayWeather.weather
         weatherMoreInfoTextView.text = WeatherDataHelper.formatMoreInfo(dailyForecast: dayWeather)
