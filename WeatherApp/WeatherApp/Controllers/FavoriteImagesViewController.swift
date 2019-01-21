@@ -21,6 +21,7 @@ class FavoriteImagesViewController: UIViewController {
         super.viewDidLoad()
         getImages()
         favoriteImagesTableView.dataSource = self
+        favoriteImagesTableView.delegate = self
     }
     
     private func getImages() {
@@ -50,8 +51,8 @@ extension FavoriteImagesViewController: UITableViewDataSource, UITableViewDelega
         getImages()
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 100
-//    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 250
+    }
     
 }
