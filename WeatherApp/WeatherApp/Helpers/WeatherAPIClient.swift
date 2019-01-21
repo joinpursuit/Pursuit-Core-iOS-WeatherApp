@@ -8,25 +8,37 @@
 
 import Foundation
 
-final class WeatherAPIClient {
-    static func getWeather (completionHandler: @escaping (AppError?, [Element]?) -> Void) {
-        NetworkHelper.shared.performDataTask(endpointURLString: "https://5c1d79abbc26950013fbcaa9.mockapi.io/api/v1/elements", httpMethod: "GET", httpBody: nil) { (appError, data, httpResponse) in
-            if let appError = appError {
-                completionHandler (appError, nil)
+final class TicketmasterAPIClient {
+    private init() {}
+    static func searchEvents(keyword: String, isZipcode: Bool, completionHandler: @escaping (AppError?, [ForcastData]?) -> Void) {
+        var endpointURLString = ""
+        if isZipcode {
+            endpointURLString = "http://api.aerisapi.com/forecasts/\(keyword)?client_id=\(SecretKeys.accessID)&client_secret=\(SecretKeys.APIKey)"
+        }
+        
+        guard let url = URL(string: endpointURLString) else {
+            completionHandler(AppError.badURL(endpointURLString), nil)
+            return
+        }
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                completionHandler(AppError.networkError(error), nil)
             }
-            guard let response = httpResponse, (200...299).contains(response.statusCode) else {
-                let statusCode = httpResponse?.statusCode ?? -999
-                completionHandler(AppError.badStatusCode(String(statusCode)), nil)
-                return
+            guard let httpResponse = response as? HTTPURLResponse,
+                (200...299).contains(httpResponse.statusCode) else {
+                    let statusCode = (response as? HTTPURLResponse)?.statusCode ?? -999
+                    completionHandler(AppError.badStatusCode("\(statusCode)"), nil)
+                    return
             }
             if let data = data {
                 do {
-                    let elementData = try JSONDecoder().decode([Element].self, from: data)
-                    completionHandler (nil, elementData)
+                    let eventData = try JSONDecoder().decode(Weather.self, from: data)
+                    completionHandler(nil, eventData.response[0].periods)
                 } catch {
-                    completionHandler (AppError.decodingError(error), nil)
+                    completionHandler(AppError.decodingError(error), nil)
                 }
             }
-        }
+            } .resume()
     }
 }
