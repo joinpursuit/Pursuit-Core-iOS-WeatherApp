@@ -169,7 +169,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Search" id="DmC-93-t1R"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="icons8-search_filled" id="DmC-93-t1R"/>
                     <connections>
                         <outlet property="cityName" destination="xAn-Jl-ZQf" id="wJS-Ya-Cqb"/>
                         <outlet property="inputZipCode" destination="fDO-dt-gBF" id="byZ-ww-a7J"/>
@@ -382,7 +382,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="caq-Kt-q2t"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Favorite" id="btu-O8-RfV"/>
+                    <tabBarItem key="tabBarItem" title="Favorite" image="icons8-star" id="btu-O8-RfV"/>
                     <connections>
                         <outlet property="savedPhotosTableView" destination="v92-ns-6KD" id="kMF-Mm-8NT"/>
                     </connections>
@@ -410,4 +410,8 @@
             <point key="canvasLocation" x="136.80000000000001" y="86.806596701649184"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icons8-search_filled" width="25" height="25"/>
+        <image name="icons8-star" width="25" height="25"/>
+    </resources>
 </document>

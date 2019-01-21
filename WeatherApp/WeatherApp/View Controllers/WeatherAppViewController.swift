@@ -44,10 +44,10 @@ class WeatherAppViewController: UIViewController {
     }
     
     func segue(){
-       
         let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        guard let weatherDetailViewController = storyBoard.instantiateViewController(withIdentifier: "WeatherDetailVC") as? WeatherDetailedViewController else {return}
+        present(weatherDetailViewController, animated: true, completion: nil)
         
-    
     }
 
 }
@@ -72,7 +72,7 @@ extension WeatherAppViewController: UICollectionViewDataSource, UICollectionView
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        <#code#>
+        segue()
     }
     
     
