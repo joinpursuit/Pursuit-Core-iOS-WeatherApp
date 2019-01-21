@@ -13,8 +13,8 @@ struct WeatherModel: Codable {
 }
 
 struct WeatherInfo: Codable {
-  let periods: [WeatherDetails]
-  let profile: CityName
+  let periods: [WeatherDetails]?
+  let profile: CityName?
 }
 
 struct WeatherDetails: Codable {

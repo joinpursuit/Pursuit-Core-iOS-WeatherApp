@@ -30,6 +30,8 @@ public final class NetworkHelper {
     URLCache.shared =  cache
   }
   
+  public static let shared = NetworkHelper()
+  
   public func performDataTask(endpointURLString: String, httpMethod: String, httpBody: Data?, completionHandler: @escaping (AppError?, Data?, HTTPURLResponse?) -> Void){
     guard let url = URL(string: endpointURLString) else {
       completionHandler(AppError.badURL("\(endpointURLString)"), nil, nil)
