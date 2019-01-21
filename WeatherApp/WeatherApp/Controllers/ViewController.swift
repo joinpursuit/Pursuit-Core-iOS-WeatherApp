@@ -25,21 +25,27 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     cityForecastCollectionView.delegate = self
     cityForecastCollectionView.dataSource = self
     zipCodTextField.delegate = self
-    WeatherAndImageAPIClient.searchCityWeather(zipCode: "11103") { (appError, data) in
+    var defaultZipCode = "11103"
+    if let zipcode = UserDefaults.standard.object(forKey: "ZipCodes") as? String{
+        defaultZipCode = zipcode
+    }
+    WeatherAndImageAPIClient.searchCityWeather(zipCode: defaultZipCode) { (appError, data) in
         if let appError = appError {
             print(appError.errorMessage())
         }
         if let data = data {
             self.weatherResult = data
         }
-        ZipCodeHelper.getLocationName(from: "11103") { (error, localityName, zipcode) in
+        ZipCodeHelper.getLocationName(from: defaultZipCode) { (error, localityName, zipcode) in
             if let error = error {
                 print("failed to get location name: \(error)")
             } else if let localityName = localityName {
                 self.cityWeather.text = "The forecast for \(localityName)"
+                self.selectedCity = localityName
             }
             
         }
@@ -49,9 +55,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destination = segue.destination as? DetailedWeathersViewController else {return}
+        guard let selectedCell = sender as? UICollectionViewCell,
+            let indexPath = cityForecastCollectionView.indexPath(for: selectedCell),
+            let destination = segue.destination as? DetailedWeathersViewController else {return}
             destination.selectedCity = selectedCity
-            destination.weatherData = weatherResult
+            destination.forecastSelected = weatherResult[indexPath.row]
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return weatherResult.count
@@ -84,10 +92,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 
                     }
                 if let zipcode = zipCode {
+                    UserDefaults.standard.set(zipcode, forKey: "ZipCodes")
                     WeatherAndImageAPIClient.searchCityWeather(zipCode: zipcode) { (appError, data) in
                         if let appError = appError {
-
-                            
                             print(appError.errorMessage())
                         }
                         if let data = data {

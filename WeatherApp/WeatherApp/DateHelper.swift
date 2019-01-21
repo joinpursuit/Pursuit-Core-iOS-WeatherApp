@@ -20,5 +20,15 @@ struct DateHelper {
         }
         return formattedDate
     }
-  
+    static func getTime(time: String) -> String {
+        let isoDateFormatter = ISO8601DateFormatter()
+        isoDateFormatter.formatOptions = [.withFullDate, .withFullTime, .withTimeZone, .withInternetDateTime, .withDashSeparatorInDate]
+        var formattedTime = time
+        if let date = isoDateFormatter.date(from: time) {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm:ss"
+            formattedTime = dateFormatter.string(from: date)
+        }
+        return formattedTime
+    }
 }

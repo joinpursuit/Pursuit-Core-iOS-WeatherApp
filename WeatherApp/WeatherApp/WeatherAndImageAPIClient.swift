@@ -63,7 +63,12 @@ final class WeatherAndImageAPIClient {
                 do {
                     let imageData = try JSONDecoder().decode(Image.self, from: data)
                     //                    events = events.sorted { $0.dates.start.dateTime.dateFromISODateString() < $1.dates.start.dateTime.dateFromISODateString() }
+                    if imageData.totalHits == 0{
+                        completionHandler(AppError.noImages("No Images"), nil)
+                        
+                    } else {
                     completionHandler(nil, imageData.hits)
+                    }
                 } catch {
                     completionHandler(AppError.jsonDecodingError(error), nil)
                 }
