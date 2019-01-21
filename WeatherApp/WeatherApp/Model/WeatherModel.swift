@@ -33,6 +33,20 @@ struct WeatherDetails: Codable {
   let sunriseISO: String
 //  let sunset: //1547935089
   let sunsetISO: String
+  let icon: String //pcloudy.png
+  
+  
+  public var dateFormattedString: String {
+   let isoDateFormatter = ISO8601DateFormatter()
+    var formattedDate = dateTimeISO
+    if let date = isoDateFormatter.date(from: dateTimeISO) {
+      let dateFormatter = DateFormatter()
+      dateFormatter.dateFormat = "MMMM d, yyyy hh:mm a"
+      formattedDate = dateFormatter.string(from: date)
+    }
+    return formattedDate
+  }
+  
 }
 
 struct CityName: Codable {

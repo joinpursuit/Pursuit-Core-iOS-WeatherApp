@@ -9,7 +9,7 @@
 import UIKit
 
 class MainWeatherController: UIViewController {
-
+  
   
   @IBOutlet weak var weatherDisplayColletionView: UICollectionView!
   
@@ -20,10 +20,10 @@ class MainWeatherController: UIViewController {
   @IBOutlet weak var zipCodeMessage: UILabel!
   
   
-  var arrayOfWeatherInfo = [WeatherInfo]() {
+  var arrayOfWeatherInfo = [WeatherDetails]() {
     didSet {
       DispatchQueue.main.async {
-      self.weatherDisplayColletionView.reloadData()
+        self.weatherDisplayColletionView.reloadData()
       }
     }
   }
@@ -36,15 +36,17 @@ class MainWeatherController: UIViewController {
     weatherDisplayColletionView.delegate = self
     dump(arrayOfWeatherInfo)
   }
-
+  
   private func searchWeatherForecast(keyword: String = "11101"){
     WeatherAPIClient.searchWeather(keyword: keyword) { (appError, weather) in
       if let appError = appError {
-       print(appError.errorMessage())
+        print(appError.errorMessage())
       } else if let weather = weather {
-       print("found \(weather.count) podcast")
+        print("found \(weather.count) podcast")
         dump(weather)
-        self.arrayOfWeatherInfo = weather
+        if let details = weather[weather.count - 1].periods {
+         self.arrayOfWeatherInfo = details
+        }
       }
     }
   }
@@ -52,15 +54,15 @@ class MainWeatherController: UIViewController {
 
 extension MainWeatherController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return arrayOfWeatherInfo.count
+   return arrayOfWeatherInfo.count
   }
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     guard let cell = weatherDisplayColletionView.dequeueReusableCell(withReuseIdentifier: "WeatherCell", for: indexPath) as? WeatherCollectionCell else {return UICollectionViewCell()}
     
     let currentDayWeather = arrayOfWeatherInfo[indexPath.row]
     
-    cell.highTemp.text = "\(String(describing: currentDayWeather.periods?[indexPath.row].maxTempC))"
-
+    
+    cell.configureCell(weatherForecast: currentDayWeather)
     
     return cell
   }
