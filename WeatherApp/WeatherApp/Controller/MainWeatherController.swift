@@ -20,7 +20,7 @@ class MainWeatherController: UIViewController {
   @IBOutlet weak var zipCodeMessage: UILabel!
   
   
-  var arrayOfWeatherInfo = [WeatherDetails]() {
+  var arrayOfWeatherInfo = [WeatherInfo]() {
     didSet {
       DispatchQueue.main.async {
       self.weatherDisplayColletionView.reloadData()
@@ -33,7 +33,8 @@ class MainWeatherController: UIViewController {
     super.viewDidLoad()
     searchWeatherForecast()
     weatherDisplayColletionView.dataSource = self
-    
+    weatherDisplayColletionView.delegate = self
+    dump(arrayOfWeatherInfo)
   }
 
   private func searchWeatherForecast(keyword: String = "11101"){
@@ -58,9 +59,16 @@ extension MainWeatherController: UICollectionViewDataSource {
     
     let currentDayWeather = arrayOfWeatherInfo[indexPath.row]
     
-    
+    cell.highTemp.text = "\(String(describing: currentDayWeather.periods?[indexPath.row].maxTempC))"
+
     
     return cell
+  }
+}
+
+extension MainWeatherController: UICollectionViewDelegateFlowLayout {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return CGSize.init(width: weatherDisplayColletionView.bounds.width, height: weatherDisplayColletionView.bounds.height)
   }
 }
 
