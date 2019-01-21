@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate {
+class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
     
     var unitState: Unit = .us {
         didSet{
@@ -34,7 +34,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    title = "Search"
     cityForecastCollectionView.delegate = self
     cityForecastCollectionView.dataSource = self
     zipCodTextField.delegate = self
@@ -43,8 +43,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         defaultZipCode = zipcode
     }
     getData(string: defaultZipCode)
-    
-    
     }
     override func viewWillAppear(_ animated: Bool) {
         if let userDefaults = UserDefaults.standard.object(forKey: "Unit") as? String{
@@ -66,6 +64,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             let destination = segue.destination as? DetailedWeathersViewController else {return}
             destination.selectedCity = selectedCity
             destination.forecastSelected = weatherResult[indexPath.row]
+            destination.unitState = unitState
     }
     
     @IBAction func unitButtonPressed(_ sender: UIBarButtonItem) {
@@ -148,6 +147,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
         
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize.init(width:169, height:192)
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let text = textField.text {

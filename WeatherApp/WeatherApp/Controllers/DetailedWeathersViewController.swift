@@ -12,6 +12,7 @@ class DetailedWeathersViewController: UIViewController {
     
     var selectedCity: String!
     var forecastSelected: PeriodsWrapper!
+    var unitState: Unit!
     
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var weatherLabel: UILabel!
@@ -52,6 +53,7 @@ class DetailedWeathersViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Forecast"
         updateUI()
     }
     
@@ -64,12 +66,19 @@ class DetailedWeathersViewController: UIViewController {
         }
         cityNameLabel.text = "\(selectedCity!) - \(DateHelper.getDate(date: forecastSelected.dateTimeISO))"
         weatherLabel.text = "\(forecastSelected.weather)"
+        if unitState == .us{
         highLabel.text = "High: \(forecastSelected.maxTempF)℉"
         lowLabel.text = "Low: \(forecastSelected.minTempF)℉"
-        sunriseLabel.text = "Sunrise: \(DateHelper.getTime(time: forecastSelected.sunriseISO))"
-        sunsetLabel.text = "Sunset: \(DateHelper.getTime(time: forecastSelected.sunsetISO))"
         windSpeedLabel.text = "Wind speeds: \(forecastSelected.windSpeedMPH) MPH"
         precipitationLabel.text = "Inches of precipitation: \(forecastSelected.precipIN)"
+        } else {
+            highLabel.text = "High: \(forecastSelected.maxTempC)℃"
+            lowLabel.text = "Low: \(forecastSelected.minTempC)℃"
+            windSpeedLabel.text = "Wind speeds: \(forecastSelected.windSpeedKPH) KPH"
+            precipitationLabel.text = "Millimeters of precipitation: \(forecastSelected.precipMM)"
+        }
+        sunriseLabel.text = "Sunrise: \(DateHelper.getTime(time: forecastSelected.sunriseISO))"
+        sunsetLabel.text = "Sunset: \(DateHelper.getTime(time: forecastSelected.sunsetISO))"
         WeatherAndImageAPIClient.getCityImages(city: selectedCity) { (appError, data) in
             if let error = appError{
                 if let image = UIImage(named: self.forecastSelected.icon){
@@ -87,7 +96,7 @@ class DetailedWeathersViewController: UIViewController {
         
     }
     @IBAction func saveWasPressed(_ sender: Any) {
-        let alert = UIAlertController.init(title: "Image Saved!", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController.init(title: "Saved!", message: "Image Saved To Favorites", preferredStyle: .alert)
         let okay = UIAlertAction.init(title: "Okay", style: .default) { (UIAlertAction) in
             self.dismiss(animated: true, completion: nil)
         }

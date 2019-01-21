@@ -159,7 +159,6 @@
 			isa = PBXGroup;
 			children = (
 				57EE008F21F15D7000D76A6E /* ViewController.swift */,
-				D5BE875D21F588B800AC9DC1 /* UnitState.swift */,
 				D5BE873D21F4F31300AC9DC1 /* DetailedWeathersViewController.swift */,
 				D5BE873F21F4F34600AC9DC1 /* FavortiesViewController.swift */,
 			);
@@ -169,6 +168,7 @@
 		D5BE874321F4F8B500AC9DC1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D5BE875D21F588B800AC9DC1 /* UnitState.swift */,
 				D5BE874121F4F8AD00AC9DC1 /* Image.swift */,
 				D5BE875921F561D800AC9DC1 /* FavoriteImage.swift */,
 				D5BE874421F4FE7100AC9DC1 /* Weather.swift */,
