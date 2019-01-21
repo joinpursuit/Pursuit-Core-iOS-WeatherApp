@@ -14,6 +14,7 @@ enum AppError: Error {
     case badStatusCode(String)
     case jsonDecodingError(Error)
     case noImages(String)
+    case noCity(String)
     public func errorMessage() -> String {
         switch self {
         case .badURL(let message):
@@ -26,6 +27,8 @@ enum AppError: Error {
             return "decoding error: \(error)"
         case .noImages(let message):
             return "no images: \(message)"
+        case .noCity(let message):
+            return "no city found: \(message)"
         }
     }
 }

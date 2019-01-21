@@ -28,6 +28,7 @@
 		D5BE875621F5610500AC9DC1 /* DataPersistanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE875521F5610500AC9DC1 /* DataPersistanceModel.swift */; };
 		D5BE875A21F561D800AC9DC1 /* FavoriteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE875921F561D800AC9DC1 /* FavoriteImage.swift */; };
 		D5BE875C21F56AE300AC9DC1 /* FavoriteImagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE875B21F56AE300AC9DC1 /* FavoriteImagesTableViewCell.swift */; };
+		D5BE875E21F588B800AC9DC1 /* UnitState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE875D21F588B800AC9DC1 /* UnitState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		D5BE875521F5610500AC9DC1 /* DataPersistanceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistanceModel.swift; sourceTree = "<group>"; };
 		D5BE875921F561D800AC9DC1 /* FavoriteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteImage.swift; sourceTree = "<group>"; };
 		D5BE875B21F56AE300AC9DC1 /* FavoriteImagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteImagesTableViewCell.swift; sourceTree = "<group>"; };
+		D5BE875D21F588B800AC9DC1 /* UnitState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				57EE008F21F15D7000D76A6E /* ViewController.swift */,
+				D5BE875D21F588B800AC9DC1 /* UnitState.swift */,
 				D5BE873D21F4F31300AC9DC1 /* DetailedWeathersViewController.swift */,
 				D5BE873F21F4F34600AC9DC1 /* FavortiesViewController.swift */,
 			);
@@ -291,6 +294,7 @@
 				57EE008E21F15D7000D76A6E /* AppDelegate.swift in Sources */,
 				D5BE874E21F505B900AC9DC1 /* SecretKeys.swift in Sources */,
 				D5BE875621F5610500AC9DC1 /* DataPersistanceModel.swift in Sources */,
+				D5BE875E21F588B800AC9DC1 /* UnitState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
