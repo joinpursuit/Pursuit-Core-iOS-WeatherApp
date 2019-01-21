@@ -305,21 +305,16 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="8xS-yd-FKv">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="fET-aP-tSA">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="GYV-S2-p7G">
-                                <rect key="frame" x="276" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="unitButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sf2-wP-qFB"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" id="xEL-CI-1Ag">
+                            <connections>
+                                <action selector="unitButtonPressed:" destination="BYZ-38-t0r" id="Uyc-kS-DX4"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="cityForecastCollectionView" destination="lQE-KZ-nu5" id="fRj-ZZ-lrZ"/>
                         <outlet property="cityWeather" destination="vet-Pp-kpe" id="sTG-dd-J3e"/>
-                        <outlet property="unitButton" destination="fET-aP-tSA" id="rDE-0x-HBf"/>
+                        <outlet property="unitButton" destination="xEL-CI-1Ag" id="X9W-C7-aWY"/>
                         <outlet property="zipCodTextField" destination="9pG-KS-3R5" id="8FY-2d-ylF"/>
                     </connections>
                 </viewController>
@@ -333,6 +328,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="gFN-ar-lGc" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="i0O-Oi-dvX">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>

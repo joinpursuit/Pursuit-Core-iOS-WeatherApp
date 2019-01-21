@@ -25,6 +25,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             }
         }
     }
+
     @IBOutlet weak var unitButton: UIBarButtonItem!
     @IBOutlet weak var cityWeather: UILabel!
     @IBOutlet weak var cityForecastCollectionView: UICollectionView!
@@ -45,6 +46,20 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     
     }
+    override func viewWillAppear(_ animated: Bool) {
+        if let userDefaults = UserDefaults.standard.object(forKey: "Unit") as? String{
+            if userDefaults == "us" {
+               unitState = .us
+            } else if userDefaults == "metric"{
+                unitState = .metric
+            }
+        }
+        if unitState == .us {
+            self.navigationItem.rightBarButtonItem?.title = "US"
+        } else {
+            self.navigationItem.rightBarButtonItem?.title = "Metric"
+        }
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let selectedCell = sender as? UICollectionViewCell,
             let indexPath = cityForecastCollectionView.indexPath(for: selectedCell),
@@ -53,11 +68,17 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             destination.forecastSelected = weatherResult[indexPath.row]
     }
     
-    @IBAction func unitButtonPressed(_ sender: Any) {
+    @IBAction func unitButtonPressed(_ sender: UIBarButtonItem) {
         if unitState == .us {
+            UserDefaults.standard.set("metric", forKey: "Unit")
             unitState = .metric
+//            self.navigationItem.rightBarButtonItem?.title = "Metric"
+            self.viewWillAppear(true)
         } else {
+            UserDefaults.standard.set("us", forKey: "Unit")
             unitState = .us
+//            self.navigationItem.rightBarButtonItem?.title = "US"
+            self.viewWillAppear(true)
         }
     }
     
@@ -114,17 +135,17 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherCell", for: indexPath) as? WeatherCollectionViewCell else {return UICollectionViewCell()}
         let weatherToSet = weatherResult[indexPath.row]
 
-//        if unitState == .us{
-//        cell.dateLabel.text = DateHelper.getDate(date: weatherToSet.dateTimeISO)
-//        cell.weatherImage.image = ImageHelper.getWeatherImage(icon: weatherToSet.icon)
-//        cell.highLabel.text = "High: \(weatherToSet.maxTempF.description)℉"
-//        cell.lowLabel.text = "Low: \(weatherToSet.minTempF.description)℉"
-//        } else {
+        if unitState == .us{
+        cell.dateLabel.text = DateHelper.getDate(date: weatherToSet.dateTimeISO)
+        cell.weatherImage.image = ImageHelper.getWeatherImage(icon: weatherToSet.icon)
+        cell.highLabel.text = "High: \(weatherToSet.maxTempF.description)℉"
+        cell.lowLabel.text = "Low: \(weatherToSet.minTempF.description)℉"
+        } else {
             cell.dateLabel.text = DateHelper.getDate(date: weatherToSet.dateTimeISO)
             cell.weatherImage.image = ImageHelper.getWeatherImage(icon: weatherToSet.icon)
             cell.highLabel.text = "High: \(weatherToSet.maxTempC.description)℃"
             cell.lowLabel.text = "Low: \(weatherToSet.minTempC.description)℃"
-//        }
+        }
         
         return cell
     }
