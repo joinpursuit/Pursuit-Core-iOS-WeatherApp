@@ -45,7 +45,13 @@ extension FavoriteImagesViewController: UITableViewDataSource, UITableViewDelega
         }
         return favoriteImageCell
     }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        FavoritesModel.deleteFavoriteImage(atIndex: indexPath.row)
+        getImages()
     }
+    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 100
+//    }
+    
 }

@@ -47,4 +47,9 @@ struct FavoritesModel {
         saveData()
     }
     
+    static func deleteFavoriteImage(atIndex: Int) {
+        favoritedImages.remove(at: atIndex)
+        saveData()
+    }
+    
 }
