@@ -40,12 +40,15 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         if let data = data {
             self.weatherResult = data
         }
-        ZipCodeHelper.getLocationName(from: defaultZipCode) { (error, localityName, zipcode) in
+        ZipCodeHelper.getLocationName(from: defaultZipCode) { (error, localityName, zipcode, state) in
             if let error = error {
                 print("failed to get location name: \(error)")
             } else if let localityName = localityName {
                 self.cityWeather.text = "The forecast for \(localityName)"
                 self.selectedCity = localityName
+            }
+            if let state = state {
+                
             }
             
         }
@@ -70,28 +73,43 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let weatherToSet = weatherResult[indexPath.row]
         cell.dateLabel.text = DateHelper.getDate(date: weatherToSet.dateTimeISO)
         cell.weatherImage.image = ImageHelper.getWeatherImage(icon: weatherToSet.icon)
-        cell.highLabel.text = weatherToSet.maxTempF.description
-        cell.lowLabel.text = weatherToSet.minTempF.description
+        cell.highLabel.text = "High: \(weatherToSet.maxTempF.description)℉"
+        
+        cell.lowLabel.text = "Low: \(weatherToSet.minTempF.description)℉"
         return cell
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let text = textField.text {
-            ZipCodeHelper.getLocationName(from: text) { (error, localityName, zipCode) in
+            ZipCodeHelper.getLocationName(from: text) { (error, localityName, zipCode, state) in
                     if let error = error {
                         print("failed to get location name: \(error)")
-                        let alert = UIAlertController.init(title: "No ZipCode Found", message: "", preferredStyle: UIAlertController.Style.alert)
+                        let alert = UIAlertController.init(title: "No Location Found", message: "", preferredStyle: UIAlertController.Style.alert)
                         let okay = UIAlertAction.init(title: "Okay", style: .default, handler: { (UIAlertAction) in
                             self.dismiss(animated: true, completion: nil)
                         })
                         alert.addAction(okay)
                         self.present(alert, animated: true, completion: nil)
-                    } else if let localityName = localityName {
+                    } else if let localityName = localityName{
+                        if let state = state {
+                            let city = localityName.replacingOccurrences(of: " ", with: "")
+                            let keyword = "\(city.lowercased()),\(state.lowercased())"
+                            UserDefaults.standard.set(keyword, forKey: "ZipCodes")
+                            WeatherAndImageAPIClient.searchCityWeather(zipCode: keyword) { (appError, data) in
+                                if let appError = appError {
+                                    print(appError.errorMessage())
+                                }
+                                if let data = data {
+                                    self.weatherResult = data
+                                }
+                            }
                         self.cityWeather.text = "The forecast for \(localityName)"
                         self.selectedCity = localityName
-                        
+                        }
                 
-                    }
-                if let zipcode = zipCode {
+                    } else {
+                        print("No city found")
+                }
+                if let zipcode = zipCode{
                     UserDefaults.standard.set(zipcode, forKey: "ZipCodes")
                     WeatherAndImageAPIClient.searchCityWeather(zipCode: zipcode) { (appError, data) in
                         if let appError = appError {

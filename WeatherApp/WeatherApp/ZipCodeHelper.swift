@@ -14,17 +14,17 @@ import CoreLocation
 
 class ZipCodeHelper {
   private init() {}
-  static func getLocationName(from zipCode: String, completionHandler: @escaping (Error?, String?,String?) -> Void) {
+  static func getLocationName(from zipCode: String, completionHandler: @escaping (Error?, String?,String?,String?) -> Void) {
     let geocoder = CLGeocoder()
     DispatchQueue.global(qos: .userInitiated).async {
       geocoder.geocodeAddressString(zipCode){(placemarks, error) -> Void in
         DispatchQueue.main.async {
-          if let placemark = placemarks?.first, let name = placemark.locality,
-            let zipcode = placemark.postalCode{
-            
-            completionHandler(nil, name, zipcode)
-          } else {
-            completionHandler(error, nil, nil)
+          if let placemark = placemarks?.first, let name = placemark.locality, let state = placemark.administrativeArea{
+            completionHandler(nil, name, nil, state)
+          } else if let placemark = placemarks?.first, let name = placemark.locality, let state = placemark.administrativeArea, let zipCode = placemark.postalCode{
+            completionHandler(nil, name, state, zipCode)
+            }else {
+            completionHandler(error, nil, nil, nil)
           }
         }
       }
