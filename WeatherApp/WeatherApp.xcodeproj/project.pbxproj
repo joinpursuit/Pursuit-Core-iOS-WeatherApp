@@ -22,6 +22,7 @@
 		935C337E21F7ADFC00D7843B /* WeatherAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935C337D21F7ADFC00D7843B /* WeatherAPIClient.swift */; };
 		935C338121F7AE7900D7843B /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935C338021F7AE7900D7843B /* Weather.swift */; };
 		935C338321F7B31400D7843B /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935C338221F7B31400D7843B /* SecretKeys.swift */; };
+		935C338721F7DBB900D7843B /* DateTimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935C338621F7DBB900D7843B /* DateTimeHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		935C337D21F7ADFC00D7843B /* WeatherAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WeatherAPIClient.swift; path = ../../WeatherAPIClient.swift; sourceTree = "<group>"; };
 		935C338021F7AE7900D7843B /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		935C338221F7B31400D7843B /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
+		935C338621F7DBB900D7843B /* DateTimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 				935C337521F7AD8100D7843B /* NetworkHelper.swift */,
 				935C337721F7AD8A00D7843B /* AppError.swift */,
 				935C337921F7AD9500D7843B /* ImageHelper.swift */,
+				935C338621F7DBB900D7843B /* DateTimeHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				57EE009021F15D7000D76A6E /* MainViewController.swift in Sources */,
 				935C337121F7678000D7843B /* MainCollectionViewCell.swift in Sources */,
 				935C337E21F7ADFC00D7843B /* WeatherAPIClient.swift in Sources */,
+				935C338721F7DBB900D7843B /* DateTimeHelper.swift in Sources */,
 				935C338121F7AE7900D7843B /* Weather.swift in Sources */,
 				57EE008E21F15D7000D76A6E /* AppDelegate.swift in Sources */,
 				935C337621F7AD8100D7843B /* NetworkHelper.swift in Sources */,

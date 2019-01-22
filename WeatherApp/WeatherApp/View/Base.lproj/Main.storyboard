@@ -78,7 +78,7 @@
                                             <outlet property="mainCellHigh" destination="dm2-2c-7vS" id="0jT-d2-Cwg"/>
                                             <outlet property="mainCellImage" destination="B9H-9P-Ue4" id="Ozv-ya-Scy"/>
                                             <outlet property="mainCellLow" destination="uMM-5S-2W1" id="3gM-3w-MZy"/>
-                                            <segue destination="zhE-0u-XtB" kind="show" id="VPK-al-fxE"/>
+                                            <segue destination="zhE-0u-XtB" kind="show" identifier="DetailSegue" id="VPK-al-fxE"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -147,7 +147,7 @@
             </objects>
             <point key="canvasLocation" x="2036" y="810"/>
         </scene>
-        <!--Title-->
+        <!--Forcast-->
         <scene sceneID="uMi-wj-2V8">
             <objects>
                 <viewController storyboardIdentifier="DetailViewController" id="zhE-0u-XtB" customClass="DetailViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -240,8 +240,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Cj9-dq-9J5"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="qWb-eE-EjH">
-                        <barButtonItem key="rightBarButtonItem" title="Favorite" id="jNz-fx-BiV"/>
+                    <navigationItem key="navigationItem" title="Forcast" id="qWb-eE-EjH">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="jNz-fx-BiV"/>
                     </navigationItem>
                     <connections>
                         <outlet property="detailHigh" destination="c9w-xe-F16" id="Tq9-Bo-Q8X"/>

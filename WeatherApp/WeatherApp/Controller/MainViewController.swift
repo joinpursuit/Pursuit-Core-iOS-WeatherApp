@@ -32,8 +32,15 @@ class MainViewController: UIViewController {
         }
     }
     mainCollectionView.dataSource = self
-    mainCollectionView.delegate = self
   }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DetailSegue" {
+            let detailVC = segue.destination as! DetailViewController
+            let cell = sender as! UICollectionViewCell
+            let indexPaths = self.mainCollectionView.indexPath(for: cell)
+            detailVC.weatherDetail = weather[indexPaths!.row]
+        }
+    }
 }
 
 extension MainViewController: UICollectionViewDataSource {
@@ -47,16 +54,14 @@ extension MainViewController: UICollectionViewDataSource {
         cell.layer.borderWidth = 5
         cell.layer.cornerRadius = 20
         cell.mainCellImage.image = UIImage(named: weatherToSet.icon)
-        cell.mainCellHigh.text = "High: \(String(weatherToSet.maxTempF))"
-        cell.mainCellLow.text = "Low: \(String(weatherToSet.minTempF))"
+        cell.mainCellHigh.text = "High: \(String(weatherToSet.maxTempF))℉"
+        cell.mainCellLow.text = "Low: \(String(weatherToSet.minTempF))℉"
         return cell
     }
 }
-extension MainViewController: UICollectionViewDelegateFlowLayout {
+
+extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-        guard let vc = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else {return}
-        vc.weather = weather[indexPath.row]
-        
+        self.performSegue(withIdentifier: "DetailSegue", sender: self)
     }
 }

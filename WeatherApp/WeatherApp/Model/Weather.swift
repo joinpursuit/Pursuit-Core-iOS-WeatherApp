@@ -20,7 +20,7 @@ struct WeatherInfo: Codable {
     let dateTimeISO: String
     let maxTempF: Int
     let minTempF: Int
-    let percipIN: Double?
+    let precipIN: Double
     let weather: String
     let icon: String
     let windSpeedMaxMPH: Int

@@ -10,7 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    var weather: WeatherInfo!
+    var weatherDetail: WeatherInfo!
     @IBOutlet weak var detailImageView: UIImageView!
     @IBOutlet weak var detailLocationDate: UILabel!
     @IBOutlet weak var detailWeatherLocation: UILabel!
@@ -22,6 +22,14 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailInchesOfSomething: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        detailImageView.image = UIImage(named: weather.icon)
+        detailImageView.image = UIImage(named: weatherDetail.icon)
+//        detailLocationDate.text = "Weather for \() on \()"
+        detailWeatherLocation.text = "\(weatherDetail.weather)"
+        detailHigh.text = "High: \(weatherDetail.maxTempF)℉"
+        detailLow.text = "Low: \(weatherDetail.minTempF)℉"
+        detailSunset.text = "Sunset: \(weatherDetail.sunsetISO)"
+        detailSunrise.text = "Sunrise: \(weatherDetail.sunriseISO)"
+        detailWindspeed.text = "Windspeed: \(weatherDetail.windSpeedMaxMPH) MPH"
+        detailInchesOfSomething.text = "Inches of percipitation: \(weatherDetail.precipIN)"
     }
 }
