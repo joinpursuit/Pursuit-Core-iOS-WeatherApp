@@ -13,6 +13,7 @@ import Foundation
 import CoreLocation
 
 class ZipCodeHelper {
+    //enter zip code & it gives you the localityname
   private init() {}
   static func getLocationName(from zipCode: String, completionHandler: @escaping (Error?, String?) -> Void) {
     let geocoder = CLGeocoder()

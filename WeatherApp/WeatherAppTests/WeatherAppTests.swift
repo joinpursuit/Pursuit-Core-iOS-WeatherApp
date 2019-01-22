@@ -20,7 +20,7 @@ class WeatherAppTests: XCTestCase {
   }
   
   func testGetLocationName() {
-    let zipcode = "10023"
+    let zipcode = "11106"//if you put in 90210 you will get an error that says "los angeles not equal to New York"
     let exp = expectation(description: "found location name")
     ZipCodeHelper.getLocationName(from: zipcode) { (error, localityName) in
       if let error = error {
