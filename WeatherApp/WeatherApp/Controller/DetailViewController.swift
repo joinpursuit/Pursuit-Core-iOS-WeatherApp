@@ -10,6 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    var weather: WeatherInfo!
     @IBOutlet weak var detailImageView: UIImageView!
     @IBOutlet weak var detailLocationDate: UILabel!
     @IBOutlet weak var detailWeatherLocation: UILabel!
@@ -21,6 +22,6 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailInchesOfSomething: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        detailImageView.image = UIImage(named: weather.icon)
     }
 }
