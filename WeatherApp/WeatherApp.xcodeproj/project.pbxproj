@@ -14,6 +14,11 @@
 		09F5BD3921F679F1009ED11E /* Pixabay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F5BD3821F679F1009ED11E /* Pixabay.swift */; };
 		09F5BD3B21F67C70009ED11E /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F5BD3A21F67C70009ED11E /* ImageHelper.swift */; };
 		09F5BD3D21F684E7009ED11E /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F5BD3C21F684E7009ED11E /* SecretKeys.swift */; };
+		09F5BD3F21F69771009ED11E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F5BD3E21F69771009ED11E /* DetailViewController.swift */; };
+		09F5BD4121F6979F009ED11E /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F5BD4021F6979F009ED11E /* FavoritesViewController.swift */; };
+		09F5BD4321F697BE009ED11E /* ForcastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F5BD4221F697BE009ED11E /* ForcastCollectionViewCell.swift */; };
+		09F5BD4521F697F8009ED11E /* FavoriteImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F5BD4421F697F8009ED11E /* FavoriteImageTableViewCell.swift */; };
+		09F5BD4721F69862009ED11E /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F5BD4621F69862009ED11E /* String+Extension.swift */; };
 		57EE008E21F15D7000D76A6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE008D21F15D7000D76A6E /* AppDelegate.swift */; };
 		57EE009021F15D7000D76A6E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE008F21F15D7000D76A6E /* ViewController.swift */; };
 		57EE009321F15D7100D76A6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57EE009121F15D7100D76A6E /* Main.storyboard */; };
@@ -41,6 +46,11 @@
 		09F5BD3821F679F1009ED11E /* Pixabay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixabay.swift; sourceTree = "<group>"; };
 		09F5BD3A21F67C70009ED11E /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		09F5BD3C21F684E7009ED11E /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
+		09F5BD3E21F69771009ED11E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		09F5BD4021F6979F009ED11E /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		09F5BD4221F697BE009ED11E /* ForcastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForcastCollectionViewCell.swift; sourceTree = "<group>"; };
+		09F5BD4421F697F8009ED11E /* FavoriteImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteImageTableViewCell.swift; sourceTree = "<group>"; };
+		09F5BD4621F69862009ED11E /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		57EE008A21F15D7000D76A6E /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57EE008D21F15D7000D76A6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57EE008F21F15D7000D76A6E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +98,8 @@
 			isa = PBXGroup;
 			children = (
 				57EE008F21F15D7000D76A6E /* ViewController.swift */,
+				09F5BD3E21F69771009ED11E /* DetailViewController.swift */,
+				09F5BD4021F6979F009ED11E /* FavoritesViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -127,6 +139,7 @@
 				09F5BD2C21F66D53009ED11E /* Controllers */,
 				57EE009121F15D7100D76A6E /* Main.storyboard */,
 				09F5BD3C21F684E7009ED11E /* SecretKeys.swift */,
+				09F5BD4621F69862009ED11E /* String+Extension.swift */,
 				57EE00AF21F160D400D76A6E /* Supporting Files */,
 				57EE009921F15D7100D76A6E /* Info.plist */,
 			);
@@ -148,6 +161,8 @@
 				57EE008D21F15D7000D76A6E /* AppDelegate.swift */,
 				57EE009421F15D7100D76A6E /* Assets.xcassets */,
 				57EE009621F15D7100D76A6E /* LaunchScreen.storyboard */,
+				09F5BD4221F697BE009ED11E /* ForcastCollectionViewCell.swift */,
+				09F5BD4421F697F8009ED11E /* FavoriteImageTableViewCell.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -253,15 +268,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09F5BD3F21F69771009ED11E /* DetailViewController.swift in Sources */,
 				09F5BD2E21F66E1E009ED11E /* AppError.swift in Sources */,
 				57EE00A021F15E0F00D76A6E /* ZipCodeHelper.swift in Sources */,
 				09F5BD3B21F67C70009ED11E /* ImageHelper.swift in Sources */,
+				09F5BD4521F697F8009ED11E /* FavoriteImageTableViewCell.swift in Sources */,
+				09F5BD4321F697BE009ED11E /* ForcastCollectionViewCell.swift in Sources */,
 				57EE009021F15D7000D76A6E /* ViewController.swift in Sources */,
 				57EE008E21F15D7000D76A6E /* AppDelegate.swift in Sources */,
 				09F5BD3221F66EFA009ED11E /* NetworkHelper.swift in Sources */,
 				09F5BD3021F66E90009ED11E /* WeatherAPIClient.swift in Sources */,
 				09F5BD3921F679F1009ED11E /* Pixabay.swift in Sources */,
 				09F5BD3721F670A1009ED11E /* Weather.swift in Sources */,
+				09F5BD4121F6979F009ED11E /* FavoritesViewController.swift in Sources */,
+				09F5BD4721F69862009ED11E /* String+Extension.swift in Sources */,
 				09F5BD3D21F684E7009ED11E /* SecretKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
