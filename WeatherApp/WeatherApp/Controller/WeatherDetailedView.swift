@@ -10,6 +10,7 @@ import UIKit
 
 class WeatherDetailedView: UIViewController {
 
+  public var receiveCityInfo: WeatherDetails?
   
   @IBOutlet weak var cityName: UILabel!
   
@@ -20,12 +21,33 @@ class WeatherDetailedView: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-
+      UISetup()
     }
   
-  
-  
-  @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+  private func UISetup() {
+    
+    if let additionInfo = receiveCityInfo {
+      moreInfo.text = """
+
+      High: \(additionInfo.maxTempC)
+      Low: \(additionInfo.minTempC)
+      Sunrise: \(additionInfo.sunriseISO)
+      Sunset: \(additionInfo.sunsetISO)
+      Inches of Precipitation: \(additionInfo.precipIN)
+
+      """
+    }
+    
+    //high
+    //low
+    //sunrise
+    //sunset
+    //windspeed
+    //inches of precipitation
+    
   }
+  
+
+  
   
 }

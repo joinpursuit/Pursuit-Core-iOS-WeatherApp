@@ -44,6 +44,9 @@ class MainWeatherController: UIViewController {
       if let appError = appError {
         print(appError.errorMessage())
       } else if let weather = weather {
+        
+        //TODO: I'm getting an error when i enter a city name
+        
         if let details = weather[weather.count - 1].periods {
           self.arrayOfWeatherDetails = details
         }
@@ -62,6 +65,7 @@ class MainWeatherController: UIViewController {
       }
     }
   }
+  
   
 }
 
@@ -87,11 +91,26 @@ extension MainWeatherController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize.init(width: weatherDisplayColletionView.bounds.width, height: weatherDisplayColletionView.bounds.height)
   }
+  
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+    let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+    
+    guard let detailedVC = storyboard.instantiateViewController(withIdentifier: "DetailedView") as? WeatherDetailedView else {return}
+    
+    detailedVC.modalPresentationStyle = .overCurrentContext
+    detailedVC.receiveCityInfo = arrayOfWeatherDetails[indexPath.row]
+        
+    navigationController?.pushViewController(detailedVC, animated: true)
+    
+    
+  }
 }
 
 extension MainWeatherController: UITextFieldDelegate {
   
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    
     
     textField.resignFirstResponder()
     
@@ -105,9 +124,10 @@ extension MainWeatherController: UITextFieldDelegate {
         if let localityName = localityName {
           self.cityName.text = localityName
           self.searchWeatherForecast(zipCode: text)
-
+          
         }
       }
+      
     }
     
     return true

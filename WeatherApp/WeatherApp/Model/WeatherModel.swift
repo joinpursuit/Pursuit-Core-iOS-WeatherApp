@@ -15,9 +15,7 @@ struct WeatherModel: Codable {
 struct WeatherInfo: Codable {
   let periods: [WeatherDetails]?
   let profile: CityName?
-  
-  
-  
+
 }
 
 struct WeatherDetails: Codable {
@@ -44,6 +42,17 @@ struct WeatherDetails: Codable {
     var formattedDate = dateTimeISO
     if let date = isoDateFormatter.date(from: dateTimeISO) {
       let dateFormatter = DateFormatter()
+      dateFormatter.dateFormat = "MMMM d, yyyy hh:mm a"
+      formattedDate = dateFormatter.string(from: date)
+    }
+    return formattedDate
+  }
+  
+  public var sunsetFormattedString: String {
+    let isoDateFormatter = ISO8601DateFormatter()
+    var formattedDate = sunriseISO
+    if let date = isoDateFormatter.date(from: sunriseISO) {
+     let dateFormatter = DateFormatter()
       dateFormatter.dateFormat = "MMMM d, yyyy hh:mm a"
       formattedDate = dateFormatter.string(from: date)
     }

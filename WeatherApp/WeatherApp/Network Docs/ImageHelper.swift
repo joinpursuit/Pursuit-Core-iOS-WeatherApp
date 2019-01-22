@@ -9,6 +9,3 @@
 import Foundation
 
 
-//enum IconHelper: String, CaseIterable {
-//  case 
-//}

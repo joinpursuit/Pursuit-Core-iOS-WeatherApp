@@ -14,7 +14,6 @@ final class WeatherAPIClient {
    
     let urlString = "https://api.aerisapi.com/forecasts/\(zipCode)?&format=json&filter=day&limit=7&client_id=\(Constants.weatherClientID)&client_secret=\(Constants.weatherSecretKey)"
     
-  
     NetworkHelper.shared.performDataTask(endpointURLString: urlString, httpMethod: "GET", httpBody: nil) { (appError, data, httpResponse) in
       
       if let appError = appError {

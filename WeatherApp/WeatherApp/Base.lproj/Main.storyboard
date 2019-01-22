@@ -103,7 +103,6 @@
                                             <outlet property="highTemp" destination="xH2-Rx-90r" id="BJb-bt-LSy"/>
                                             <outlet property="lowtemp" destination="AQA-lI-PeE" id="hg0-a0-pUm"/>
                                             <outlet property="weatherIcon" destination="0OZ-Iz-Y0e" id="1Uy-S0-9Ar"/>
-                                            <segue destination="tq0-qu-DSn" kind="show" id="4yb-At-NGC"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -209,48 +208,50 @@
         <!--Title-->
         <scene sceneID="z4U-LY-mxC">
             <objects>
-                <viewController id="tq0-qu-DSn" customClass="WeatherDetailedView" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailedView" id="tq0-qu-DSn" customClass="WeatherDetailedView" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aov-J8-reO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdt-dq-LON">
-                                <rect key="frame" x="11" y="113" width="353" height="21"/>
+                                <rect key="frame" x="11" y="93" width="353" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TsO-1A-QgQ">
-                                <rect key="frame" x="0.0" y="164.33333333333337" width="375" height="325"/>
+                                <rect key="frame" x="0.0" y="166.33333333333337" width="375" height="325"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oFC-Al-YUQ">
-                                <rect key="frame" x="11" y="509.33333333333331" width="353" height="20.333333333333314"/>
+                                <rect key="frame" x="11" y="511.33333333333331" width="353" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="547-Gl-Iow">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="547-Gl-Iow" firstAttribute="top" secondItem="8vk-pU-pRO" secondAttribute="top" id="1FG-Z5-Fgj"/>
                             <constraint firstItem="TsO-1A-QgQ" firstAttribute="width" secondItem="aov-J8-reO" secondAttribute="width" id="1g0-JT-a2B"/>
                             <constraint firstItem="oFC-Al-YUQ" firstAttribute="top" secondItem="TsO-1A-QgQ" secondAttribute="bottom" constant="20" id="3NJ-rQ-lks"/>
                             <constraint firstItem="oFC-Al-YUQ" firstAttribute="leading" secondItem="8vk-pU-pRO" secondAttribute="leading" constant="11" id="BJy-0Z-odj"/>
-                            <constraint firstItem="8vk-pU-pRO" firstAttribute="trailing" secondItem="rdt-dq-LON" secondAttribute="trailing" constant="11" id="Bqq-wb-OU3"/>
+                            <constraint firstItem="8vk-pU-pRO" firstAttribute="trailing" secondItem="rdt-dq-LON" secondAttribute="trailing" constant="11" id="JUJ-Z6-TIG"/>
                             <constraint firstItem="8vk-pU-pRO" firstAttribute="trailing" secondItem="oFC-Al-YUQ" secondAttribute="trailing" constant="11" id="OWN-0c-omn"/>
+                            <constraint firstItem="547-Gl-Iow" firstAttribute="trailing" secondItem="8vk-pU-pRO" secondAttribute="trailing" id="VWQ-RQ-5pt"/>
+                            <constraint firstItem="547-Gl-Iow" firstAttribute="leading" secondItem="8vk-pU-pRO" secondAttribute="leading" id="W1A-8m-1fA"/>
                             <constraint firstItem="TsO-1A-QgQ" firstAttribute="centerY" secondItem="8vk-pU-pRO" secondAttribute="centerY" multiplier="0.8" id="dd5-F4-e4g"/>
+                            <constraint firstItem="rdt-dq-LON" firstAttribute="top" secondItem="547-Gl-Iow" secondAttribute="bottom" constant="5" id="ftl-7v-jZO"/>
                             <constraint firstItem="TsO-1A-QgQ" firstAttribute="centerX" secondItem="8vk-pU-pRO" secondAttribute="centerX" id="hNF-Re-lB2"/>
-                            <constraint firstItem="rdt-dq-LON" firstAttribute="leading" secondItem="8vk-pU-pRO" secondAttribute="leading" constant="11" id="hlF-EC-SxG"/>
-                            <constraint firstItem="rdt-dq-LON" firstAttribute="top" secondItem="8vk-pU-pRO" secondAttribute="top" constant="25" id="o9A-Fc-rgu"/>
+                            <constraint firstItem="rdt-dq-LON" firstAttribute="leading" secondItem="8vk-pU-pRO" secondAttribute="leading" constant="11" id="okC-ce-fMg"/>
                             <constraint firstItem="TsO-1A-QgQ" firstAttribute="height" secondItem="aov-J8-reO" secondAttribute="height" multiplier="0.4" id="xgR-eA-WgF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8vk-pU-pRO"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="Xwt-Jq-i3y">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="rj5-ox-fy0">
-                            <connections>
-                                <action selector="saveButtonPressed:" destination="tq0-qu-DSn" id="v7V-p0-MOT"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="rj5-ox-fy0"/>
                     </navigationItem>
                     <connections>
                         <outlet property="cityImage" destination="TsO-1A-QgQ" id="dGa-QQ-KhT"/>
