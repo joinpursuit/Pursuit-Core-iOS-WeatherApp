@@ -42,13 +42,15 @@ class WeatherAppViewController: UIViewController {
             }
         }
     }
-    
-    func segue(){
-        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-        guard let weatherDetailViewController = storyBoard.instantiateViewController(withIdentifier: "WeatherDetailVC") as? WeatherDetailedViewController else {return}
-        present(weatherDetailViewController, animated: true, completion: nil)
-        
-    }
+//    
+//    func segue(){
+//        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+//        guard let weatherDetailViewController = storyBoard.instantiateViewController(withIdentifier: "WeatherDetailVC") as? WeatherDetailedViewController else {return}
+//        weatherDetailViewController.modalPresentationStyle = .currentContext
+//        weatherDetailViewController.weatherDetails = weatherInformation[indexPath.row]
+//        present(weatherDetailViewController, animated: true, completion: nil)
+//
+//    }
 
 }
 extension WeatherAppViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
@@ -72,7 +74,11 @@ extension WeatherAppViewController: UICollectionViewDataSource, UICollectionView
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        segue()
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        guard let weatherDetailViewController = storyBoard.instantiateViewController(withIdentifier: "WeatherDetailVC") as? WeatherDetailedViewController else {return}
+        weatherDetailViewController.modalPresentationStyle = .currentContext
+        weatherDetailViewController.weatherDetails = weatherInformation[indexPath.row]
+        present(weatherDetailViewController, animated: true, completion: nil)
     }
     
     
