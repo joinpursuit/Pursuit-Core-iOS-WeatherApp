@@ -30,7 +30,12 @@ struct WeatherDataHelper {
         }
         return formattedDate
     }
-    static func formatMoreInfo(dailyForecast: DailyForecast) -> String {
-        return "High: \(dailyForecast.maxTempF)°F \nLow: \(dailyForecast.minTempF)°F \nSunrise: \(WeatherDataHelper.formatISOToTime(dateString: dailyForecast.sunriseISO)) \nSunset: \(WeatherDataHelper.formatISOToTime(dateString: dailyForecast.sunsetISO)) \nWindspeed: \(dailyForecast.windSpeedMPH) MPH \nPrecipitation: \(dailyForecast.precipIN) in"
+    static func formatMoreInfo(dailyForecast: DailyForecast, isMetric: Bool) -> String {
+        if isMetric {
+            return "High: \(dailyForecast.maxTempC)°C \nLow: \(dailyForecast.minTempC)°C \nSunrise: \(WeatherDataHelper.formatISOToTime(dateString: dailyForecast.sunriseISO)) \nSunset: \(WeatherDataHelper.formatISOToTime(dateString: dailyForecast.sunsetISO)) \nWindspeed: \(dailyForecast.windSpeedKPH) KPH \nPrecipitation: \(dailyForecast.precipMM) mm"
+
+        } else {
+            return "High: \(dailyForecast.maxTempF)°F \nLow: \(dailyForecast.minTempF)°F \nSunrise: \(WeatherDataHelper.formatISOToTime(dateString: dailyForecast.sunriseISO)) \nSunset: \(WeatherDataHelper.formatISOToTime(dateString: dailyForecast.sunsetISO)) \nWindspeed: \(dailyForecast.windSpeedMPH) MPH \nPrecipitation: \(dailyForecast.precipIN) in"
+        }
     }
 }

@@ -179,7 +179,11 @@
                         <viewLayoutGuide key="safeArea" id="ibD-xZ-dPt"/>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="Eq5-F7-vW9">
-                        <barButtonItem key="leftBarButtonItem" title="Metric" id="d8j-iR-jU8"/>
+                        <barButtonItem key="leftBarButtonItem" title="Metric" id="d8j-iR-jU8">
+                            <connections>
+                                <action selector="unitSwitcherPressed:" destination="w0D-8w-cXc" id="rFU-gw-Gqk"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="forecastCollectionView" destination="e70-3d-j8y" id="0Nk-L3-AOk"/>

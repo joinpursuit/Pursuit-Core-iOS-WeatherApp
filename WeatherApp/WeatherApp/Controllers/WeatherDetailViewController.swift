@@ -15,7 +15,7 @@ class WeatherDetailViewController: UIViewController {
     @IBOutlet weak var weatherDetailLabel: UILabel!
     @IBOutlet weak var weatherMoreInfoTextView: UITextView!
     @IBOutlet weak var imageActivityIndicator: UIActivityIndicatorView!
-    
+    public var isMetric: Bool!
     public var location = ""
     public var dayWeather: DailyForecast!
     
@@ -23,7 +23,7 @@ class WeatherDetailViewController: UIViewController {
         super.viewDidLoad()
         dateLabel.text = "Weather Forecast for \(location) \n \(WeatherDataHelper.formatISOToDate(dateString: dayWeather.dateTimeISO))"
         weatherDetailLabel.text = dayWeather.weather
-        weatherMoreInfoTextView.text = WeatherDataHelper.formatMoreInfo(dailyForecast: dayWeather)
+        weatherMoreInfoTextView.text = WeatherDataHelper.formatMoreInfo(dailyForecast: dayWeather, isMetric: isMetric)
         imageActivityIndicator.startAnimating()
         PixabayAPIClient.getImageURLString(ofLocation: location) { (appError, urlString) in
             if let appError = appError {
@@ -73,5 +73,17 @@ class WeatherDetailViewController: UIViewController {
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
     }
+
+}
+
+extension WeatherDetailViewController: WeatherSettingDelegate {
+    func changeToMetric() {
+        isMetric = true
+    }
+    
+    func changeToCustomary() {
+        isMetric = false
+    }
+    
     
 }

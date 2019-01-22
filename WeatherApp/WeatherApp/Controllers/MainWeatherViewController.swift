@@ -8,16 +8,27 @@
 
 import UIKit
 
+protocol WeatherSettingDelegate: AnyObject {
+    func changeToMetric()
+    func changeToCustomary()
+}
+
 class MainWeatherViewController: UIViewController {
     
     @IBOutlet weak var unitSwitcher: UIBarButtonItem!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var forecastCollectionView: UICollectionView!
     @IBOutlet weak var locationTextField: UITextField!
-    public var isMetric = false
+    public var isMetric = false {
+        didSet {
+            forecastCollectionView.reloadData()
+        }
+    }
     public var isValidZipcode = true
-    private var presetZipcode = "74134"
     public var location = ""
+    private var presetZipcode = "74134"
+    
+    weak var delegate: WeatherSettingDelegate?
     
     private var dailyForecast = [DailyForecast]() {
         didSet {
@@ -106,7 +117,18 @@ class MainWeatherViewController: UIViewController {
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
     }
-
+    @IBAction func unitSwitcherPressed(_ sender: UIBarButtonItem) {
+        if sender.title == "Customary" { //switching to metric
+            isMetric = false
+            sender.title = "Metric"
+            self.delegate?.changeToCustomary()
+        } else { //switching to customary
+            isMetric = true
+            sender.title = "Customary"
+            self.delegate?.changeToMetric()
+        }
+    }
+    
 }
 
 extension MainWeatherViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -140,6 +162,7 @@ extension MainWeatherViewController: UICollectionViewDataSource, UICollectionVie
         destinationViewController.modalPresentationStyle = .overCurrentContext
         destinationViewController.dayWeather = dailyForecast[indexPath.row]
         destinationViewController.location = location
+        destinationViewController.isMetric = isMetric
         self.present(destinationViewController, animated: true, completion: nil)
     }
 }
