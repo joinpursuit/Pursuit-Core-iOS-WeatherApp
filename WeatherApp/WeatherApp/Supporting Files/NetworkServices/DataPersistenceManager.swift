@@ -10,7 +10,7 @@ import Foundation
 
 final class DataPersistenceManager{
     static func documentsDirectory() -> URL {
-        return FileManager.default.urls(for: .documentsDirectory,in: .userDomainMask)[0]
+        return FileManager.default.urls(for: .documentDirectory,in: .userDomainMask)[0]
     }
     
     

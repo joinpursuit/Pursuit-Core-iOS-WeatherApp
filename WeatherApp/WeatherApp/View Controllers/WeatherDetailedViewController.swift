@@ -19,8 +19,8 @@ class WeatherDetailedViewController: UIViewController {
     @IBOutlet weak var windSpeed: UILabel!
     @IBOutlet weak var prescipitation: UILabel!
     
-    var weatherDetails:WeatherFocasts!
-    var weatherImage: ImageDetails!
+    var weatherDetails:PeriodsInformation!
+    var weatherImage: ImageDetails?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,20 +28,31 @@ class WeatherDetailedViewController: UIViewController {
     }
     
     func SetupDetailView(){
-        high.text = "\(weatherDetails.periods[0].maxTempF)"
-        low.text = "\(weatherDetails.periods[0].minTempF)"
-        sunset.text = "\(weatherDetails.periods[0].sunset)"
-        sunrise.text = "\(weatherDetails.periods[0].sunrise)"
-        weatherDescription.text = weatherDetails.periods[0].weather
-        windSpeed.text = "\(weatherDetails.periods[0].windSpeedMaxMPH)"
-        prescipitation.text = "\(weatherDetails.periods[0].weatherPrimary)"
+        high.text = "\(weatherDetails.maxTempF)"
+        low.text = "\(weatherDetails.minTempF)"
+        sunset.text = "\(weatherDetails.sunset)"
+        sunrise.text = "\(weatherDetails.sunrise)"
+        weatherDescription.text = weatherDetails.weather
+        windSpeed.text = "\(weatherDetails.windSpeedMaxMPH)"
+        prescipitation.text = "\(weatherDetails.weatherPrimary)"
         
-        ImageHelper.shared.fetchImage(urlString: weatherImage.largeImage) { (error, image) in
+        
+        WeatherAPIClient.getImages(city: "Chicago") { (error, imageURL) in
             if let error = error {
                 print("Error: \(error)")
-            } else if let image = image {
-                self.weatherPhotoView.image = image
+            } else if let data = imageURL {
+                
+                ImageHelper.shared.fetchImage(urlString: data[Int.random(in: 0...data.count-1)].largeImageURL) { (error, image) in
+                    if let error = error {
+                        print("Error: \(error)")
+                    } else if let image = image {
+                        self.weatherPhotoView.image = image
+                    }
+                }
+                
             }
         }
+        
+     
     }
 }

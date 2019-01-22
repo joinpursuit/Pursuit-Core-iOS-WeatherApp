@@ -24,10 +24,25 @@ struct PeriodsInformation: Codable {
     let weather: String
     let weatherPrimary: String
     let icon: String
+    var images: String {
+        let imageArray = icon.components(separatedBy: ".")
+        return imageArray[0]
+    }
     let sunrise: Int
     let sunriseISO: String
     let sunset: Int
     let sunsetISO: String
     let windSpeedMaxMPH: Int
+    var dateFormattedString: String{
+        let isoDateFormatter = ISO8601DateFormatter()
+        var formattedDate = validTime
+        if let date = isoDateFormatter.date(from: validTime){
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-dd-MM"
+            
+            formattedDate = dateFormatter.string(from: date)
+        }
+        return formattedDate
+    }
 }
 

@@ -11,7 +11,7 @@ import Foundation
 final class WeatherAPIClient {
     
     static func weatherInformation(zipCode: String,completionHandler: @escaping(Error?,WeatherInformation?) -> Void){
-        let endPoint = "https://api.aerisapi.com/forecasts/10453?format=json&filter=day&limit=7&client_id=\(SecretKeys.developerID)&client_secret=\(SecretKeys.developerSecretKey)"
+        let endPoint = "https://api.aerisapi.com/forecasts/\(zipCode)?format=json&filter=day&limit=7&client_id=\(SecretKeys.developerID)&client_secret=\(SecretKeys.developerSecretKey)"
         NetworkHelper.shared.performDataTask(urlString: endPoint, httpMethod: "GET"){ (error, data, httpResponse) in
             if let error = error {
                 completionHandler(error, nil)
@@ -28,8 +28,8 @@ final class WeatherAPIClient {
     }
     
     
-    func getImages(city: String, completionHandler: @escaping(Error?,[ImageDetails]?) -> Void){
-        let imageEndpoint = "https://pixabay.com/api/?key=\(SecretKeys.photoKey)&q=Chicago&image_type=photo"
+    static func getImages(city: String, completionHandler: @escaping(Error?,[ImageDetails]?) -> Void){
+        let imageEndpoint = "https://pixabay.com/api/?key=\(SecretKeys.photoKey)&q=NewYork&image_type=photo"
         NetworkHelper.shared.performDataTask(urlString: imageEndpoint, httpMethod: "GET") {(error, data, httpResponse) in
             if let error = error {
                 completionHandler(error,nil)

@@ -8,10 +8,4 @@
 
 import Foundation
 
-struct Image: Codable {
-    let hits: [ImageDetails]
-}
-struct ImageDetails: Codable {
-    let largeImageURL: String
-}
 

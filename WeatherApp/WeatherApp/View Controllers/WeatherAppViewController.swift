@@ -14,43 +14,60 @@ class WeatherAppViewController: UIViewController {
     @IBOutlet weak var inputZipCode: UITextField!
     @IBOutlet weak var instructionsLabel: UILabel!
     var city = ""
+    var zipCode = "10453" {
+        didSet {
+            DispatchQueue.main.async {
+                self.getData()
+                self.weatherAppCollectionView.reloadData()
+            }
+        }
+    }
     
-    var weatherInformation = [WeatherFocasts](){
+    var weatherInformation = [PeriodsInformation](){
         didSet {
             DispatchQueue.main.async {
                 self.weatherAppCollectionView.reloadData()
             }
         }
     }
+    public var isZipcode = true
     
   override func viewDidLoad() {
     super.viewDidLoad()
     weatherAppCollectionView.dataSource = self
     weatherAppCollectionView.delegate = self
+    inputZipCode.delegate = self
     getData()
+    setCityName()
   }
     
     
+    func setCityName(){
+        ZipCodeHelper.getLocationName(from: zipCode) { (error, data) in
+            if let error = error {
+                print("Error: \(error)")
+            } else if let data = data {
+                self.cityName.text = "Weather forecast for \(data)"
+                
+            }
+        }
+    }
+    
+    
     func getData(){
-        guard let zipCode = inputZipCode.text else {return}
-        
+       
         WeatherAPIClient.weatherInformation(zipCode: zipCode) { (error, data) in
             if let error = error {
                 print("Error: \(error)")
             } else if let weather = data {
-                self.weatherInformation = weather.response
+                self.weatherInformation = weather.response[0].periods
+                print(self.weatherInformation.count)
+                self.setCityName()
             }
         }
+        
+        
     }
-//    
-//    func segue(){
-//        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-//        guard let weatherDetailViewController = storyBoard.instantiateViewController(withIdentifier: "WeatherDetailVC") as? WeatherDetailedViewController else {return}
-//        weatherDetailViewController.modalPresentationStyle = .currentContext
-//        weatherDetailViewController.weatherDetails = weatherInformation[indexPath.row]
-//        present(weatherDetailViewController, animated: true, completion: nil)
-//
-//    }
 
 }
 extension WeatherAppViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
@@ -62,13 +79,10 @@ extension WeatherAppViewController: UICollectionViewDataSource, UICollectionView
         guard let cell = weatherAppCollectionView.dequeueReusableCell(withReuseIdentifier: "WeatherCell", for: indexPath) as? WeatherCollectionViewCell else {return UICollectionViewCell()}
         let dayToSet = weatherInformation[indexPath.row]
      
-        cell.day.text = dayToSet.periods[indexPath.row].validTime
-        cell.high.text = "High: \(dayToSet.periods[indexPath.row].maxTempF)"
-        cell.low.text = "Low: \(dayToSet.periods[indexPath.row].minTempF)"
-        
-        
-        
-        cityName.text = "Weather Forecast for \(city)"
+        cell.day.text = dayToSet.dateFormattedString
+        cell.high.text = "High: \(dayToSet.maxTempF)"
+        cell.low.text = "Low: \(dayToSet.minTempF)"
+        cell.weatherImage.image = UIImage.init(named: dayToSet.images)
         return cell
     }
     
@@ -78,10 +92,34 @@ extension WeatherAppViewController: UICollectionViewDataSource, UICollectionView
         guard let weatherDetailViewController = storyBoard.instantiateViewController(withIdentifier: "WeatherDetailVC") as? WeatherDetailedViewController else {return}
         weatherDetailViewController.modalPresentationStyle = .currentContext
         weatherDetailViewController.weatherDetails = weatherInformation[indexPath.row]
-        present(weatherDetailViewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(weatherDetailViewController, animated: true)
     }
     
     
 }
+extension WeatherAppViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if let zip = textField.text {
+            
+            isZipcode = true
+            for char in zip {
+              //  isZipcode = true
+                if Int(String(char)) == nil {
+                    isZipcode = false
+                    break
+                }
+            }
+            if isZipcode {
+                zipCode = zip
+               
+            }
+    }
+        return true
+        
+    
+}
 
 
+}
