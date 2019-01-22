@@ -68,11 +68,11 @@ class MainWeatherViewController: UIViewController {
         return isValidZipcode
     }
     
-    private func useValidZipcodeSetupViewAndUpdateUserDefaults(zipcodeIsValid: Bool, zipcode: String) {
+    private func useSearchResultToSetupView(zipcodeIsValid: Bool, keyword: String) {
         if zipcodeIsValid {
-            searchWeather(fromZipcode: zipcode)
-            UserDefaults.standard.set(zipcode, forKey: "Location")
-            setupView(zipcode: zipcode)
+            searchWeather(fromZipcode: keyword)
+            UserDefaults.standard.set(keyword, forKey: "Location")
+            setupView(zipcode: keyword)
         } else {
             showAlert()
         }
@@ -117,12 +117,13 @@ class MainWeatherViewController: UIViewController {
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
     }
+    
     @IBAction func unitSwitcherPressed(_ sender: UIBarButtonItem) {
-        if sender.title == "Customary" { //switching to metric
+        if sender.title == "Customary" {
             isMetric = false
             sender.title = "Metric"
             self.delegate?.changeToCustomary()
-        } else { //switching to customary
+        } else {
             isMetric = true
             sender.title = "Customary"
             self.delegate?.changeToMetric()
@@ -179,7 +180,7 @@ extension MainWeatherViewController: UITextFieldDelegate {
             return false
         }
         textField.resignFirstResponder()
-        useValidZipcodeSetupViewAndUpdateUserDefaults(zipcodeIsValid: checkForValidZipcode(), zipcode: keyword)
+        useSearchResultToSetupView(zipcodeIsValid: checkForValidZipcode(), keyword: keyword)
         return true
     }
 }
