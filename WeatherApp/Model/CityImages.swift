@@ -9,8 +9,9 @@
 import Foundation
 
 struct CityImages: Codable {
-    let largeImageURL: URL
+    struct HitWrapper: Codable {
+         let largeImageURL: URL
+    }
+     var hits: [HitWrapper]
 }
-struct ImageHits: Codable {
-    var hits: [CityImages]
-}
+

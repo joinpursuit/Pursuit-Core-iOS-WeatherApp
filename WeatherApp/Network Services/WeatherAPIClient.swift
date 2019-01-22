@@ -38,8 +38,10 @@ final class WeatheAPIClient {
             }
         }.resume()
     }
-    static func getCity(completionHandler: @escaping((AppError?, ImageHits?) -> Void)) {
-       let endpointURLString = "https://pixabay.com/api/?key=\(SecretKeys.CityAPIKey)&q=miami&image_type=photo"
+    static func getCity(selectedCity: String,completionHandler: @escaping((AppError?, [CityImages.HitWrapper]?) -> Void)) {
+          let city = selectedCity.replacingOccurrences(of: " " , with: "+")
+       let endpointURLString = "https://pixabay.com/api/?key=\(SecretKeys.CityAPIKey)&q=\(city)&image_type=photo"
+
         guard let url = URL(string: endpointURLString) else {
             completionHandler(AppError.badURL(endpointURLString),nil)
             return
@@ -57,8 +59,8 @@ final class WeatheAPIClient {
             }
             if let data = data {
                 do {
-                    let data = try JSONDecoder().decode(ImageHits.self, from: data)
-                    completionHandler(nil,data)
+                    let data = try JSONDecoder().decode(CityImages.self, from: data)
+                    completionHandler(nil,data.hits)
                 } catch {
                     completionHandler(AppError.jsonDecodingError(error),nil)
                 }

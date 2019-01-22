@@ -19,7 +19,7 @@ struct WeatherHelper {
         var formattedDate = date
         if let date = isoDateFormatter.date(from: date) {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MMMM d, yyyy hh:mm a"
+            dateFormatter.dateFormat = "MM-dd-yyyy"
             formattedDate = dateFormatter.string(from: date)
         }
         return formattedDate

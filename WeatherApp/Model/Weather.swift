@@ -20,6 +20,7 @@ struct WeatherData: Codable {
     let sunsetISO: String
     let dateTimeISO: String
     let icon: String
+    let weather: String
 }
 struct Location: Codable {
     var periods: [WeatherData]

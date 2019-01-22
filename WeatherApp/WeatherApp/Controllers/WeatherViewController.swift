@@ -25,15 +25,9 @@ class WeatherViewController: UIViewController {
             }
         }
     }
-    var hits = [CityImages]() {
-        didSet {
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }
-    }
   override func viewDidLoad() {
     super.viewDidLoad()
+     title = "Forecast Weather"
     collectionView.dataSource = self
     collectionView.delegate = self
     nameLabel.text = "Weather in \(startingCity)"
@@ -47,15 +41,15 @@ class WeatherViewController: UIViewController {
             self.periods = weather.response[0].periods
         }
     }
-    WeatheAPIClient.getCity { (appError, response) in
-        if let appError = appError {
-            print(appError)
-        }
-        if let response = response {
-            print(response)
-        }
-    }
+
 }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? WeatherDetailViewController,
+        let selecteCell = sender as? UICollectionViewCell,
+            let indexPath = collectionView.indexPath(for: selecteCell) else {return}
+        destination.forecastSelected = periods[indexPath.row]
+        destination.currentCity = currentCity
+    }
   
     @IBAction func textFieldDidChange(_ sender: UITextField) {
         print("Text did change: \(textField.text ?? "")")
