@@ -78,6 +78,7 @@
                                             <outlet property="highLabel" destination="qQ3-4d-e37" id="Z9h-ow-YO7"/>
                                             <outlet property="imageViewCell" destination="JpZ-ru-gIF" id="pvT-JW-A0E"/>
                                             <outlet property="lowLabel" destination="h0G-0h-GpC" id="hJT-1J-FPF"/>
+                                            <segue destination="ihB-zu-suW" kind="show" id="4cc-qE-gsb"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -264,7 +265,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ze8-8E-hif" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="887.20000000000005" y="121.88905547226388"/>
+            <point key="canvasLocation" x="1191" y="118"/>
         </scene>
     </scenes>
 </document>

@@ -7,10 +7,10 @@
 //
 
 import Foundation
+
 struct CityImages: Codable {
-    let totalHitsL: Int
-    struct Image: Codable {
-        let largeImageURL: URL
-    }
-    let hits: [Image]
+    let largeImageURL: URL
+}
+struct ImageHits: Codable {
+    var hits: [CityImages]
 }

@@ -24,7 +24,7 @@ class WeatherDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    var imageInfo = [CityImages.Image]() {
+    var imageInfo = [CityImages]() {
         didSet {
             let image = Int.random(in: 0..<imageInfo.count)
             ImageHelper.fetchImages(url: imageInfo[image].largeImageURL) { (appError, image) in

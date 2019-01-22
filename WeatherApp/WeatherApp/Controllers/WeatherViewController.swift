@@ -47,16 +47,16 @@ class WeatherViewController: UIViewController {
             self.periods = weather.response[0].periods
         }
     }
-    WeatheAPIClient.getCity(isZipcode: true) { (appError, cityImage) in
+    WeatheAPIClient.getCity { (appError, response) in
         if let appError = appError {
             print(appError)
         }
-        if let cityImage = cityImage {
-            self.hits = [cityImage]
+        if let response = response {
+            print(response)
         }
     }
 }
-    
+  
     @IBAction func textFieldDidChange(_ sender: UITextField) {
         print("Text did change: \(textField.text ?? "")")
     }
@@ -93,6 +93,7 @@ extension WeatherViewController: UICollectionViewDataSource,UICollectionViewDele
         print("the number of periods is \(periods.count)")
         return periods.count
     }
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as? WeatherCell else {return UICollectionViewCell()}
         
