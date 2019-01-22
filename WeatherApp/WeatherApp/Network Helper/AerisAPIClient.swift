@@ -10,13 +10,13 @@ import Foundation
 
 final class AerisAPIClient {
     private init() {}
-    static func searchLocation(zipcode: String, isZipcode: Bool, completionHandler: @escaping (AppError?, [DailyForecast]?) -> Void) {
+    static func searchLocation(zipcodeOrCity: String, isZipcode: Bool, completionHandler: @escaping (AppError?, [DailyForecast]?) -> Void) {
         var endpointURLString = ""
         if isZipcode {
-            endpointURLString = "http://api.aerisapi.com/forecasts/\(zipcode)?client_id=\(SecretKeys.aerisAPIid)&client_secret=\(SecretKeys.aerisAPISecret)"
+            endpointURLString = "http://api.aerisapi.com/forecasts/\(zipcodeOrCity)?client_id=\(SecretKeys.aerisAPIid)&client_secret=\(SecretKeys.aerisAPISecret)"
         }
 //        else {
-//            endpointURLString = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=\(SecretKeys.APIKey)&city=\(keyword)&radius=500&unit=miles"
+//            endpointURLString = "https://api.aerisapi.com/forecasts/\(zipcodeOrCity)?&format=json&filter=day&limit=7&client_id=\(SecretKeys.aerisAPIid)&client_secret=\(SecretKeys.aerisAPISecret)"
 //        }
         
         guard let url = URL(string: endpointURLString) else {

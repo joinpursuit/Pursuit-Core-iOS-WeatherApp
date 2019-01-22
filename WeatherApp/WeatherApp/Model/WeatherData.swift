@@ -17,7 +17,6 @@ struct ResponseWrapper: Codable {
 }
 
 struct DailyForecast: Codable {
-    let validTime: String
     let dateTimeISO: String
     let maxTempC: Int
     let minTempC: Int

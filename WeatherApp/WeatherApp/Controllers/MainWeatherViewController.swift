@@ -10,9 +10,11 @@ import UIKit
 
 class MainWeatherViewController: UIViewController {
     
+    @IBOutlet weak var unitSwitcher: UIBarButtonItem!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var forecastCollectionView: UICollectionView!
     @IBOutlet weak var locationTextField: UITextField!
+    public var isMetric = false
     public var isValidZipcode = true
     private var presetZipcode = "74134"
     public var location = ""
@@ -66,7 +68,7 @@ class MainWeatherViewController: UIViewController {
     }
     
     private func searchWeather(fromZipcode: String) {
-        AerisAPIClient.searchLocation(zipcode: fromZipcode, isZipcode: isValidZipcode) { (appError, dailyForecast) in
+        AerisAPIClient.searchLocation(zipcodeOrCity: fromZipcode, isZipcode: isValidZipcode) { (appError, dailyForecast) in
             if let appError = appError {
                 print("searchWeather app error - \(appError)")
             } else if let dailyForecast = dailyForecast {
@@ -99,7 +101,7 @@ class MainWeatherViewController: UIViewController {
     }
     
     private func showAlert() {
-        let alertController = UIAlertController(title: "Invalid Zipcode", message: "Please enter a valid zipcode", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Invalid Entry", message: "Please enter a valid zipcode", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
@@ -113,7 +115,7 @@ extension MainWeatherViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     override func size(forChildContentContainer container: UIContentContainer, withParentContainerSize parentSize: CGSize) -> CGSize {
-        return CGSize(width: 150, height: 265)
+        return CGSize(width: 150, height: 200)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -121,8 +123,13 @@ extension MainWeatherViewController: UICollectionViewDataSource, UICollectionVie
             else { return UICollectionViewCell() }
         let dayToSet = dailyForecast[indexPath.row]
         cell.date.text = WeatherDataHelper.formatISOToDate(dateString: dayToSet.dateTimeISO)
-        cell.high.text = "High: " +  dayToSet.maxTempF.description + "°F"
-        cell.low.text = "Low: " + dayToSet.minTempF.description + "°F"
+        if isMetric {
+            cell.high.text = "High: " +  dayToSet.maxTempC.description + "°C"
+            cell.low.text = "Low: " + dayToSet.minTempC.description + "°C"
+        } else {
+            cell.high.text = "High: " +  dayToSet.maxTempF.description + "°F"
+            cell.low.text = "Low: " + dayToSet.minTempF.description + "°F"
+        }
         cell.weatherImage.image = UIImage(named: dayToSet.icon)
         return cell
     }
