@@ -100,13 +100,15 @@ extension MainWeatherController: UITextFieldDelegate {
     
     if let text = textField.text {
       zipCodeText = text
-      print(zipCodeText)
+      
       ZipCodeHelper.getLocationName(from: text) { (error, localityName) in
         if let error = error {
           print("Couldn't locate the city. There was an \(error)")
         }
         if let localityName = localityName {
           self.cityName.text = localityName
+          self.searchWeatherForecast(zipCode: text)
+
         }
       }
     }
