@@ -10,13 +10,9 @@ import Foundation
 
 final class WeatherAPIClient {
     private init() {}
-    static func searchWeather(keyword: String, isZipcode: Bool, completionHandler: @escaping (AppError?, [Periods]?) -> Void) {
-        var endpointURLString = ""
-        if isZipcode {
-            endpointURLString = "https://api.aerisapi.com/forecasts/10014?&format=json&filter=day&limit=7&client_id=CLIENT_ID&client_secret=CLIENT_SECRET"
-        } else {
-            endpointURLString = "https://api.aerisapi.com/forecasts/10014?&format=json&filter=day&limit=7&client_id=CLIENT_ID&client_secret=CLIENT_SECRET"
-        }
+    static func searchWeather(zipcode: String, isZipcode: Bool, completionHandler: @escaping (AppError?, [Periods]?) -> Void) {
+        let endpointURLString = "https://api.aerisapi.com/forecasts/\(zipcode)?client_id=\(SecretKeys.clientID)&client_secret=\(SecretKeys.APIKey)"
+    
         guard let url = URL(string: endpointURLString) else {
             completionHandler(AppError.badURL(endpointURLString), nil)
             return
@@ -25,6 +21,7 @@ final class WeatherAPIClient {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 completionHandler(AppError.networkError(error), nil)
+                return
             }
             guard let httpResponse = response as? HTTPURLResponse,
                 (200...299).contains(httpResponse.statusCode) else {
@@ -34,7 +31,8 @@ final class WeatherAPIClient {
             }
             if let data = data {
                 do {
-                    let weatherData = try JSONDecoder().decode(Weather.self, from: data)
+                    let weatherData = try JSONDecoder().decode(Weather.self, from: data).response[0].periods
+                    completionHandler(nil, weatherData)
                 } catch {
                     completionHandler(AppError.jsonDecodingError(error), nil)
                 }

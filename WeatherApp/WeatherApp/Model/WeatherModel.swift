@@ -7,24 +7,27 @@
 //
 
 import Foundation
+
 struct Weather: Codable {
-    let responseWrapper: [Response]
+    let success: Bool 
+    let response: [ResponseWrapper]
 }
-struct Response: Codable {
-    let loc: String
-    let periodsWrapper: [Periods]
+
+struct ResponseWrapper: Codable {
+    let periods: [Periods]
 }
+
 struct Periods: Codable {
-    let timestamp: Int
+    let timestamp: Double
     let validTime: String
-    let datetimeISO: String
     let maxTempF: Int
     let minTempF: Int
     let avgTempF: Int
-    let sunrise: Int
+    let sunrise: Double
     let sunriseISO: String
-    let sunset: Int
+    let sunset: Double
     let sunsetISO: String
     let windSpeedMPH: Int
-    let precipIN: Int 
+    let precipIN: Double
+    let icon: String
 }

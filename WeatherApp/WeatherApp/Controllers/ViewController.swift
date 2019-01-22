@@ -7,16 +7,17 @@
 //
 
 import UIKit
-import AVFoundation
 
 class ViewController: UIViewController {
     @IBOutlet weak var forecastCity: UILabel!
     @IBOutlet weak var weatherCV: UICollectionView!
     @IBOutlet weak var searchButton: UITextField!
     
-    public var forecastImages = [Periods](){
+    public var forecast = [Periods](){
         didSet {
-            weatherCV.reloadData()
+            DispatchQueue.main.async {
+                self.weatherCV.reloadData()
+            }
         }
     }
     private var imagePickerVC: UIImagePickerController!
@@ -24,11 +25,22 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         weatherCV.dataSource = self
+        weatherCV.delegate = self
         print(DataPersistenceManager.documentsDirectory())
+        
+        WeatherAPIClient.searchWeather(zipcode: "11229", isZipcode: true) { (appError, periods) in
+            if let error = appError {
+                print(error.errorMessage())
+            }
+            if let periods = periods {
+                self.forecast = periods
+                dump(self.forecast)
+            }
+        }
     }
-    override func viewWillAppear(_ animated: Bool) {
-        weatherCV.reloadData()
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        weatherCV.reloadData()
+//    }
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
@@ -40,12 +52,21 @@ class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return forecast.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = weatherCV.dequeueReusableCell(withReuseIdentifier: "weatherCell", for: indexPath) as? WeatherCollectionViewCell else { return UICollectionViewCell()}
-        //let item = Periods
+ var day = forecast[indexPath.row]
+        cell.dayLabel.text = "\(day.validTime)"
+        cell.imageSet.image = UIImage(named: day.icon)
+        
         
         return cell
+    }
+}
+
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: weatherCV.frame.width, height: weatherCV.frame.height)
     }
 }

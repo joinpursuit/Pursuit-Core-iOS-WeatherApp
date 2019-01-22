@@ -10,4 +10,5 @@ import Foundation
 
 struct SecretKeys {
     static let APIKey = "viRDyFkwtPL4zcKRRfmr54sK5h29CbmpA6OTXPoD"
+    static let clientID = "xTMfdRMckWUKeofgu9X3t"
 }

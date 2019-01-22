@@ -10,4 +10,15 @@ import UIKit
 
 class WeatherCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var dayLabel: UILabel!
+
+    @IBOutlet weak var imageSet: UIImageView!
+    
+    
+    @IBOutlet weak var highLabel: UILabel!
+    
+    
+    @IBOutlet weak var lowLabel: UILabel!
+    
+    
 }
