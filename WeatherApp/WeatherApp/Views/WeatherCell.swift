@@ -10,5 +10,8 @@ import UIKit
 
 class WeatherCell: UICollectionViewCell {
     @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var weatherIcon: UIImageView!
+    @IBOutlet weak var highTemp: UILabel!
+    @IBOutlet weak var lowTemp: UILabel!
     
 }

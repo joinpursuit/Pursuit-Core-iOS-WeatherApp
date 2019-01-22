@@ -9,5 +9,5 @@
 import Foundation
 
 final class WeatherModel {
-  private static var filename = "
+  //private static var filename = "
 }
