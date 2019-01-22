@@ -20,7 +20,7 @@ class MainWeatherController: UIViewController {
   @IBOutlet weak var zipCodeMessage: UILabel!
   
   
-  var arrayOfWeatherInfo = [WeatherDetails]() {
+  var arrayOfWeatherDetails = [WeatherDetails]() {
     didSet {
       DispatchQueue.main.async {
         self.weatherDisplayColletionView.reloadData()
@@ -32,9 +32,10 @@ class MainWeatherController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     searchWeatherForecast()
+    zipCodeField.delegate = self
     weatherDisplayColletionView.dataSource = self
     weatherDisplayColletionView.delegate = self
-    dump(arrayOfWeatherInfo)
+    dump(arrayOfWeatherDetails)
   }
   
   private func searchWeatherForecast(keyword: String = "11101"){
@@ -45,8 +46,15 @@ class MainWeatherController: UIViewController {
         print("found \(weather.count) podcast")
         dump(weather)
         if let details = weather[weather.count - 1].periods {
-         self.arrayOfWeatherInfo = details
+          self.arrayOfWeatherDetails = details
         }
+        
+        //TODO: Refactor outside this function
+        //        if let city = weather[weather.count - 1].profile?.cityName {
+        //          DispatchQueue.main.async {
+        //            self.cityName.text = city
+        //          }
+        //        }
       }
     }
   }
@@ -54,13 +62,13 @@ class MainWeatherController: UIViewController {
 
 extension MainWeatherController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-   return arrayOfWeatherInfo.count
+    return arrayOfWeatherDetails.count
   }
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     guard let cell = weatherDisplayColletionView.dequeueReusableCell(withReuseIdentifier: "WeatherCell", for: indexPath) as? WeatherCollectionCell else {return UICollectionViewCell()}
     
-    let currentDayWeather = arrayOfWeatherInfo[indexPath.row]
     
+    let currentDayWeather = arrayOfWeatherDetails[indexPath.row]
     
     cell.configureCell(weatherForecast: currentDayWeather)
     
@@ -74,4 +82,25 @@ extension MainWeatherController: UICollectionViewDelegateFlowLayout {
   }
 }
 
-
+extension MainWeatherController: UITextFieldDelegate {
+  
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+ 
+    textField.resignFirstResponder()
+    
+    if let text = textField.text {
+      ZipCodeHelper.getLocationName(from: text) { (error, localityName) in
+        
+        if let error = error {
+          print("Couldn't locate the city. There was an \(error)")
+        }
+        if let localityName = localityName {
+          self.cityName.text = localityName
+        }
+        
+      }
+      
+    }
+    return true
+  }
+}

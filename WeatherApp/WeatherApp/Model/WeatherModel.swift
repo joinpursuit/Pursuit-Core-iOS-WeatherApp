@@ -15,10 +15,13 @@ struct WeatherModel: Codable {
 struct WeatherInfo: Codable {
   let periods: [WeatherDetails]?
   let profile: CityName?
+  
+  
+  
 }
 
 struct WeatherDetails: Codable {
-//  let timestamp: //timestamp
+  //  let timestamp: //timestamp
   let validTime: String
   let dateTimeISO: String
   let maxTempC: Int
@@ -29,15 +32,15 @@ struct WeatherDetails: Codable {
   let windSpeedKPH: Int
   let windSpeedMPH: Int
   let weather: String
-//  let sunrise: //1547900135
+  //  let sunrise: //1547900135
   let sunriseISO: String
-//  let sunset: //1547935089
+  //  let sunset: //1547935089
   let sunsetISO: String
   let icon: String //pcloudy.png
   
   
   public var dateFormattedString: String {
-   let isoDateFormatter = ISO8601DateFormatter()
+    let isoDateFormatter = ISO8601DateFormatter()
     var formattedDate = dateTimeISO
     if let date = isoDateFormatter.date(from: dateTimeISO) {
       let dateFormatter = DateFormatter()
@@ -51,5 +54,18 @@ struct WeatherDetails: Codable {
 
 struct CityName: Codable {
   let tz: String
+  
+  public var cityName: String {
+    var arrayOfCityText = [String]()
+    var stringToReturn = String()
+    arrayOfCityText.append(contentsOf: tz.components(separatedBy: "/"))
+    if let city = arrayOfCityText.last{
+      stringToReturn = city
+    } else {
+      stringToReturn = "City name wasn't identified"
+    }
+    return stringToReturn
+  }
+  
 }
 
