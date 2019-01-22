@@ -37,7 +37,6 @@ class MainWeatherController: UIViewController {
     searchWeatherForecast(zipCode: zipCodeText)
     weatherDisplayColletionView.dataSource = self
     weatherDisplayColletionView.delegate = self
-    dump(arrayOfWeatherDetails)
   }
   
   private func searchWeatherForecast(zipCode: String){
@@ -45,8 +44,6 @@ class MainWeatherController: UIViewController {
       if let appError = appError {
         print(appError.errorMessage())
       } else if let weather = weather {
-        print("found \(weather.count) podcast")
-        dump(weather)
         if let details = weather[weather.count - 1].periods {
           self.arrayOfWeatherDetails = details
         }
