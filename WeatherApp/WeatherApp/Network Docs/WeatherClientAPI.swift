@@ -10,9 +10,9 @@ import Foundation
 
 final class WeatherAPIClient {
 
-  static func searchWeather(keyword: String, completionHandler: @escaping (AppError?, [WeatherInfo]?) -> Void){
+  static func searchWeather(zipCode: String, completionHandler: @escaping (AppError?, [WeatherInfo]?) -> Void){
    
-    let urlString = "https://api.aerisapi.com/forecasts/11101?&format=json&filter=day&limit=7&client_id=\(Constants.weatherClientID)&client_secret=\(Constants.weatherSecretKey)"
+    let urlString = "https://api.aerisapi.com/forecasts/\(zipCode)?&format=json&filter=day&limit=7&client_id=\(Constants.weatherClientID)&client_secret=\(Constants.weatherSecretKey)"
     
   
     NetworkHelper.shared.performDataTask(endpointURLString: urlString, httpMethod: "GET", httpBody: nil) { (appError, data, httpResponse) in
@@ -38,3 +38,5 @@ final class WeatherAPIClient {
   }
   
 }
+
+

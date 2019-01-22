@@ -19,6 +19,7 @@ class MainWeatherController: UIViewController {
   
   @IBOutlet weak var zipCodeMessage: UILabel!
   
+  private var zipCodeText = "11101"
   
   var arrayOfWeatherDetails = [WeatherDetails]() {
     didSet {
@@ -31,15 +32,16 @@ class MainWeatherController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    searchWeatherForecast()
+    setUpDefaultForeCastCity(zipCode: zipCodeText)
     zipCodeField.delegate = self
+    searchWeatherForecast(zipCode: zipCodeText)
     weatherDisplayColletionView.dataSource = self
     weatherDisplayColletionView.delegate = self
     dump(arrayOfWeatherDetails)
   }
   
-  private func searchWeatherForecast(keyword: String = "11101"){
-    WeatherAPIClient.searchWeather(keyword: keyword) { (appError, weather) in
+  private func searchWeatherForecast(zipCode: String){
+    WeatherAPIClient.searchWeather(zipCode: zipCode) { (appError, weather) in
       if let appError = appError {
         print(appError.errorMessage())
       } else if let weather = weather {
@@ -48,17 +50,25 @@ class MainWeatherController: UIViewController {
         if let details = weather[weather.count - 1].periods {
           self.arrayOfWeatherDetails = details
         }
-        
-        //TODO: Refactor outside this function
-        //        if let city = weather[weather.count - 1].profile?.cityName {
-        //          DispatchQueue.main.async {
-        //            self.cityName.text = city
-        //          }
-        //        }
       }
     }
   }
+  
+  
+  private func setUpDefaultForeCastCity(zipCode: String){
+    ZipCodeHelper.getLocationName(from: zipCode) { (error, localityName) in
+      if let error = error {
+        print("Couldn't locate the city. There was an \(error)")
+      }
+      if let localityName = localityName {
+        self.cityName.text = localityName
+      }
+    }
+  }
+  
 }
+
+
 
 extension MainWeatherController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -85,22 +95,22 @@ extension MainWeatherController: UICollectionViewDelegateFlowLayout {
 extension MainWeatherController: UITextFieldDelegate {
   
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
- 
+    
     textField.resignFirstResponder()
     
     if let text = textField.text {
+      zipCodeText = text
+      print(zipCodeText)
       ZipCodeHelper.getLocationName(from: text) { (error, localityName) in
-        
         if let error = error {
           print("Couldn't locate the city. There was an \(error)")
         }
         if let localityName = localityName {
           self.cityName.text = localityName
         }
-        
       }
-      
     }
+    
     return true
   }
 }
