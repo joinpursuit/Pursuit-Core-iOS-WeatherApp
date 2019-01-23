@@ -70,23 +70,26 @@ class MainWeatherViewController: UIViewController {
     
     private func useSearchResultToSetupView(zipcodeIsValid: Bool, keyword: String) {
         if zipcodeIsValid {
-            searchWeather(fromZipcode: keyword)
+            searchWeather(keyword: keyword, isZipcode: zipcodeIsValid)
             UserDefaults.standard.set(keyword, forKey: "Location")
-            setupView(zipcode: keyword)
+            setupView(keyword: keyword)
         } else {
-            showAlert()
+            showAlert(message: "Please enter a valid 5-digit zipcode")
         }
     }
     
-    private func searchWeather(fromZipcode: String) {
-        AerisAPIClient.searchLocation(zipcodeOrCity: fromZipcode, isZipcode: isValidZipcode) { (appError, dailyForecast) in
+    private func searchWeather(keyword: String, isZipcode: Bool) {
+        AerisAPIClient.searchLocation(zipcodeOrCity: keyword, isZipcode: isValidZipcode) { (appError, dailyForecast) in
             if let appError = appError {
                 print("searchWeather app error - \(appError)")
             } else if let dailyForecast = dailyForecast {
-                self.dailyForecast = dailyForecast
+                    self.dailyForecast = dailyForecast
+                    UserDefaults.standard.set(keyword, forKey: "Location")
+                } else {
+                    self.showAlert(message: "Zipcode should be a five-digit number and location should be formatted as City, State")
+                }
             }
         }
-    }
 
     private func searchForDefaultSearchSettings() {
         var zipcodeToSearch = ""
@@ -95,24 +98,26 @@ class MainWeatherViewController: UIViewController {
         } else {
             zipcodeToSearch = presetZipcode
         }
-        setupView(zipcode: zipcodeToSearch)
+        setupView(keyword: zipcodeToSearch)
     }
     
-    private func setupView(zipcode: String) {
-        ZipCodeHelper.getLocationName(from: zipcode) { (appError, location) in
+    private func setupView(keyword: String) {
+        ZipCodeHelper.getLocationName(from: keyword) { (appError, location) in
             if let appError = appError {
                 print("appError in finding zipcode in setupView - \(appError)")
+                self.locationLabel.text = "Weather Forecast for \(keyword.capitalized)"
+                self.location = ""
             } else if let location = location {
                 self.locationLabel.text = "Weather Forecast for \(location)"
                 self.location = location
             }
         }
-        locationTextField.text = zipcode
-        searchWeather(fromZipcode: zipcode)
+        locationTextField.text = keyword.replacingOccurrences(of: "%20", with: "")
+        searchWeather(keyword: keyword, isZipcode: isValidZipcode)
     }
     
-    private func showAlert() {
-        let alertController = UIAlertController(title: "Invalid Entry", message: "Please enter a valid zipcode", preferredStyle: .alert)
+    private func showAlert(message: String) {
+        let alertController = UIAlertController(title: message, message: "", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
@@ -129,7 +134,14 @@ class MainWeatherViewController: UIViewController {
             self.delegate?.changeToMetric()
         }
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let weatherDetailViewController = segue.destination as! WeatherDetailViewController
+        let cell = sender as! UICollectionViewCell
+        let indexPath = self.forecastCollectionView.indexPath(for: cell)
+        weatherDetailViewController.dayWeather = dailyForecast[indexPath!.row]
+        weatherDetailViewController.location = location
+        weatherDetailViewController.isMetric = isMetric
+    }
 }
 
 extension MainWeatherViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -155,21 +167,6 @@ extension MainWeatherViewController: UICollectionViewDataSource, UICollectionVie
         }
         cell.weatherImage.image = UIImage(named: dayToSet.icon)
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-        guard let destinationViewController = storyBoard.instantiateViewController(withIdentifier: "WeatherDetailViewController") as? WeatherDetailViewController else { return }
-        destinationViewController.modalPresentationStyle = .overCurrentContext
-        destinationViewController.dayWeather = dailyForecast[indexPath.row]
-        destinationViewController.location = location
-        destinationViewController.isMetric = isMetric
-        self.present(destinationViewController, animated: true, completion: nil)
-    }
-}
-
-extension MainWeatherViewController {
-    @IBAction func doneViewing(_ segue: UIStoryboardSegue) {
     }
 }
 

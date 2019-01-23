@@ -15,9 +15,9 @@ final class AerisAPIClient {
         if isZipcode {
             endpointURLString = "http://api.aerisapi.com/forecasts/\(zipcodeOrCity)?client_id=\(SecretKeys.aerisAPIid)&client_secret=\(SecretKeys.aerisAPISecret)"
         }
-//        else {
-//            endpointURLString = "https://api.aerisapi.com/forecasts/\(zipcodeOrCity)?&format=json&filter=day&limit=7&client_id=\(SecretKeys.aerisAPIid)&client_secret=\(SecretKeys.aerisAPISecret)"
-//        }
+        else {
+            endpointURLString = "https://api.aerisapi.com/forecasts/\(zipcodeOrCity)?&format=json&filter=day&limit=7&client_id=\(SecretKeys.aerisAPIid)&client_secret=\(SecretKeys.aerisAPISecret)"
+        }
         
         guard let url = URL(string: endpointURLString) else {
             completionHandler(AppError.badURL(endpointURLString), nil)

@@ -73,13 +73,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather Forecast for New York" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MMg-3w-De8">
-                                <rect key="frame" x="8" y="110" width="398" height="29"/>
+                                <rect key="frame" x="8" y="99" width="398" height="29"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="e70-3d-j8y">
-                                <rect key="frame" x="10.5" y="161" width="393" height="269"/>
+                                <rect key="frame" x="10.5" y="150" width="393" height="269"/>
                                 <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hKd-7b-ZYn">
                                     <size key="itemSize" width="151" height="268"/>
@@ -141,19 +141,20 @@
                                             <outlet property="high" destination="3r1-Tc-rEp" id="9bJ-Bu-mxX"/>
                                             <outlet property="low" destination="S8v-8R-Vhw" id="8on-MJ-nkD"/>
                                             <outlet property="weatherImage" destination="fS3-P4-Rbd" id="wYx-nE-HyT"/>
+                                            <segue destination="Fxs-KG-uAq" kind="show" id="uhF-7E-S4G"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1A3-r1-g3Y">
-                                <rect key="frame" x="134.5" y="501.5" width="145" height="30"/>
+                                <rect key="frame" x="134.5" y="490.5" width="145" height="30"/>
                                 <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="postal-code"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter a zip code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ip6-oz-blA">
-                                <rect key="frame" x="8" y="452" width="398" height="27.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter zip code or city, state" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ip6-oz-blA">
+                                <rect key="frame" x="8" y="441" width="398" height="27.5"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -162,7 +163,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="MMg-3w-De8" firstAttribute="top" secondItem="ibD-xZ-dPt" secondAttribute="top" constant="22" id="4f5-jo-GoC"/>
+                            <constraint firstItem="MMg-3w-De8" firstAttribute="top" secondItem="ibD-xZ-dPt" secondAttribute="top" constant="11" id="DHl-GW-AMN"/>
                             <constraint firstItem="1A3-r1-g3Y" firstAttribute="width" secondItem="f9h-uP-Eom" secondAttribute="width" multiplier="0.35" id="Ht4-SJ-o0A"/>
                             <constraint firstItem="1A3-r1-g3Y" firstAttribute="centerX" secondItem="ibD-xZ-dPt" secondAttribute="centerX" id="J0F-C7-HYa"/>
                             <constraint firstItem="ibD-xZ-dPt" firstAttribute="trailing" secondItem="MMg-3w-De8" secondAttribute="trailing" constant="8" id="P7A-k9-aSD"/>
@@ -178,10 +179,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ibD-xZ-dPt"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Search" id="Eq5-F7-vW9">
-                        <barButtonItem key="leftBarButtonItem" title="Metric" id="d8j-iR-jU8">
+                    <navigationItem key="navigationItem" id="01r-xx-53G">
+                        <barButtonItem key="leftBarButtonItem" title="Metric" id="vmF-I8-dMu">
                             <connections>
-                                <action selector="unitSwitcherPressed:" destination="w0D-8w-cXc" id="rFU-gw-Gqk"/>
+                                <action selector="unitSwitcherPressed:" destination="w0D-8w-cXc" id="WqI-rX-rAU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -189,12 +190,12 @@
                         <outlet property="forecastCollectionView" destination="e70-3d-j8y" id="0Nk-L3-AOk"/>
                         <outlet property="locationLabel" destination="MMg-3w-De8" id="ofM-qV-rIk"/>
                         <outlet property="locationTextField" destination="1A3-r1-g3Y" id="K2Q-Qd-dmk"/>
-                        <outlet property="unitSwitcher" destination="d8j-iR-jU8" id="aMn-te-uGl"/>
+                        <outlet property="unitSwitcher" destination="vmF-I8-dMu" id="sYO-dT-fXd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P3B-M1-RmL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1471.0144927536232" y="-641.51785714285711"/>
+            <point key="canvasLocation" x="2381.1594202898555" y="-641.51785714285711"/>
         </scene>
         <!--Forecast-->
         <scene sceneID="DKm-Op-uuV">
@@ -205,55 +206,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="orq-JS-TjD">
-                                <rect key="frame" x="20.5" y="135" width="373" height="248.5"/>
+                                <rect key="frame" x="20.5" y="139" width="373" height="248.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="orq-JS-TjD" secondAttribute="height" multiplier="3:2" id="72f-oM-tqQ"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather Forecast for New York" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7N-2K-9FT">
-                                <rect key="frame" x="8" y="55" width="398" height="29"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019-01-19" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3zg-nt-gI3">
-                                <rect key="frame" x="8" y="95" width="398" height="29"/>
+                                <rect key="frame" x="8" y="99" width="398" height="29"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qne-RA-uFZ">
-                                <rect key="frame" x="20.5" y="434.5" width="373" height="416.5"/>
+                                <rect key="frame" x="20.5" y="438.5" width="373" height="363.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Partly cloudy" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzo-Km-GKU">
-                                <rect key="frame" x="8" y="394.5" width="398" height="29"/>
+                                <rect key="frame" x="8" y="398.5" width="398" height="29"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ptg-89-Xas">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <items>
-                                    <navigationItem id="Lsa-CD-6JG">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="17c-6g-CWm">
-                                            <connections>
-                                                <segue destination="sR8-JU-P3E" kind="unwind" unwindAction="doneViewing:" id="nFt-XK-QIc"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="1Qf-nE-86D">
-                                            <connections>
-                                                <action selector="saveImage:" destination="Fxs-KG-uAq" id="gbg-Qa-wpQ"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="DRf-1I-GUO">
-                                <rect key="frame" x="197" y="249" width="20" height="20"/>
+                                <rect key="frame" x="197" y="253" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -263,19 +241,13 @@
                             <constraint firstItem="DRf-1I-GUO" firstAttribute="centerX" secondItem="orq-JS-TjD" secondAttribute="centerX" id="5rP-8W-6EE"/>
                             <constraint firstItem="tuf-Mc-wh5" firstAttribute="bottom" secondItem="qne-RA-uFZ" secondAttribute="bottom" constant="11" id="6cw-0a-KLb"/>
                             <constraint firstItem="orq-JS-TjD" firstAttribute="centerX" secondItem="tuf-Mc-wh5" secondAttribute="centerX" id="6qi-Y6-upl"/>
-                            <constraint firstItem="X7N-2K-9FT" firstAttribute="top" secondItem="tuf-Mc-wh5" secondAttribute="top" constant="11" id="7bN-Bd-HRC"/>
-                            <constraint firstItem="ptg-89-Xas" firstAttribute="top" secondItem="tuf-Mc-wh5" secondAttribute="top" id="8EX-6l-iC6"/>
-                            <constraint firstItem="X7N-2K-9FT" firstAttribute="leading" secondItem="XKu-Mg-Jcl" secondAttribute="leading" constant="8" id="CYA-Gy-rYA"/>
+                            <constraint firstItem="3zg-nt-gI3" firstAttribute="top" secondItem="tuf-Mc-wh5" secondAttribute="top" constant="11" id="C1l-Cq-aME"/>
                             <constraint firstItem="orq-JS-TjD" firstAttribute="width" secondItem="XKu-Mg-Jcl" secondAttribute="width" multiplier="0.9" id="D58-Lp-P4D"/>
                             <constraint firstItem="qne-RA-uFZ" firstAttribute="trailing" secondItem="orq-JS-TjD" secondAttribute="trailing" id="DG2-jn-I44"/>
-                            <constraint firstItem="ptg-89-Xas" firstAttribute="leading" secondItem="tuf-Mc-wh5" secondAttribute="leading" id="FfI-Rn-ThS"/>
                             <constraint firstItem="qne-RA-uFZ" firstAttribute="top" secondItem="vzo-Km-GKU" secondAttribute="bottom" constant="11" id="WMG-Rg-X7Z"/>
                             <constraint firstItem="orq-JS-TjD" firstAttribute="top" secondItem="3zg-nt-gI3" secondAttribute="bottom" constant="11" id="eSt-JG-Ynf"/>
                             <constraint firstItem="tuf-Mc-wh5" firstAttribute="trailing" secondItem="vzo-Km-GKU" secondAttribute="trailing" constant="8" id="eef-bU-jIg"/>
-                            <constraint firstItem="tuf-Mc-wh5" firstAttribute="trailing" secondItem="X7N-2K-9FT" secondAttribute="trailing" constant="8" id="hIx-yP-R01"/>
                             <constraint firstItem="tuf-Mc-wh5" firstAttribute="trailing" secondItem="3zg-nt-gI3" secondAttribute="trailing" constant="8" id="l6k-aX-jWy"/>
-                            <constraint firstItem="3zg-nt-gI3" firstAttribute="top" secondItem="X7N-2K-9FT" secondAttribute="bottom" constant="11" id="oJJ-kJ-RKh"/>
-                            <constraint firstItem="ptg-89-Xas" firstAttribute="trailing" secondItem="tuf-Mc-wh5" secondAttribute="trailing" id="sDf-JB-9aq"/>
                             <constraint firstItem="DRf-1I-GUO" firstAttribute="centerY" secondItem="orq-JS-TjD" secondAttribute="centerY" id="vPH-D3-CiO"/>
                             <constraint firstItem="vzo-Km-GKU" firstAttribute="leading" secondItem="tuf-Mc-wh5" secondAttribute="leading" constant="8" id="xsA-95-6jq"/>
                             <constraint firstItem="vzo-Km-GKU" firstAttribute="top" secondItem="orq-JS-TjD" secondAttribute="bottom" constant="11" id="zUb-Ud-kMI"/>
@@ -283,21 +255,23 @@
                         <viewLayoutGuide key="safeArea" id="tuf-Mc-wh5"/>
                     </view>
                     <navigationItem key="navigationItem" id="lTL-qN-3ye">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Cau-6v-bz4"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Cau-6v-bz4">
+                            <connections>
+                                <action selector="saveImage:" destination="Fxs-KG-uAq" id="A0H-TY-mWs"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="dateLabel" destination="3zg-nt-gI3" id="mHs-nJ-AMC"/>
                         <outlet property="imageActivityIndicator" destination="DRf-1I-GUO" id="tOf-HJ-aLU"/>
                         <outlet property="imageOfLocation" destination="orq-JS-TjD" id="G5D-h7-Bff"/>
-                        <outlet property="locationLabel" destination="X7N-2K-9FT" id="YOt-Z2-rbn"/>
                         <outlet property="weatherDetailLabel" destination="vzo-Km-GKU" id="gYY-Vu-hdQ"/>
                         <outlet property="weatherMoreInfoTextView" destination="qne-RA-uFZ" id="Gaa-Gm-rB2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="flG-wO-b3w" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="sR8-JU-P3E" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2362" y="-642"/>
+            <point key="canvasLocation" x="3271.0144927536235" y="-642.1875"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="TMW-Rl-Cwo">
@@ -309,7 +283,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Pzp-0e-edY" kind="relationship" relationship="viewControllers" id="xlI-54-UmY"/>
+                        <segue destination="BhJ-GR-oE5" kind="relationship" relationship="viewControllers" id="H68-O0-tG7"/>
                         <segue destination="IMM-8d-oqm" kind="relationship" relationship="viewControllers" id="crs-FF-Gnm"/>
                     </connections>
                 </tabBarController>
@@ -318,23 +292,23 @@
             <point key="canvasLocation" x="-677" y="-300"/>
         </scene>
         <!--Search-->
-        <scene sceneID="085-ET-C9V">
+        <scene sceneID="ysk-Ob-UWw">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pzp-0e-edY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" image="searchIcon" id="hnM-8r-qKl"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BhJ-GR-oE5" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Search" image="searchIcon" id="Ug1-hP-TtF"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OGI-M2-WUc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tv8-5Q-4fR">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="w0D-8w-cXc" kind="relationship" relationship="rootViewController" id="FwZ-U5-ZZz"/>
+                        <segue destination="w0D-8w-cXc" kind="relationship" relationship="rootViewController" id="nUr-pC-VZN"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mMD-NQ-6u8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="27W-Pb-78t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="560.86956521739137" y="-641.51785714285711"/>
+            <point key="canvasLocation" x="1471.0144927536232" y="-641.51785714285711"/>
         </scene>
     </scenes>
     <resources>

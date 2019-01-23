@@ -9,7 +9,6 @@
 import UIKit
 
 class WeatherDetailViewController: UIViewController {
-    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var imageOfLocation: UIImageView!
     @IBOutlet weak var weatherDetailLabel: UILabel!
