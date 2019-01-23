@@ -53,9 +53,9 @@ class WeatherDetailVC: UIViewController {
     func setUpLabels() {
         weatherCondition.text = DateHelper.getDate(date: weather.dateTimeISO)
         
-        sunset.text = DateHelper.getTime(time: weather.sunsetISO)
+        sunset.text = "Sunset:\(DateHelper.getTime(time: weather.sunsetISO))"
         
-        sunrise.text = DateHelper.getTime(time: weather.sunriseISO)
+        sunrise.text = "Sunrise:\(DateHelper.getTime(time: weather.sunriseISO))"
 
         if let rain = weather.percipIN{
             inchesOfParticipation.text = "Percipretation:\(rain)"
