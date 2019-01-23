@@ -21,11 +21,18 @@ class WeatherViewController: UIViewController {
             }
         }
     }
+    public var isZipCode = true
+    public var myLocation = ""
+//    public var myZipCode = "11208" {
+//        didSet {
+//           ZipCodeHelper.g
+//        }
+//    }
     override func viewDidLoad() {
         super.viewDidLoad()
         weatherCollectionView.dataSource = self
         weatherCollectionView.delegate = self
-        getForecasts(keyword:"11432")
+        zipeCodeTextField.delegate = self
         
     }
     
@@ -71,11 +78,21 @@ extension WeatherViewController: UICollectionViewDelegate {
     }
 }
 extension WeatherViewController: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-//        if let text = textField.text {
-//            //zipeCodeTextField.
-//        }
+        let zipcodeTextFieldText = zipeCodeTextField.text
+       
+        WeatherAPIClient.searchWeather(keyword: zipcodeTextFieldText!) { (error, results) in
+            if let error = error {
+                print(error.errorMessage())
+            } else if let results = results {
+                DispatchQueue.main.async {
+                    self.forecasts = results
+                }
+            }
+       // textField.resignFirstResponder()
+        
+     }
         return true
         
     }
