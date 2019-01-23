@@ -20,6 +20,7 @@ class MainWeatherController: UIViewController {
   @IBOutlet weak var zipCodeMessage: UILabel!
   
   private var zipCodeText = "11101"
+  private var cityToSegue = "New York"
   
   var arrayOfWeatherDetails = [WeatherDetails]() {
     didSet {
@@ -100,6 +101,7 @@ extension MainWeatherController: UICollectionViewDelegateFlowLayout {
     
     detailedVC.modalPresentationStyle = .overCurrentContext
     detailedVC.receiveCityInfo = arrayOfWeatherDetails[indexPath.row]
+    detailedVC.nameOfCity = cityToSegue
         
     navigationController?.pushViewController(detailedVC, animated: true)
     
@@ -117,13 +119,24 @@ extension MainWeatherController: UITextFieldDelegate {
     if let text = textField.text {
       zipCodeText = text
       
-      ZipCodeHelper.getLocationName(from: text) { (error, localityName) in
+      guard let zipcode = Int(text) else { return true }
+      
+      ZipCodeHelper.getLocationName(from: String(zipcode)) { (error, localityName) in
         if let error = error {
           print("Couldn't locate the city. There was an \(error)")
         }
         if let localityName = localityName {
           self.cityName.text = localityName
-          self.searchWeatherForecast(zipCode: text)
+          self.cityToSegue = localityName
+          print(self.cityToSegue)
+          self.searchWeatherForecast(zipCode: self.zipCodeText)
+//          var reloadDataWhenSearching = self.searchWeatherForecast(zipCode: text){
+//            didSet {
+//              DispatchQueue.main.async {
+//                self.weatherDisplayColletionView.reloadData()
+//              }
+//            }
+//          }
           
         }
       }

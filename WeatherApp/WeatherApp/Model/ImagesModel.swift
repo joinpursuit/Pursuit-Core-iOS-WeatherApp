@@ -15,5 +15,4 @@ struct ImageModel: Codable {
 struct ImageDetailedInfo: Codable {
   let largeImageURL: String //URL
   let id: Int
-  let user: String
 }

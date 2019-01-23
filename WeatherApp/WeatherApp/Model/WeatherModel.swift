@@ -50,10 +50,22 @@ struct WeatherDetails: Codable {
   
   public var sunsetFormattedString: String {
     let isoDateFormatter = ISO8601DateFormatter()
+    var formattedDate = sunsetISO
+    if let date = isoDateFormatter.date(from: sunsetISO) {
+     let dateFormatter = DateFormatter()
+      dateFormatter.dateFormat = "MMMM d, yyyy hh:mm a" //hora solamente 
+      formattedDate = dateFormatter.string(from: date)
+    }
+    return formattedDate
+  }
+  
+  
+  public var sunriseFormattedString: String {
+    let isoDateFormatter = ISO8601DateFormatter()
     var formattedDate = sunriseISO
     if let date = isoDateFormatter.date(from: sunriseISO) {
-     let dateFormatter = DateFormatter()
-      dateFormatter.dateFormat = "MMMM d, yyyy hh:mm a"
+      let dateFormatter = DateFormatter()
+      dateFormatter.dateFormat = "MMMM d, yyyy hh:mm a" // hora solamente
       formattedDate = dateFormatter.string(from: date)
     }
     return formattedDate
