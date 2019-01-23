@@ -10,7 +10,7 @@ import Foundation
 
 final class WeatherAPIClient {
     
-    static func searchWeather(keyword: String, completionHandler: @escaping (AppError?, [WeatherInfo]?) -> Void){
+    static func searchWeather(keyword: String, completionHandler: @escaping (AppError?, [Periods]?) -> Void){
         
         let urlString = "https://api.aerisapi.com/forecasts/\(keyword)?&format=json&filter=day&limit=7&client_id=\(SecretKeys.weatherID)&client_secret=\(SecretKeys.weatherKey)"
         
@@ -28,8 +28,8 @@ final class WeatherAPIClient {
             }
             if let data = data {
                 do {
-                    let weatherData = try JSONDecoder().decode(WeatherInfo.self, from: data)
-                    completionHandler(nil, [weatherData])
+                    let weatherData = try JSONDecoder().decode(WeatherInfo.self, from: data).response.first?.periods
+                    completionHandler(nil, weatherData)
                 } catch {
                     completionHandler(AppError.jsonDecodingError(error), nil)
                 }

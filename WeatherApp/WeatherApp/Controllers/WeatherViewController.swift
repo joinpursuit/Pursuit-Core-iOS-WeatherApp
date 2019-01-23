@@ -14,7 +14,7 @@ class WeatherViewController: UIViewController {
     
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var zipeCodeTextField: UITextField!
-    var forecasts = [WeatherInfo]() {
+    var forecasts = [Periods]() {
         didSet {
             DispatchQueue.main.async {
                 self.weatherCollectionView.reloadData()
@@ -24,7 +24,7 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         weatherCollectionView.dataSource = self
-        //weatherCollectionView.delegate = self
+        weatherCollectionView.delegate = self
         getForecasts(keyword:"11432")
         
     }
@@ -55,30 +55,29 @@ extension WeatherViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = weatherCollectionView.dequeueReusableCell(withReuseIdentifier: "WeatherCell", for: indexPath) as? WeatherCell else { return UICollectionViewCell()}
         
-         // let currentForecast = forecasts[indexPath.row]
-       //cell.date.text
-       // cell.highTemp.t
-       //cell.weatherIcon.image.
-       // cell.highTemp.text =
-        
-       
-        
-    
+          let currentForecast = forecasts[indexPath.row]
+       cell.date.text = currentForecast.sunriseISO
+        cell.highTemp.text = "Hight of \(currentForecast.maxTempF.description)"
+        cell.lowTemp.text = "Low of \(currentForecast.minTempF.description)"
+       cell.weatherIcon.image = UIImage.init(named: currentForecast.icon)
         return cell
     }
     
     
 }
-//extension WeatherViewController: UICollectionViewDelegate {
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//
-//    }
-//}
-//extension WeatherViewController: UITextFieldDelegate {
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        textField.resignFirstResponder()
+extension WeatherViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+    }
+}
+extension WeatherViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
 //        if let text = textField.text {
 //            //zipeCodeTextField.
 //        }
-//    }
-//}
+        return true
+        
+    }
+    
+}
