@@ -10,7 +10,7 @@ import Foundation
 
 final class FavoriteImageModel {
     private static let filename = "FavoritePhotos.plist"
-    static var favoritePhotos = [String]()
+    static var favoritePhotos = [Data]()
     
     private init() {}
     
@@ -23,16 +23,16 @@ final class FavoriteImageModel {
             print("Property list encoding error: \(error)")
         }
     }
-    static func addImage(image: String) {
+    static func addImage(image: Data) {
         favoritePhotos.append(image)
         saveImage()
     }
-    static func getImages() -> [String] {
+    static func getImages() -> [Data] {
         let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename).path
         if FileManager.default.fileExists(atPath: path) {
             if let data = FileManager.default.contents(atPath: path) {
                 do {
-                    favoritePhotos = try PropertyListDecoder().decode([String].self, from: data)
+                    favoritePhotos = try PropertyListDecoder().decode([Data].self, from: data)
                 } catch {
                     print("Property list decoding error: \(error)")
                 }

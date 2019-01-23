@@ -17,6 +17,7 @@ class MainViewController: UIViewController {
             }
         }
     }
+    var favoriteImages = [Data]()
     var location = String()
     var textfieldText = "Enter a ZipCode..."
     @IBOutlet weak var mainCollectionView: UICollectionView!
@@ -26,6 +27,7 @@ class MainViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupTextField()
+    favoriteImages = FavoriteImageModel.getImages()
     mainCollectionView.dataSource = self
     mainCollectionView.delegate = self
   }

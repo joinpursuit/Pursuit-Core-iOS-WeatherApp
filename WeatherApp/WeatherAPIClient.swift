@@ -33,7 +33,8 @@ final class WeatherAPIClient{
             } else if let data = data {
                 do {
                     let hits = try JSONDecoder().decode(Hits.self, from: data)
-                    completionHandler(nil,hits.hits[0].largeImageURL)
+                    let randNum = Int.random(in: 0...hits.hits.count - 1)
+                    completionHandler(nil,hits.hits[randNum].largeImageURL)
                 } catch {
                     completionHandler(AppError.decodingError(error), nil)
                 }

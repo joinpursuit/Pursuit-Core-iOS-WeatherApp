@@ -12,7 +12,7 @@ class DetailViewController: UIViewController {
 
     var weatherDetail: WeatherInfo!
     var locationName: String!
-    var weatherImage: String!
+    var weatherImage: Data!
     
     @IBOutlet weak var detailImageView: UIImageView!
     @IBOutlet weak var detailLocationDate: UILabel!
@@ -41,12 +41,12 @@ class DetailViewController: UIViewController {
             if let error = error {
                 print("My code aint working \(error)")
             } else if let url = url {
-                self.weatherImage = url.absoluteString
                 ImageHelper.shared.fetchImage(urlString: url.absoluteString, completionHandler: { (error, image) in
                     if let error = error {
                         print("error on the image helper: \(error)")
                     } else if let image = image {
                         DispatchQueue.main.async {
+                            self.weatherImage = image.jpegData(compressionQuality: 0.5)
                             self.detailImageView.image = image
                         }
                     }
