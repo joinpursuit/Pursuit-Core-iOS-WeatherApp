@@ -192,6 +192,14 @@
                                     <action selector="dismissButton:" destination="JxZ-8T-Cyf" eventType="touchUpInside" id="z2v-nw-80d"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Do1-yG-O7n">
+                                <rect key="frame" x="300" y="42" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="FavoriteButton:" destination="JxZ-8T-Cyf" eventType="touchUpInside" id="e4H-Bv-1f2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -234,6 +242,30 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vhf-xD-Gud">
                                 <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FavoriteCell" rowHeight="372" id="MnH-wJ-0FG" customClass="FavoriteCell" customModule="WeatherApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="372"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MnH-wJ-0FG" id="c54-Sq-HkR">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="371.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mcb-5r-Cxx">
+                                                    <rect key="frame" x="15" y="11" width="345" height="350"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Mcb-5r-Cxx" firstAttribute="top" secondItem="c54-Sq-HkR" secondAttribute="topMargin" id="Ogt-X2-vZp"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Mcb-5r-Cxx" secondAttribute="bottom" id="d2y-tP-Cqr"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Mcb-5r-Cxx" secondAttribute="trailing" id="jI8-lc-cpg"/>
+                                                <constraint firstItem="Mcb-5r-Cxx" firstAttribute="leading" secondItem="c54-Sq-HkR" secondAttribute="leadingMargin" id="roJ-3Y-oe7"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="photo" destination="Mcb-5r-Cxx" id="L8w-v2-nC5"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -246,10 +278,13 @@
                         <viewLayoutGuide key="safeArea" id="F6V-Ny-HCA"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Favorites" id="FGW-Gf-tFf"/>
+                    <connections>
+                        <outlet property="myTableView" destination="vhf-xD-Gud" id="fwU-RI-E5m"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKm-Qr-xWv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137" y="991"/>
+            <point key="canvasLocation" x="136.80000000000001" y="990.85457271364328"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="KJ6-Jv-ChI">

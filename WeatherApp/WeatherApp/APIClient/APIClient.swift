@@ -39,7 +39,7 @@ final class APIClient {
     static func getPhotos(keyword: String , completionHandler: @escaping (Error?, [Images.HitWrapper]? ) -> Void){
         
         let city = keyword.replacingOccurrences(of: " ", with: "+")
-        let urlString = "https://pixabay.com/api/?key=\(SecretKeys.APIKey)&q=\(city)"
+        let urlString = "https://pixabay.com/api/?key=\(SecretKeys.pixaAPiKey)&q=\(city)"
         NetworkHelper.shared.performDataTask(endpointURLString: urlString) { (error, data, httpResponse) in
             if let error = error{
                 print(error)

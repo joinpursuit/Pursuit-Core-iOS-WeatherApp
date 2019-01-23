@@ -59,9 +59,8 @@ extension WeatherVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherCell", for: indexPath) as? WeatherCell else {return UICollectionViewCell()}
-        
         let weatherDetailIExpect = weathers[indexPath.row]
-        cell.date.text = "\(weatherDetailIExpect.dateTimeISO)"
+        cell.date.text = DateHelper.getDate(date: weatherDetailIExpect.dateTimeISO)
         if let high = weatherDetailIExpect.maxTempF {
             cell.high.text = "High:\(high)"
         }
