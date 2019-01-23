@@ -29,7 +29,7 @@ var location = String()
         zipeCodeTextField.delegate = self
         
     }
-    
+  
     func getForecasts(keyword: String) {
         WeatherAPIClient.searchWeather(keyword: keyword) { (appError, forecasts) in
             if let appError = appError {
@@ -43,7 +43,12 @@ var location = String()
     
     
      
-   
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        guard let destination = segue.destination as? WeatherDetailController,
+//            let cellSelected = weatherCollectionView else {return}
+//        let forecastSelected =
+//        //destination.element = elementSelected
+//    }
 
  
     
@@ -68,9 +73,13 @@ extension WeatherViewController: UICollectionViewDataSource {
 }
 extension WeatherViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        guard let destinationVC = storyboard.instantiateViewController(withIdentifier: "WeatherDetailController") as? WeatherDetailController else { return }
+        destinationVC.dayForecast = forecasts[indexPath.row]
+        navigationController?.pushViewController(destinationVC, animated: true)
+        }
     }
-}
+
 extension WeatherViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -93,7 +102,7 @@ extension WeatherViewController: UITextFieldDelegate {
             }
         }
         
-        //textField.resignFirstResponder()
+       
         return true
 
      }

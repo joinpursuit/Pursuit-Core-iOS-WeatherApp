@@ -119,6 +119,8 @@
 		0D84C13321F7B6E5000CD8A4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0D84C13621F7BDE5000CD8A4 /* FavoriteImage.swift */,
+				0D1FA43821F436FE000D235C /* WeatherInfo.swift */,
 				0D84C13021F75EA0000CD8A4 /* WeatherModel.swift */,
 				0D84C13421F7BD6A000CD8A4 /* FavoritePhotoModel.swift */,
 			);
@@ -151,8 +153,6 @@
 				57EE009121F15D7100D76A6E /* Main.storyboard */,
 				0D84C13321F7B6E5000CD8A4 /* Models */,
 				0D84C13221F7B6C4000CD8A4 /* Views */,
-				0D1FA43821F436FE000D235C /* WeatherInfo.swift */,
-				0D84C13621F7BDE5000CD8A4 /* FavoriteImage.swift */,
 				0D84C13821F7CAE5000CD8A4 /* ImageHelper.swift */,
 				0D84C12721F69F63000CD8A4 /* WeatherAPI.swift */,
 				57EE00AF21F160D400D76A6E /* Supporting Files */,
