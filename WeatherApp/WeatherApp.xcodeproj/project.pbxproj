@@ -23,6 +23,7 @@
 		619E797021F7AFBD00F173EA /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619E796F21F7AFBD00F173EA /* APIClient.swift */; };
 		619E797321F7B0F200F173EA /* WeatherForecasts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619E797221F7B0F200F173EA /* WeatherForecasts.swift */; };
 		619E797621F7B30900F173EA /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619E797521F7B30900F173EA /* SecretKeys.swift */; };
+		619E799B21F8EC1700F173EA /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619E799A21F8EC1700F173EA /* Images.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		619E796F21F7AFBD00F173EA /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		619E797221F7B0F200F173EA /* WeatherForecasts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecasts.swift; sourceTree = "<group>"; };
 		619E797521F7B30900F173EA /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
+		619E799A21F8EC1700F173EA /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 		619E797421F7B0F900F173EA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				619E799A21F8EC1700F173EA /* Images.swift */,
 				619E797221F7B0F200F173EA /* WeatherForecasts.swift */,
 			);
 			path = Models;
@@ -295,6 +298,7 @@
 				619E796221F7941900F173EA /* FavoritesVC.swift in Sources */,
 				619E796D21F7AFA000F173EA /* AppError.swift in Sources */,
 				619E797021F7AFBD00F173EA /* APIClient.swift in Sources */,
+				619E799B21F8EC1700F173EA /* Images.swift in Sources */,
 				619E796021F7940E00F173EA /* WeatherDetailVC.swift in Sources */,
 				619E797621F7B30900F173EA /* SecretKeys.swift in Sources */,
 				619E796421F7943100F173EA /* WeatherCell.swift in Sources */,
