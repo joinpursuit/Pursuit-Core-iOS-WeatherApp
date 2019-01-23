@@ -29,6 +29,7 @@ class WeatherDetailViewController: UIViewController {
     @IBOutlet weak var precipitation: UILabel!
     
     public var dayInfo: Periods?
+    public var images: ImageInfo?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,9 @@ class WeatherDetailViewController: UIViewController {
     
     private func updateUI() {
         if let dayInfo = dayInfo {
+            //weatherFor.text =
         tempDescription.text = dayInfo.validTime
+           //cityImage.image = ImageInfo 
             tempHigh.text = "High: \(dayInfo.maxTempF) °F"
             tempLow.text = "Low: \(dayInfo.minTempF) °F"
             sunrise.text = "Sunrise: \(dayInfo.sunrise)"

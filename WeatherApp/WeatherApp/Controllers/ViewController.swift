@@ -20,10 +20,12 @@ class ViewController: UIViewController {
             }
         }
     }
+    var location = String()
     private var imagePickerVC: UIImagePickerController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchButton.delegate = self
         weatherCV.dataSource = self
         weatherCV.delegate = self
         print(DataPersistenceManager.documentsDirectory())
@@ -42,7 +44,7 @@ class ViewController: UIViewController {
 //        weatherCV.reloadData()
 //    }
     
-    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "FavoritesViewController") as! FavoritesViewController
         present(vc, animated: true, completion: nil)
@@ -82,4 +84,31 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: weatherCV.frame.width, height: weatherCV.frame.height)
     }
+}
+
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let keyword = textField.text {
+            ZipCodeHelper.getLocationName(from: keyword) { (error, string) in
+                if let error = error {
+                    print(error)
+                } else if let string = string {
+                    self.location = string
+                    self.forecastCity.text = "Forecast for \(self.location)"
+                    print(self.location)
+                    WeatherAPIClient.searchWeather(zipcode: keyword, isZipcode: true, completionHandler: { (appError, periods) in
+                        if let appError = appError {
+                            print(appError)
+                        } else if let periods = periods {
+                            self.forecast = periods
+                        }
+                    })
+                }
+                
+            }
+    
+        }
+        return true
+    }
+    
 }

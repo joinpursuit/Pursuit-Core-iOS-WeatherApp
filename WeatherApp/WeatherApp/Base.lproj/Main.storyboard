@@ -129,6 +129,8 @@
                     <tabBarItem key="tabBarItem" title="Search" image="icons8-search-filled-24" id="vPG-h0-N73"/>
                     <navigationItem key="navigationItem" id="W4l-GY-IWB"/>
                     <connections>
+                        <outlet property="forecastCity" destination="aZF-4X-VwN" id="xiX-Nw-HHu"/>
+                        <outlet property="searchButton" destination="0HL-FA-Loi" id="ak9-yW-jwp"/>
                         <outlet property="weatherCV" destination="arr-br-Cnt" id="69e-Tj-rjO"/>
                     </connections>
                 </viewController>
@@ -252,6 +254,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="KaB-cW-LWp" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cUa-mP-zyK">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
