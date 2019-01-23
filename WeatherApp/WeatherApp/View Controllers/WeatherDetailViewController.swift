@@ -29,7 +29,6 @@ class WeatherDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
-        
     }
     private func updateUI() {
         guard let location = location else {return}
@@ -42,38 +41,9 @@ class WeatherDetailViewController: UIViewController {
         windspeedLabel.text = "Wind Speed: \(dayWeather.windSpeedMPH) MPH"
         precipitation.text = "precipitation: \(dayWeather.precipIN) inches"
         searchImage(fromLocation: location)
-
-        guard let pixabayInfo = pixabayInfo else {
-            print("No pixabay info passed")
-            return
-        }
-//        let imageURL = pixabayInfo.previewURL
-        
-//        do {
-//            try imageView.setImage(withURLStirng: imageURL.absoluteString,
-//                                        placeholderImage: UIImage(named: "placeholderImage")!)
-//        } catch {
-//            print("setImage error: \(error)")
-//        }
     }
 
     private func searchImage(fromLocation: String) {
-//        WeatherAPIClient.searchImage(location: fromLocation) { (appError, info) in
-//            if let appError = appError {
-//                print(appError.errorMessage())
-//            } else if let info = info {
-//                self.info = info
-//            }
-//        }
-        
-//        WeatherAPIClient.searchImage(location: fromLocation) { (appError, pixabayInfo) in
-//            if let appError = appError {
-//                print(appError.errorMessage())
-//            } else if let pixabayInfo = pixabayInfo {
-//                self.pixabayInfo = pixabayInfo[0].previewURL
-//            }
-//        }
-        
         WeatherAPIClient.searchImage(location: location) { (appError, urlString) in
             if let appError = appError {
                 print("error getting pixabay image url string - \(appError)")
@@ -81,23 +51,22 @@ class WeatherDetailViewController: UIViewController {
                 ImageHelper.shared.fetchImage(urlString: urlString, completionHandler: { (appError, image) in
                     if let appError = appError {
                         print("error trying to get image out of pixabay url - \(appError)")
-                        self.imageView.image = UIImage(named: "placeHolder")
                     } else if let image = image {
                         self.imageView.image = image
-                        
                     }
                 })
             }
         }
-        
-        
-        
-        
     }
     private func saveImage()-> SavedImage? {
         guard let image = imageView.image else {return nil}
         guard let imageData = image.jpegData(compressionQuality: 0.5) else {return nil}
-        let savedImage = SavedImage.init(imageData: imageData)
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateStyle = DateFormatter.Style.long
+        formatter.timeStyle = .medium
+        let timestamp = formatter.string(from: date)
+        let savedImage = SavedImage.init(imageData: imageData, createdAt: timestamp)
         return savedImage
     }
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
@@ -105,5 +74,4 @@ class WeatherDetailViewController: UIViewController {
         PixabayModel.appendImage(image: image)
         dismiss(animated: true, completion: nil)
     }
-    
 }

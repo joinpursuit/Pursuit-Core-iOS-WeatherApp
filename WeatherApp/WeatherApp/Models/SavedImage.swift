@@ -10,4 +10,6 @@ import Foundation
 
 struct SavedImage: Codable {
     let imageData: Data
+    let createdAt: String
+
 }

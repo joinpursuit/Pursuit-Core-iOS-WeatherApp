@@ -21,7 +21,6 @@ class FavoritesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
-//        collectionView.delegate = self
         savedImages = PixabayModel.getImage()
         print(DataPersistenceManager.documentsDirectory())
     }
@@ -30,7 +29,6 @@ class FavoritesViewController: UIViewController {
         savedImages = PixabayModel.getImage()
         collectionView.reloadData()
     }
-
 }
 extension FavoritesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -40,13 +38,6 @@ extension FavoritesViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritePhotoCell", for: indexPath) as? FavoritePhotoCell else { return UICollectionViewCell()}
         let photo = PixabayModel.getImage()[indexPath.row]
         cell.imageView.image = UIImage(data: photo.imageData)
-//        let photo = PhotoJournalModel.getPhotoJournal()[indexPath.row]
-//        cell.layer.cornerRadius = 20.0
-//        cell.descriptionLabel.text = photo.description
-//        cell.timestampLabel.text = photo.createdAt
-//        cell.imageView.image = UIImage(data: photo.imageData)
-//        cell.optionsButton.tag = indexPath.row
-//        cell.delegate = self
         return cell
     }
 }

@@ -123,7 +123,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Search" id="rtf-2B-wgD"/>
+                    <navigationItem key="navigationItem" title="Search" id="rtf-2B-wgD">
+                        <barButtonItem key="rightBarButtonItem" title="Metric/US" id="abr-ht-1gY"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="ABy-EX-bNs" id="N6e-eG-RWA"/>
                         <outlet property="locationLabel" destination="los-3Q-lh2" id="9DM-rJ-6u0"/>

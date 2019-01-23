@@ -16,6 +16,8 @@ final class WeatherAPIClient {
         var endpointURLString = ""
         if isZipcode {
             endpointURLString = "http://api.aerisapi.com/forecasts/\(zipcode)?client_id=\(SecretKeys.accessID)&client_secret=\(SecretKeys.secretKey)"
+        } else {
+            return
         }
 
         guard let url = URL(string: endpointURLString) else {

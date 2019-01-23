@@ -41,7 +41,7 @@ final class PixabayModel {
         } else {
             print("\(filename) does not exist")
         }
-//        photoJournals = photoJournals.sorted {$0.createdAt > $1.createdAt}
+        savedImages = savedImages.sorted {$0.createdAt > $1.createdAt}
         
         return savedImages
     }

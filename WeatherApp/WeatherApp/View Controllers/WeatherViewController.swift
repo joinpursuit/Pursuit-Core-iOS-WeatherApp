@@ -9,9 +9,6 @@
 import UIKit
 
 class WeatherViewController: UIViewController {
-    //endpoints
-//Aeris forecast endpoint http://api.aerisapi.com/forecasts/(Zipcode here)?client_id=(CLIENT ID HERE)&client_secret=(CLIENT SECRET HERE)
-    //https://pixabay.com/api/?key=(ENTER KEY HERE)&q=(PLACE NAME)
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var textField: UITextField!
@@ -26,6 +23,7 @@ class WeatherViewController: UIViewController {
     public var trueZipcode = true
     public var myZipcode = "10462"
     public var location = ""
+    public var metricUS = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,21 +32,39 @@ class WeatherViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         textField.delegate = self
-
-//        searchZipcode()
-    // Do any additional setup after loading the view, typically from a nib.
+        updateRightButtonItem(keyword: "US")
   }
+    func actionSheet() {
+        let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
+        let  metricAction = UIAlertAction(title: "Metric", style: .default, handler: { (action) -> Void in
+            print("Metric")
+            self.metricUS = true
+        })
+        let usAction = UIAlertAction(title: "US", style: .default, handler: { (action) -> Void in
+            print("US")
+            self.metricUS = false
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        optionMenu.addAction(metricAction)
+        optionMenu.addAction(usAction)
+        optionMenu.addAction(cancelAction)
+        self.present(optionMenu, animated: true, completion: nil)
+    }
+    private func updateRightButtonItem(keyword: String) {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: keyword, style: .plain, target: self, action: #selector(updateSettings))
+    }
+    @objc func updateSettings() {
+        actionSheet()
+    }
     private func checkForDefaultSearchSettings() {
         var zipcodeToSearch = ""
         if let searchWord = UserDefaults.standard.object(forKey: "Location") as? String {
             zipcodeToSearch = searchWord
-//            zipcodeToSearch = myZipcode
         } else {
             zipcodeToSearch = myZipcode
         }
         setupView(zipcode: zipcodeToSearch)
     }
-    
     private func setupView(zipcode: String) {
         ZipCodeHelper.getLocationName(from: zipcode) { (appError, location) in
             if let appError = appError {
@@ -79,14 +95,12 @@ class WeatherViewController: UIViewController {
         }
         return trueZipcode
     }
-    
     private func searchZipcode(fromZipcode: String) {
         WeatherAPIClient.searchZipcode(zipcode: fromZipcode, isZipcode: trueZipcode) { (appError, temperatures) in
             if let appError = appError {
                 print(appError.errorMessage())
             } else if let temperatures = temperatures {
                 self.temperatures = temperatures[temperatures.count-1].periods
-                //crashes here with bad zipcodes
             }
         }
     }
@@ -111,26 +125,29 @@ extension WeatherViewController: UICollectionViewDataSource {
         let temperature = temperatures[indexPath.row]
         cell.dateLabel.text = temperature.dateTimeISO.formatFromISODateString(dateFormat: "yyyy-MM-d")
         
-        cell.highLabel.text = "High: \(temperature.maxTempF)°F"
-        cell.lowLabel.text = "Low: \(temperature.minTempF)°F"
+        
         let iconName = temperature.icon.replacingOccurrences(of: ".png", with: "")
         cell.weatherImage.image = UIImage(named: iconName)
+        
+        if metricUS == false {
+            cell.highLabel.text = "High: \(temperature.maxTempF)°F"
+            cell.lowLabel.text = "Low: \(temperature.minTempF)°F"
+        } else {
+            cell.highLabel.text = "High: \(temperature.maxTempC)°C"
+            cell.lowLabel.text = "Low: \(temperature.minTempC)°C"
+        }
         return cell
     }
 }
-
 extension WeatherViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
         guard let destinationViewController = storyBoard.instantiateViewController(withIdentifier: "WeatherDetailViewController") as? WeatherDetailViewController else { return }
-//        destinationViewController.modalPresentationStyle = .overCurrentContext
         destinationViewController.dayWeather = temperatures[indexPath.row]
         destinationViewController.location = self.location
-        
         navigationController?.pushViewController(destinationViewController, animated: true)
     }
 }
-
 extension WeatherViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let keyword = textField.text!.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
