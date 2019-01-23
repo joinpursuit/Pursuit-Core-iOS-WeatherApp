@@ -8,19 +8,19 @@
 
 import Foundation
 enum AppError: Error {
-    case badURL(String)
-    case networkError(Error)
-    case badStatusCode(String)
-    case jsonDecodingError(Error)
+        case badURL(String)
+        case networkError(Error)
+        case badStatusCode(String)
+        case jsonDecodingError(Error)
     public func errorMessage() -> String {
         switch self {
-        case .badURL(let message):
+                case .badURL(let message):
             return "bad url: \(message)"
-        case .networkError(let error):
+                case .networkError(let error):
             return "network error: \(error)"
-        case .badStatusCode(let message):
+                case .badStatusCode(let message):
             return "bad status code: \(message)"
-        case .jsonDecodingError(let error):
+                case .jsonDecodingError(let error):
             return "decoding error: \(error)"
         }
     }

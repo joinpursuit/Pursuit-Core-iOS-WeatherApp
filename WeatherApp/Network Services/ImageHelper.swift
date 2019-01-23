@@ -24,6 +24,6 @@ struct ImageHelper {
             if let data = data {
                 var image = UIImage(data: data); completionHandler(nil,image)
             }
-            }.resume()
+        }.resume()
     }
 }

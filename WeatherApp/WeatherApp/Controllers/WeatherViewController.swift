@@ -17,7 +17,6 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
     
-    
     var periods = [WeatherData]() {
         didSet {
             DispatchQueue.main.async {
@@ -41,7 +40,6 @@ class WeatherViewController: UIViewController {
             self.periods = weather.response[0].periods
         }
     }
-
 }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destination = segue.destination as? WeatherDetailViewController,
@@ -50,7 +48,7 @@ class WeatherViewController: UIViewController {
         destination.forecastSelected = periods[indexPath.row]
         destination.currentCity = currentCity
     }
-  
+    
     @IBAction func textFieldDidChange(_ sender: UITextField) {
         print("Text did change: \(textField.text ?? "")")
     }

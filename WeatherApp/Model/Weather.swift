@@ -25,7 +25,6 @@ struct WeatherData: Codable {
 struct Location: Codable {
     var periods: [WeatherData]
 }
-
 struct WeatherResponse: Codable {
     var response: [Location]
 }

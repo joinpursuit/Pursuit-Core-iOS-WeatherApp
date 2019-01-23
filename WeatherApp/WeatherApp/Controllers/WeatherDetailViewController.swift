@@ -7,8 +7,6 @@
 //
 
 import UIKit
-var savedImages = [UIImage]()
-
 class WeatherDetailViewController: UIViewController {
     var currentCity = ""
     var selectedWeatherImage: WeatherData!
@@ -32,11 +30,16 @@ class WeatherDetailViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }
         alert.addAction(gotit);present(alert, animated: true, completion: nil)
-        
     }
-    func addFavoriteImage() {
-        if let savedImage = imageView.image {
-            savedImages.append(savedImage)
+   func addFavoriteImage() {
+        if let image = imageView.image {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd hh:mm;ss"
+            let now = dateFormatter.string(from: Date())
+            let createdAt = WeatherHelper.dateData(date: now)
+            guard let imageData = image.jpegData(compressionQuality: 0.5) else {return print("no image data")}
+            let favoriteImage = ImageModel.init(createdAt: createdAt, imageData: imageData)
+            WeatherModel.addItem(item: favoriteImage)
         }
     }
 
@@ -75,7 +78,6 @@ class WeatherDetailViewController: UIViewController {
             }
         }
     }
-   
     @IBAction func searchButton(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }

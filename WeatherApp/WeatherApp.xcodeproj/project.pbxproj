@@ -113,10 +113,10 @@
 			isa = PBXGroup;
 			children = (
 				57EE009F21F15E0F00D76A6E /* ZipCodeHelper.swift */,
+				57EE00AF21F160D400D76A6E /* Supporting Files */,
 				67DA931F21F68C79008A9224 /* WeatherHelper.swift */,
 				67DA930121F671FA008A9224 /* Controllers */,
 				57EE009121F15D7100D76A6E /* Main.storyboard */,
-				57EE00AF21F160D400D76A6E /* Supporting Files */,
 				57EE009921F15D7100D76A6E /* Info.plist */,
 			);
 			path = WeatherApp;

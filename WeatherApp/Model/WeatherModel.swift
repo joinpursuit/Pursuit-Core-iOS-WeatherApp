@@ -26,7 +26,7 @@ final class WeatherModel {
         } else {
              print("\(filename) does no exist")
         }
-        items = items.sorted{$0.date > $1.date}
+        items = items.sorted{$0.createdAt > $1.createdAt}
         return items
     }
     static func addItem(item: ImageModel) {

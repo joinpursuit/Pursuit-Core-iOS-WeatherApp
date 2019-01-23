@@ -18,5 +18,4 @@ class WeatherCell: UICollectionViewCell {
     override func prepareForReuse() {
         imageViewCell.image = nil
     }
-    
 }

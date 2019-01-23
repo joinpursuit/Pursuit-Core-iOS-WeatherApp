@@ -14,11 +14,9 @@ class WeatherAppTests: XCTestCase {
   override func setUp() {
     // Put setup code here. This method is called before the invocation of each test method in the class.
   }
-  
   override func tearDown() {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
   }
-  
   func testGetLocationName() {
     let zipcode = "10023"
     let exp = expectation(description: "found location name")
