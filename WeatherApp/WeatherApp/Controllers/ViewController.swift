@@ -55,17 +55,6 @@ class ViewController: UIViewController {
         }
     }
     
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "DetailSegue" {
-            let detailVC = segue.destination as! DetailViewController
-            let cell = sender as! ForcastCollectionViewCell
-            let indexPath = self.weatherCollectionView.indexPath(for: cell)
-            detailVC.detailForcast = forcast[indexPath!.row]
-        }
-    }
-    
-
 }
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -84,8 +73,7 @@ extension ViewController: UICollectionViewDataSource {
         cell.layer.borderColor = UIColor.black.cgColor
         return cell
     }
-    
-    
+
 }
 
 extension ViewController: UICollectionViewDelegateFlowLayout {

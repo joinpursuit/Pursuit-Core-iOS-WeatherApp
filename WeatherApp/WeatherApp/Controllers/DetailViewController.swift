@@ -23,8 +23,6 @@ class DetailViewController: UIViewController {
     var detailForcast: ForcastData!
     var detailLocation = ""
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -46,32 +44,27 @@ class DetailViewController: UIViewController {
                             self.detailCityImage.image = image
                         }
                     } else {
-                        if let image = UIImage(named: self.detailForcast.icon) {
+                        let image = UIImage(named: self.detailForcast.icon)
                         self.detailCityImage.image = image
                     }
                 }
             }
         }
     }
-}
-    
-    
     func setupUI() {
         if let detailInfo = detailForcast {
             detailHighTemp.text = "High: \(detailInfo.maxTempF)°F"
             detailLowTemp.text = "Low: \(detailInfo.minTempF)°F"
             detailSunset.text = "Sunset: \(DateTimeHelper.formatISOToTime(dateString: detailInfo.sunsetISO))"
-            detailSunrise.text = "Sunrise: \(DateTimeHelper.formatISOToDate(dateString: detailInfo.sunriseISO))"
-            detailWindspeed.text = "Windspeed: \(detailInfo.windSpeed80mMPH)"
+            detailSunrise.text = "Sunrise: \(DateTimeHelper.formatISOToTime(dateString: detailInfo.sunriseISO))"
+            detailWindspeed.text = "Windspeed: \(detailInfo.windSpeed80mMPH)MPH"
             detailPercipitation.text = "Precipitation in Inches: \(detailInfo.precipIN)"
             weatherLabel.text = detailInfo.weather
             detailTitle.text = "Weather Forcast for \(detailLocation) for \(DateTimeHelper.formatISOToDate(dateString: detailInfo.dateTimeISO))"
             
         }
     }
-    
-    
-   
+
     @IBAction func saveButtonClicked(_ sender: UIBarButtonItem) {
         let alert = UIAlertController.init(title: "Saved!", message: "Image Saved To Favorites", preferredStyle: .alert)
         let okay = UIAlertAction.init(title: "Okay", style: .default) { (UIAlertAction) in
