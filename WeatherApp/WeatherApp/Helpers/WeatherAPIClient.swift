@@ -8,12 +8,12 @@
 
 import Foundation
 
-final class TicketmasterAPIClient {
+final class WeatherAPIClient {
     private init() {}
-    static func searchEvents(keyword: String, isZipcode: Bool, completionHandler: @escaping (AppError?, [ForcastData]?) -> Void) {
+    static func searchWeather(keyword: String, isZipcode: Bool, completionHandler: @escaping (AppError?, [ForcastData]?) -> Void) {
         var endpointURLString = ""
         if isZipcode {
-            endpointURLString = "http://api.aerisapi.com/forecasts/\(keyword)?client_id=\(SecretKeys.accessID)&client_secret=\(SecretKeys.APIKey)"
+            endpointURLString = "https://api.aerisapi.com/forecasts/\(keyword)?client_id=\(SecretKeys.accessID)&client_secret=\(SecretKeys.APIKey)"
         }
         
         guard let url = URL(string: endpointURLString) else {
@@ -33,12 +33,12 @@ final class TicketmasterAPIClient {
             }
             if let data = data {
                 do {
-                    let eventData = try JSONDecoder().decode(Weather.self, from: data)
-                    completionHandler(nil, eventData.response[0].periods)
+                    let weatherForcast = try JSONDecoder().decode(Weather.self, from: data)
+                    completionHandler(nil, weatherForcast.response[0].periods)
                 } catch {
                     completionHandler(AppError.decodingError(error), nil)
                 }
             }
-            } .resume()
+        } .resume()
     }
 }

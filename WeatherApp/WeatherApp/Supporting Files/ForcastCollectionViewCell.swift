@@ -10,4 +10,9 @@ import UIKit
 
 class ForcastCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var forcastImage: UIImageView!
+    @IBOutlet weak var highTempLabel: UILabel!
+    @IBOutlet weak var lowTempLabel: UILabel!
+    
 }

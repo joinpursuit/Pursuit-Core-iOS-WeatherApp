@@ -17,12 +17,13 @@ struct Forcast: Codable {
 }
 
 struct ForcastData: Codable {
-    //let timestamp:
+    let dateTimeISO: String
     let maxTempF: Int
     let minTempF: Int
-    let precipIN: Int
+    let precipIN: Double
     let weather: String
+    let icon: String
     let windSpeed80mMPH: Int
-    //let sunrise:
-    //let sunset:
+    let sunriseISO: String
+    let sunsetISO: String
 }
