@@ -10,7 +10,7 @@ import Foundation
 final class WeatherModel {
     private static let filename = "ToDoList.plist"
     private static var items = [ImageModel]()
-    
+    private init () {}
     static func getImage() -> [ImageModel]{
         let path = DataPresistenceManager.filePathToDocumentDirectory(filename: filename).path
         if FileManager.default.fileExists(atPath: path) {
@@ -43,3 +43,4 @@ final class WeatherModel {
         }
     }
 }
+

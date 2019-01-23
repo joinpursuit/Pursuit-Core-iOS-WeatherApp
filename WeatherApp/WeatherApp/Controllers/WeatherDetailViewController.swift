@@ -7,13 +7,13 @@
 //
 
 import UIKit
+var savedImages = [UIImage]()
 
 class WeatherDetailViewController: UIViewController {
     var currentCity = ""
     var selectedWeatherImage: WeatherData!
     var forecastSelected: WeatherData!
-    
-    
+   
     @IBOutlet weak var weatherDescriptionLabel: UILabel!
     @IBOutlet weak var weatherDescription: UILabel!
     @IBOutlet weak var highLabel: UILabel!
@@ -26,9 +26,20 @@ class WeatherDetailViewController: UIViewController {
     
     @IBOutlet weak var favorites: UIBarButtonItem!
     @IBAction func favoriteCity(_ sender: UIBarButtonItem) {
+        addFavoriteImage()
+       let alert = UIAlertController(title: "Seved Image", message: "", preferredStyle: .alert)
+        let gotit = UIAlertAction(title: "Got it", style: .default) { (UIAlertAction) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(gotit);present(alert, animated: true, completion: nil)
         
     }
-    
+    func addFavoriteImage() {
+        if let savedImage = imageView.image {
+            savedImages.append(savedImage)
+        }
+    }
+
     var imageData = [CityImages.HitWrapper] () {
         didSet {
             let image = Int.random(in: 0..<imageData.count)
@@ -40,7 +51,6 @@ class WeatherDetailViewController: UIViewController {
                     DispatchQueue.main.async {
                         self.imageView.image = image
                     }
-                    
                 }
             }
         }
