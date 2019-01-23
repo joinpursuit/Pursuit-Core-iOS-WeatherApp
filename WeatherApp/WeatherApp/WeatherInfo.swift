@@ -9,10 +9,10 @@
 import Foundation
 
 struct WeatherInfo: Codable {
-    let response: [Response]
-    struct Response: Codable {
-        let periods: [Periods]
-    }
+    let response: [Forecasts]
+}
+struct Forecasts: Codable {
+    let periods: [Periods]
 }
 struct Periods: Codable {
     let dateTimeISO: String
@@ -29,12 +29,15 @@ struct Periods: Codable {
     let sunsetISO: String
     let precipIN: Double
     let precipMM: Double
+    
+    public var dateFormattedString: String {
+        let isoDateFormatter = ISO8601DateFormatter()
+        var formattedDate = dateTimeISO
+        if let date = isoDateFormatter.date(from: dateTimeISO) {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMMM d, yyyy hh:mm a"
+            formattedDate = dateFormatter.string(from: date)
+        }
+        return formattedDate
+    }
 }
-//public var  date: Date {
-//    let isoFomatter = ISO8601DateFormatter()
-//    var fomattedDate = Date()
-//    if let isoformatter.date(from: dateTime) {
-//        fomattedDate = date
-//    }
-//    return fomattedDate
-//}

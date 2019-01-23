@@ -14,7 +14,7 @@ class WeatherViewController: UIViewController {
     
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var zipeCodeTextField: UITextField!
-    var forcasts = [WeatherInfo]() {
+    var forecasts = [WeatherInfo]() {
         didSet {
             DispatchQueue.main.async {
                 self.weatherCollectionView.reloadData()
@@ -23,34 +23,62 @@ class WeatherViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        weatherCollectionView.dataSource = self
+        //weatherCollectionView.delegate = self
+        getForecasts(keyword:"11432")
         
-        // Do any additional setup after loading the view.
+    }
+    
+    func getForecasts(keyword: String) {
+        WeatherAPIClient.searchWeather(keyword: keyword) { (appError, forecasts) in
+            if let appError = appError {
+                print("appError in finding Zip Code \(appError)")
+            } else if let forecasts = forecasts {
+                self.forecasts = forecasts
+                dump(forecasts)
+            }
+        }
     }
     
     
-    /*
-     // MARK: - Navigation
      
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+   
+
+ 
     
 }
 extension WeatherViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return forcasts.count
+        return forecasts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = weatherCollectionView.dequeueReusableCell(withReuseIdentifier: "WeatherCell", for: indexPath) as? WeatherCell else { return UICollectionViewCell()}
         
-        //  let currentForecast = forcasts[indexPath.row]
+         // let currentForecast = forecasts[indexPath.row]
+       //cell.date.text
+       // cell.highTemp.t
+       //cell.weatherIcon.image.
+       // cell.highTemp.text =
         
+       
+        
+    
         return cell
     }
     
     
 }
+//extension WeatherViewController: UICollectionViewDelegate {
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//
+//    }
+//}
+//extension WeatherViewController: UITextFieldDelegate {
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        textField.resignFirstResponder()
+//        if let text = textField.text {
+//            //zipeCodeTextField.
+//        }
+//    }
+//}

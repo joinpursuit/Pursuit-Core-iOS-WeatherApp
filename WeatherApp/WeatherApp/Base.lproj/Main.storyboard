@@ -270,7 +270,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5RC-j4-qBC">
-                                <rect key="frame" x="0.0" y="127.5" width="320" height="284"/>
+                                <rect key="frame" x="0.0" y="149.5" width="320" height="284"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FavoritePhotosCell" rowHeight="252" id="lls-Ig-nrP" customClass="FavoritePhotosCell" customModule="WeatherApp" customModuleProvider="target">
@@ -307,15 +307,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hSw-5S-iAw"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="NHN-dx-vhI"/>
+                    <navigationItem key="navigationItem" id="9GP-Wd-Kqu"/>
                     <connections>
-                        <outlet property="FavoriteImage" destination="rg6-fm-HFs" id="Gha-kJ-zVY"/>
                         <outlet property="ImagetableView" destination="5RC-j4-qBC" id="wQn-Hr-lLG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JWE-nT-r1J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="997.5" y="503.87323943661971"/>
+            <point key="canvasLocation" x="1995" y="503.87323943661971"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="LJx-9N-lev">
@@ -329,7 +328,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="OED-Fn-w2u" kind="relationship" relationship="viewControllers" id="T9X-GR-DTq"/>
-                        <segue destination="9BN-ME-UkN" kind="relationship" relationship="viewControllers" id="a9f-7R-Edt"/>
+                        <segue destination="p32-3U-lyc" kind="relationship" relationship="viewControllers" id="a9f-7R-Edt"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XcH-EU-nf0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -354,6 +353,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bu8-vq-nxV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="997.5" y="-237.67605633802816"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fe5-du-eZ8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="p32-3U-lyc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="NHN-dx-vhI"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ci0-a2-x5f">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9BN-ME-UkN" kind="relationship" relationship="rootViewController" id="Om3-gJ-CMY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k6p-D9-DDh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="997.5" y="503.87323943661971"/>
         </scene>
     </scenes>
 </document>

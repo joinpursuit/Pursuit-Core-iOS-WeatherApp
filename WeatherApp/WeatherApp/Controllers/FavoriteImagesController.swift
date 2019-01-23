@@ -10,7 +10,7 @@ import UIKit
 
 class FavoriteImagesController: UIViewController {
     @IBOutlet weak var ImagetableView: UITableView!
-    @IBOutlet weak var FavoriteImage: UIImageView!
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
