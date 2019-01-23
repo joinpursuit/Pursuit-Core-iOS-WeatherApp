@@ -24,5 +24,6 @@ struct WeatherDetailData : Codable {
     let sunsetISO : String
     let windSpeedMPH : Int
     let dateTimeISO : String
+    let weather : String
     //let precipIN : Int
 }

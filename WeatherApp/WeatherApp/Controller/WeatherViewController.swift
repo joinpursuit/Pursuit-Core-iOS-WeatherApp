@@ -12,12 +12,7 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var labelForSearchedCity: UILabel!
     @IBOutlet weak var weatherForTheWeekCollection: UICollectionView!
     @IBOutlet weak var userSearchTextField: UITextField!
-//        didSet {
-//            DispatchQueue.main.async {
-//                self.searchLocalWeatherData(zipcode: self.userSearchTextField.text ?? "")
-//            }
-//        }
-   // }
+
     private var arrayOfWeatherDetails = [WeatherDetailData]() {
         didSet {
             DispatchQueue.main.async {
@@ -29,16 +24,20 @@ class WeatherViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     weatherForTheWeekCollection.dataSource = self
-    labelForSearchedCity.text = "Weather for "
-    searchLocalWeatherData(zipcode: userSearchTextField.text ?? "")
+    labelForSearchedCity.text = "Weather"
     userSearchTextField.delegate = self
-    
-     
   }
     
-    private func searchLocalWeatherData(zipcode: String) {
-            }
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "WeatherDetailSegue" {
+            let detailsVC = segue.destination as! WeatherDetailViewController
+            let cell = sender as! UICollectionViewCell
+            let indexPath = self.weatherForTheWeekCollection.indexPath(for: cell)
+            detailsVC.weatherDataToPass = arrayOfWeatherDetails[indexPath!.row]
+            detailsVC.sendOverThatCityName = labelForSearchedCity.text
+        }
+        
+    }
 
 }
 
@@ -62,8 +61,15 @@ extension WeatherViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         let zipcode = userSearchTextField.text
-       labelForSearchedCity.text = ZipCodeHelper.getLocationName(from: zipcode ?? "") { (error, string) in
-            
+        ZipCodeHelper.getLocationName(from: zipcode!) { (error, localName) in
+            if error != nil {
+                self.labelForSearchedCity.text = "Location Not Found"
+                print("eror")
+        }
+            if let localName = localName {
+                self.labelForSearchedCity.text = localName
+                print("local")
+            }
         }
         WeatherAPIClient.searchWeatherByZipcode(zipcode: zipcode!) { (error, weather) in
             if let error = error {
@@ -74,4 +80,7 @@ extension WeatherViewController: UITextFieldDelegate {
         }
         return true
     }
+    
 }
+    
+

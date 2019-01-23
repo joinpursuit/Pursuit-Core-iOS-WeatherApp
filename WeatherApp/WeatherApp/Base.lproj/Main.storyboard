@@ -80,13 +80,13 @@
                                             <outlet property="weatherHigh" destination="uFz-TF-VIB" id="bMA-5y-2eO"/>
                                             <outlet property="weatherIconImage" destination="lq5-He-Xea" id="wSq-0h-P8i"/>
                                             <outlet property="weatherLow" destination="k0y-An-4kg" id="bVz-S1-rBQ"/>
-                                            <segue destination="AnU-tA-Oq5" kind="show" id="8dP-du-wRe"/>
+                                            <segue destination="AnU-tA-Oq5" kind="show" identifier="WeatherDetailSegue" id="8dP-du-wRe"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jd-IB-O79">
-                                <rect key="frame" x="0.0" y="64" width="375" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jd-IB-O79">
+                                <rect key="frame" x="0.0" y="80" width="375" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -111,11 +111,11 @@
                             <constraint firstItem="9xh-uX-rg6" firstAttribute="centerX" secondItem="Rll-ve-alv" secondAttribute="centerX" id="EHa-ZC-vHD"/>
                             <constraint firstItem="kRw-jr-vMT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="GRX-6X-7LH"/>
                             <constraint firstItem="9xh-uX-rg6" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="125" id="Jwk-9f-BmG"/>
+                            <constraint firstItem="3jd-IB-O79" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="LmM-dA-r05"/>
                             <constraint firstItem="9xh-uX-rg6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Or8-5I-Ynd"/>
                             <constraint firstItem="kRw-jr-vMT" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Slq-g6-XFY"/>
-                            <constraint firstItem="9xh-uX-rg6" firstAttribute="leading" secondItem="3jd-IB-O79" secondAttribute="leading" id="WXd-AU-5JM"/>
-                            <constraint firstItem="9xh-uX-rg6" firstAttribute="top" secondItem="3jd-IB-O79" secondAttribute="bottom" constant="40" id="jFb-TC-Dzf"/>
-                            <constraint firstItem="9xh-uX-rg6" firstAttribute="trailing" secondItem="3jd-IB-O79" secondAttribute="trailing" id="l5s-ie-rl5"/>
+                            <constraint firstItem="3jd-IB-O79" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="djr-p9-tUB"/>
+                            <constraint firstItem="3jd-IB-O79" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ipD-b7-EL6"/>
                             <constraint firstItem="Rll-ve-alv" firstAttribute="top" secondItem="9xh-uX-rg6" secondAttribute="bottom" constant="20" id="qDP-Aw-bRJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Rll-ve-alv" secondAttribute="trailing" constant="16" id="rGc-g0-jkB"/>
                         </constraints>
@@ -147,7 +147,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yr4-d6-sG3">
-                                <rect key="frame" x="16" y="175" width="343" height="258"/>
+                                <rect key="frame" x="16" y="108" width="343" height="325"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="yr4-d6-sG3" secondAttribute="height" multiplier="343:325" id="Bwm-6N-eg8"/>
+                                    <constraint firstAttribute="width" constant="343" id="PQu-ip-Ylp"/>
+                                    <constraint firstAttribute="height" constant="325" id="Yr3-mo-KfJ"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8sP-1I-UZ6">
                                 <rect key="frame" x="0.0" y="441" width="375" height="21"/>
@@ -168,30 +173,32 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="8sP-1I-UZ6" firstAttribute="top" secondItem="yr4-d6-sG3" secondAttribute="bottom" constant="8" id="0fQ-iU-WkM"/>
                             <constraint firstItem="ZAF-LD-T0W" firstAttribute="trailing" secondItem="jMb-8I-doq" secondAttribute="trailing" constant="68" id="71q-74-h1z"/>
-                            <constraint firstItem="yr4-d6-sG3" firstAttribute="leading" secondItem="ZAF-LD-T0W" secondAttribute="leading" constant="16" id="7mr-Zx-m5i"/>
+                            <constraint firstItem="8sP-1I-UZ6" firstAttribute="top" secondItem="yr4-d6-sG3" secondAttribute="bottom" constant="8" symbolic="YES" id="7Dr-Id-ghA"/>
                             <constraint firstItem="8sP-1I-UZ6" firstAttribute="trailing" secondItem="ZAF-LD-T0W" secondAttribute="trailing" id="9ee-Ue-a8a"/>
-                            <constraint firstItem="8sP-1I-UZ6" firstAttribute="top" secondItem="yr4-d6-sG3" secondAttribute="bottom" constant="8" id="Dhy-On-DWu"/>
                             <constraint firstItem="ZAF-LD-T0W" firstAttribute="trailing" secondItem="L7R-cC-vJa" secondAttribute="trailing" id="HnI-Qm-Omq"/>
                             <constraint firstItem="8sP-1I-UZ6" firstAttribute="leading" secondItem="ZAF-LD-T0W" secondAttribute="leading" id="Kzp-X4-3eg"/>
                             <constraint firstItem="jMb-8I-doq" firstAttribute="top" secondItem="8sP-1I-UZ6" secondAttribute="bottom" constant="28" id="MCJ-lx-3pP"/>
-                            <constraint firstItem="yr4-d6-sG3" firstAttribute="top" secondItem="L7R-cC-vJa" secondAttribute="bottom" constant="90" id="N9i-3j-CzN"/>
+                            <constraint firstItem="yr4-d6-sG3" firstAttribute="centerX" secondItem="8sP-1I-UZ6" secondAttribute="centerX" id="P9q-6R-Xpw"/>
                             <constraint firstItem="ZAF-LD-T0W" firstAttribute="trailing" secondItem="8sP-1I-UZ6" secondAttribute="trailing" id="S9p-r1-LBU"/>
-                            <constraint firstItem="ZAF-LD-T0W" firstAttribute="trailing" secondItem="yr4-d6-sG3" secondAttribute="trailing" constant="16" id="XGO-tY-pgO"/>
                             <constraint firstItem="jMb-8I-doq" firstAttribute="leading" secondItem="ZAF-LD-T0W" secondAttribute="leading" constant="67" id="anq-dT-xjW"/>
                             <constraint firstItem="8sP-1I-UZ6" firstAttribute="leading" secondItem="ZAF-LD-T0W" secondAttribute="leading" id="g1i-93-vTI"/>
                             <constraint firstItem="jMb-8I-doq" firstAttribute="top" secondItem="8sP-1I-UZ6" secondAttribute="bottom" constant="28" id="i38-XF-MOI"/>
                             <constraint firstItem="L7R-cC-vJa" firstAttribute="top" secondItem="ZAF-LD-T0W" secondAttribute="top" id="iKE-YZ-MhE"/>
                             <constraint firstItem="jMb-8I-doq" firstAttribute="bottom" secondItem="ZAF-LD-T0W" secondAttribute="bottom" id="iuP-o0-dsN"/>
                             <constraint firstItem="L7R-cC-vJa" firstAttribute="leading" secondItem="ZAF-LD-T0W" secondAttribute="leading" id="xmI-Zx-Nde"/>
-                            <constraint firstItem="8sP-1I-UZ6" firstAttribute="top" secondItem="yr4-d6-sG3" secondAttribute="bottom" constant="8" id="yYp-JO-ec4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZAF-LD-T0W"/>
                     </view>
                     <navigationItem key="navigationItem" title="Forecast" id="2Ut-NY-1so">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="g83-LC-Jpe"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="cityName" destination="L7R-cC-vJa" id="qyI-gE-zqn"/>
+                        <outlet property="detailedWeatherDescription" destination="jMb-8I-doq" id="jqC-ex-agF"/>
+                        <outlet property="forecast" destination="8sP-1I-UZ6" id="Vbp-b5-TKt"/>
+                        <outlet property="randomCityImage" destination="yr4-d6-sG3" id="1S8-Es-zoF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OC4-Ws-Npo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
