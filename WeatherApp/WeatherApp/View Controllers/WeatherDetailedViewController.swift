@@ -9,7 +9,8 @@
 import UIKit
 
 class WeatherDetailedViewController: UIViewController {
-    @IBOutlet weak var saveButton: UIToolbar!
+    @IBOutlet weak var forecastName: UILabel!
+    @IBOutlet weak var backgrouundimage: UIImageView!
     @IBOutlet weak var weatherPhotoView: UIImageView!
     @IBOutlet weak var weatherDescription: UILabel!
     @IBOutlet weak var high: UILabel!
@@ -21,23 +22,31 @@ class WeatherDetailedViewController: UIViewController {
     
     var weatherDetails:PeriodsInformation!
     var weatherImage: ImageDetails?
+    //var zipcode = ""
+    var cityName = ""
+    var formattedCityName:String!{
+        return cityName.replacingOccurrences(of: " ", with: "+")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         SetupDetailView()
+        backgrouundimage.image = UIImage.init(named: "morning")
     }
     
     func SetupDetailView(){
-        high.text = "\(weatherDetails.maxTempF)"
-        low.text = "\(weatherDetails.minTempF)"
-        sunset.text = "\(weatherDetails.sunset)"
-        sunrise.text = "\(weatherDetails.sunrise)"
+        high.text = "High: \(weatherDetails.maxTempF)"
+        low.text = "Low: \(weatherDetails.minTempF)"
+        sunset.text = "Sunset: \(weatherDetails.sunset)"
+        sunrise.text = "Sunrise: \(weatherDetails.sunrise)"
         weatherDescription.text = weatherDetails.weather
-        windSpeed.text = "\(weatherDetails.windSpeedMaxMPH)"
-        prescipitation.text = "\(weatherDetails.weatherPrimary)"
+        windSpeed.text = "Wind speed: \(weatherDetails.windSpeedMaxMPH)"
+        prescipitation.text = "Prescipitation: \(weatherDetails.weatherPrimary)"
+        forecastName.text = "Weather Forecast for \(cityName) for \(weatherDetails.dateFormattedString)"
         
         
-        WeatherAPIClient.getImages(city: "Chicago") { (error, imageURL) in
+        
+        WeatherAPIClient.getImages(city: formattedCityName) { (error, imageURL) in
             if let error = error {
                 print("Error: \(error)")
             } else if let data = imageURL {

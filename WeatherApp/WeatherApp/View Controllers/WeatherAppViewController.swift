@@ -13,6 +13,7 @@ class WeatherAppViewController: UIViewController {
     @IBOutlet weak var weatherAppCollectionView: UICollectionView!
     @IBOutlet weak var inputZipCode: UITextField!
     @IBOutlet weak var instructionsLabel: UILabel!
+    @IBOutlet weak var weatherImage: UIImageView!
     var city = ""
     var zipCode = "10453" {
         didSet {
@@ -39,6 +40,7 @@ class WeatherAppViewController: UIViewController {
     inputZipCode.delegate = self
     getData()
     setCityName()
+    weatherImage.image = UIImage.init(named: "morning")
   }
     
     
@@ -47,6 +49,7 @@ class WeatherAppViewController: UIViewController {
             if let error = error {
                 print("Error: \(error)")
             } else if let data = data {
+                self.city = data
                 self.cityName.text = "Weather forecast for \(data)"
                 
             }
@@ -92,6 +95,7 @@ extension WeatherAppViewController: UICollectionViewDataSource, UICollectionView
         guard let weatherDetailViewController = storyBoard.instantiateViewController(withIdentifier: "WeatherDetailVC") as? WeatherDetailedViewController else {return}
         weatherDetailViewController.modalPresentationStyle = .currentContext
         weatherDetailViewController.weatherDetails = weatherInformation[indexPath.row]
+        weatherDetailViewController.cityName = city
         self.navigationController?.pushViewController(weatherDetailViewController, animated: true)
     }
     

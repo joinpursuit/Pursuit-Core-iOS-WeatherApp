@@ -29,7 +29,7 @@ final class WeatherAPIClient {
     
     
     static func getImages(city: String, completionHandler: @escaping(Error?,[ImageDetails]?) -> Void){
-        let imageEndpoint = "https://pixabay.com/api/?key=\(SecretKeys.photoKey)&q=NewYork&image_type=photo"
+        let imageEndpoint = "https://pixabay.com/api/?key=\(SecretKeys.photoKey)&q=\(city)&image_type=photo"
         NetworkHelper.shared.performDataTask(urlString: imageEndpoint, httpMethod: "GET") {(error, data, httpResponse) in
             if let error = error {
                 completionHandler(error,nil)
