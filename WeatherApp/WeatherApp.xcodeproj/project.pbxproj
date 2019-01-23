@@ -23,6 +23,7 @@
 		935C338121F7AE7900D7843B /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935C338021F7AE7900D7843B /* Weather.swift */; };
 		935C338321F7B31400D7843B /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935C338221F7B31400D7843B /* SecretKeys.swift */; };
 		935C338721F7DBB900D7843B /* DateTimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935C338621F7DBB900D7843B /* DateTimeHelper.swift */; };
+		939E6D3221F7DFD800DD82F3 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939E6D3121F7DFD800DD82F3 /* Images.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		935C338021F7AE7900D7843B /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		935C338221F7B31400D7843B /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
 		935C338621F7DBB900D7843B /* DateTimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeHelper.swift; sourceTree = "<group>"; };
+		939E6D3121F7DFD800DD82F3 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				935C338021F7AE7900D7843B /* Weather.swift */,
+				939E6D3121F7DFD800DD82F3 /* Images.swift */,
 				935C338221F7B31400D7843B /* SecretKeys.swift */,
 			);
 			path = Model;
@@ -271,6 +274,7 @@
 				57EE009021F15D7000D76A6E /* MainViewController.swift in Sources */,
 				935C337121F7678000D7843B /* MainCollectionViewCell.swift in Sources */,
 				935C337E21F7ADFC00D7843B /* WeatherAPIClient.swift in Sources */,
+				939E6D3221F7DFD800DD82F3 /* Images.swift in Sources */,
 				935C338721F7DBB900D7843B /* DateTimeHelper.swift in Sources */,
 				935C338121F7AE7900D7843B /* Weather.swift in Sources */,
 				57EE008E21F15D7000D76A6E /* AppDelegate.swift in Sources */,

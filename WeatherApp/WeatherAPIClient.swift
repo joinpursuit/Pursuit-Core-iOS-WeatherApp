@@ -17,6 +17,22 @@ final class WeatherAPIClient{
             } else if let data = data {
                 do {
                     var weather = try JSONDecoder().decode(Weather.self, from: data)
+                    
+                    completionHandler(nil,weather.response[0].periods)
+                } catch {
+                    completionHandler(AppError.decodingError(error), nil)
+                }
+            }
+        }
+    }
+    static func getImage(keyword: String, completionHandler: @escaping (AppError?, [WeatherInfo]?) -> Void) {
+        let getWeatherEndpoint = "https://pixabay.com/api/?key=\(SecretKeys.ImageAPIKey)&q=\(keyword)"
+        NetworkHelper.shared.performDataTask(endpointURLString: getWeatherEndpoint, httpMethod: "GET", httpBody: nil) { (appError, data, httpResponse) in
+            if let appError = appError {
+                completionHandler(appError, nil)
+            } else if let data = data {
+                do {
+                    var weather = try JSONDecoder().decode(Weather.self, from: data)
                     completionHandler(nil,weather.response[0].periods)
                 } catch {
                     completionHandler(AppError.decodingError(error), nil)
