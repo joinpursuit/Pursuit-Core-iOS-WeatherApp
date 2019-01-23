@@ -9,22 +9,42 @@
 import UIKit
 
 class WeatherDetailViewController: UIViewController {
-
+    
+    @IBOutlet weak var weatherFor: UILabel!
+    
+    @IBOutlet weak var cityImage: UIImageView!
+    
+    @IBOutlet weak var tempDescription: UILabel!
+    
+    @IBOutlet weak var tempHigh: UILabel!
+    
+    @IBOutlet weak var tempLow: UILabel!
+    
+    @IBOutlet weak var sunrise: UILabel!
+    
+    @IBOutlet weak var sunset: UILabel!
+    
+    @IBOutlet weak var windspeed: UILabel!
+    
+    @IBOutlet weak var precipitation: UILabel!
+    
+    public var dayInfo: Periods?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        updateUI()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func updateUI() {
+        if let dayInfo = dayInfo {
+        tempDescription.text = dayInfo.validTime
+            tempHigh.text = "High: \(dayInfo.maxTempF) °F"
+            tempLow.text = "Low: \(dayInfo.minTempF) °F"
+            sunrise.text = "Sunrise: \(dayInfo.sunrise)"
+            sunset.text = "Sunset: \(dayInfo.sunset)"
+            windspeed.text = "WindSpeed: \(dayInfo.windSpeedMPH) MPH"
+            precipitation.text = "Precipitation (in.): \(dayInfo.precipIN) in."
+        }
     }
-    */
-
+    
 }

@@ -87,6 +87,7 @@
                                             <outlet property="highLabel" destination="Fz5-sH-iDh" id="5iB-uQ-nQL"/>
                                             <outlet property="imageSet" destination="pi9-Kh-u6d" id="J5Z-wP-ed7"/>
                                             <outlet property="lowLabel" destination="CEa-YL-Rio" id="SqG-mg-SBu"/>
+                                            <segue destination="Azx-uQ-EGX" kind="show" id="71o-eY-drn"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -189,7 +190,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fb5-Vl-bIs">
-                                <rect key="frame" x="164" y="395.5" width="47" height="21"/>
+                                <rect key="frame" x="11" y="384.5" width="353" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -208,9 +209,7 @@
                             <constraint firstItem="uaH-oK-PFv" firstAttribute="leading" secondItem="19i-jM-u5G" secondAttribute="leading" constant="40" id="JhB-pr-vCx"/>
                             <constraint firstItem="vnE-RB-u7w" firstAttribute="centerY" secondItem="19i-jM-u5G" secondAttribute="centerY" multiplier="0.65" id="MIf-gw-8DY"/>
                             <constraint firstItem="cWy-ws-wew" firstAttribute="leading" secondItem="19i-jM-u5G" secondAttribute="leading" constant="11" id="Nad-NA-WwE"/>
-                            <constraint firstItem="fb5-Vl-bIs" firstAttribute="leading" secondItem="19i-jM-u5G" secondAttribute="leading" constant="164" id="PbC-ZD-xda"/>
                             <constraint firstItem="qV7-Yn-1wx" firstAttribute="leading" secondItem="19i-jM-u5G" secondAttribute="leading" constant="40" id="Qbl-CU-1bW"/>
-                            <constraint firstItem="fb5-Vl-bIs" firstAttribute="top" secondItem="vnE-RB-u7w" secondAttribute="bottom" constant="22" id="Tbp-SS-6O0"/>
                             <constraint firstItem="19i-jM-u5G" firstAttribute="trailing" secondItem="uaH-oK-PFv" secondAttribute="trailing" constant="100" id="Uhl-hE-Hwe"/>
                             <constraint firstItem="qV7-Yn-1wx" firstAttribute="top" secondItem="ajj-AU-BiL" secondAttribute="bottom" constant="11" id="Wbv-3T-Ng9"/>
                             <constraint firstItem="f3c-So-Md7" firstAttribute="leading" secondItem="19i-jM-u5G" secondAttribute="leading" constant="40" id="Y2f-ba-iNY"/>
@@ -219,16 +218,29 @@
                             <constraint firstItem="19i-jM-u5G" firstAttribute="trailing" secondItem="ajj-AU-BiL" secondAttribute="trailing" constant="100" id="dwh-4M-4hA"/>
                             <constraint firstItem="vnE-RB-u7w" firstAttribute="width" secondItem="UYS-an-PFW" secondAttribute="width" id="elc-1m-6S8"/>
                             <constraint firstItem="19i-jM-u5G" firstAttribute="trailing" secondItem="f3c-So-Md7" secondAttribute="trailing" constant="100" id="hzW-yZ-9Sq"/>
+                            <constraint firstItem="fb5-Vl-bIs" firstAttribute="top" secondItem="vnE-RB-u7w" secondAttribute="bottom" constant="11" id="peP-cB-jQU"/>
+                            <constraint firstItem="19i-jM-u5G" firstAttribute="trailing" secondItem="fb5-Vl-bIs" secondAttribute="trailing" constant="11" id="qh2-Po-pnd"/>
                             <constraint firstItem="vmI-32-xT2" firstAttribute="top" secondItem="lVV-KR-4HS" secondAttribute="bottom" constant="11" id="rb8-sw-EeP"/>
                             <constraint firstItem="lVV-KR-4HS" firstAttribute="leading" secondItem="19i-jM-u5G" secondAttribute="leading" constant="40" id="rvL-to-tTm"/>
                             <constraint firstItem="ajj-AU-BiL" firstAttribute="top" secondItem="f3c-So-Md7" secondAttribute="bottom" constant="11" id="t0O-5t-rgT"/>
                             <constraint firstItem="vnE-RB-u7w" firstAttribute="centerX" secondItem="19i-jM-u5G" secondAttribute="centerX" id="tRC-fo-cRR"/>
-                            <constraint firstItem="19i-jM-u5G" firstAttribute="trailing" secondItem="fb5-Vl-bIs" secondAttribute="trailing" constant="164" id="uiA-K3-8ft"/>
+                            <constraint firstItem="fb5-Vl-bIs" firstAttribute="leading" secondItem="19i-jM-u5G" secondAttribute="leading" constant="11" id="vgx-mQ-LIz"/>
                             <constraint firstItem="19i-jM-u5G" firstAttribute="trailing" secondItem="vmI-32-xT2" secondAttribute="trailing" constant="100" id="yoy-7J-51K"/>
                             <constraint firstItem="cWy-ws-wew" firstAttribute="centerX" secondItem="19i-jM-u5G" secondAttribute="centerX" id="yzy-ZV-qX7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="19i-jM-u5G"/>
                     </view>
+                    <connections>
+                        <outlet property="cityImage" destination="vnE-RB-u7w" id="fI2-G9-6mk"/>
+                        <outlet property="precipitation" destination="vmI-32-xT2" id="BNY-h8-P6K"/>
+                        <outlet property="sunrise" destination="qV7-Yn-1wx" id="uff-8z-gUm"/>
+                        <outlet property="sunset" destination="uaH-oK-PFv" id="bju-dm-NMc"/>
+                        <outlet property="tempDescription" destination="fb5-Vl-bIs" id="snM-be-vCO"/>
+                        <outlet property="tempHigh" destination="f3c-So-Md7" id="F50-6S-GN6"/>
+                        <outlet property="tempLow" destination="ajj-AU-BiL" id="fCB-2O-L02"/>
+                        <outlet property="weatherFor" destination="cWy-ws-wew" id="gL2-du-Hhx"/>
+                        <outlet property="windspeed" destination="lVV-KR-4HS" id="UHZ-rc-A9K"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eju-RG-hU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

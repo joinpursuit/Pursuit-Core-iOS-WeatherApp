@@ -47,7 +47,17 @@ class ViewController: UIViewController {
         let vc = storyBoard.instantiateViewController(withIdentifier: "FavoritesViewController") as! FavoritesViewController
         present(vc, animated: true, completion: nil)
     }
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? WeatherDetailViewController
+            else { return }
+       guard let cell = sender as? WeatherCollectionViewCell
+        else { return }
+        guard let indexpath = weatherCV.indexPath(for: cell) else{return}
+        let forecast = self.forecast[indexpath.row]
+        destination.dayInfo = forecast
+        
+    }
+    
 }
 
 extension ViewController: UICollectionViewDataSource {
@@ -59,6 +69,9 @@ extension ViewController: UICollectionViewDataSource {
  var day = forecast[indexPath.row]
         cell.dayLabel.text = "\(day.validTime)"
         cell.imageSet.image = UIImage(named: day.icon)
+        cell.highLabel.text = "High:\(day.maxTempF) °F"
+        cell.lowLabel.text = "Low:\(day.minTempF) °F"
+        
         
         
         return cell
