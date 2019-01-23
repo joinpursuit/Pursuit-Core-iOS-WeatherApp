@@ -35,8 +35,10 @@ final class WeatherAPIClient {
                 completionHandler(error,nil)
             } else if let data = data {
                 do {
-                    let image = try JSONDecoder().decode(Image.self, from: data)
-                    completionHandler(nil,image.hits)
+                    let image = try JSONDecoder().decode(Image.self, from: data).hits.randomElement()
+                    completionHandler(nil,[image!])
+                    
+                   
                 } catch {
                     completionHandler(error,nil)
                     print("Decoding Error : \(error)")

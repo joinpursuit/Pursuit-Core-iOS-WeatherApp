@@ -22,7 +22,7 @@ class WeatherDetailedViewController: UIViewController {
     
     var weatherDetails:PeriodsInformation!
     var weatherImage: ImageDetails?
-    //var zipcode = ""
+    
     var cityName = ""
     var formattedCityName:String!{
         return cityName.replacingOccurrences(of: " ", with: "+")
@@ -34,14 +34,45 @@ class WeatherDetailedViewController: UIViewController {
         backgrouundimage.image = UIImage.init(named: "morning")
     }
     
+    
+    
+    
+    
+    @IBAction func saveButton(_ sender: UIButton) {
+        
+        let alert = UIAlertController(title: "Options", message: "Save Image", preferredStyle: .actionSheet)
+    
+        let save = UIAlertAction.init(title: "Save", style: .default) { (alert: UIAlertAction) in
+            
+            let favoritedImage = SavedImage.init(imageURL: self.weatherImage?.largeImageURL ?? "")
+            SavedImageModel.save(image: favoritedImage)
+            
+            
+        }
+        let cancel = UIAlertAction.init(title: "Cancel", style: .destructive) { (alert: UIAlertAction) in
+        }
+
+        
+        alert.addAction(save)
+        alert.addAction(cancel)
+        
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+    
+    
+    
+    
+    
     func SetupDetailView(){
-        high.text = "High: \(weatherDetails.maxTempF)"
-        low.text = "Low: \(weatherDetails.minTempF)"
-        sunset.text = "Sunset: \(weatherDetails.sunset)"
-        sunrise.text = "Sunrise: \(weatherDetails.sunrise)"
+        high.text = "High: \(weatherDetails.maxTempF) F"
+        low.text = "Low: \(weatherDetails.minTempF) F"
+        sunset.text = "Sunset: \(weatherDetails.sunset) F"
+        sunrise.text = "Sunrise: \(weatherDetails.sunrise) F"
         weatherDescription.text = weatherDetails.weather
-        windSpeed.text = "Wind speed: \(weatherDetails.windSpeedMaxMPH)"
-        prescipitation.text = "Prescipitation: \(weatherDetails.weatherPrimary)"
+        windSpeed.text = "Wind speed: \(weatherDetails.windSpeedMaxMPH) MPH"
+        prescipitation.text = "Prescipitation: \(weatherDetails.precipMM) F"
         forecastName.text = "Weather Forecast for \(cityName) for \(weatherDetails.dateFormattedString)"
         
         

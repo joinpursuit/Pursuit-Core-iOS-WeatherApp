@@ -24,6 +24,13 @@ class WeatherAppViewController: UIViewController {
         }
     }
     
+    @IBAction func save(_ sender: UIButton) {
+        
+        
+    }
+    
+    
+    
     var weatherInformation = [PeriodsInformation](){
         didSet {
             DispatchQueue.main.async {
@@ -42,6 +49,9 @@ class WeatherAppViewController: UIViewController {
     setCityName()
     weatherImage.image = UIImage.init(named: "morning")
   }
+    
+    
+    
     
     
     func setCityName(){
@@ -83,8 +93,8 @@ extension WeatherAppViewController: UICollectionViewDataSource, UICollectionView
         let dayToSet = weatherInformation[indexPath.row]
      
         cell.day.text = dayToSet.dateFormattedString
-        cell.high.text = "High: \(dayToSet.maxTempF)"
-        cell.low.text = "Low: \(dayToSet.minTempF)"
+        cell.high.text = "High: \(dayToSet.maxTempF) F"
+        cell.low.text = "Low: \(dayToSet.minTempF) F"
         cell.weatherImage.image = UIImage.init(named: dayToSet.images)
         return cell
     }

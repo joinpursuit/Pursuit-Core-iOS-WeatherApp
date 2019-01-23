@@ -23,6 +23,7 @@ struct PeriodsInformation: Codable {
     let humidity: Int
     let weather: String
     let weatherPrimary: String
+    let precipMM: Double
     let icon: String
     var images: String {
         let imageArray = icon.components(separatedBy: ".")
