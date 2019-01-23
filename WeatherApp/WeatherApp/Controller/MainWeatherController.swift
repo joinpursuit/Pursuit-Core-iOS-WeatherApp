@@ -33,11 +33,15 @@ class MainWeatherController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    if let zipCode = UserDefaults.standard.object(forKey: "zipcode") as? String {
+      zipCodeText = zipCode
+    }
     setUpDefaultForeCastCity(zipCode: zipCodeText)
     zipCodeField.delegate = self
     searchWeatherForecast(zipCode: zipCodeText)
     weatherDisplayColletionView.dataSource = self
     weatherDisplayColletionView.delegate = self
+
   }
   
   private func searchWeatherForecast(zipCode: String){
@@ -126,6 +130,7 @@ extension MainWeatherController: UITextFieldDelegate {
           print("Couldn't locate the city. There was an \(error)")
         }
         if let localityName = localityName {
+          UserDefaults.standard.set(self.zipCodeText, forKey: "zipcode")
           self.cityName.text = localityName
           self.cityToSegue = localityName
           print(self.cityToSegue)
