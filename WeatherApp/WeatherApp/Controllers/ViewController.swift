@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var weatherCollectionView: UICollectionView!
     @IBOutlet weak var textField: UITextField!
     
-    var keyword = ""
+    var keyword = "10002"
     var location = String()
     
     var forcast = [ForcastData]() {
@@ -27,7 +27,9 @@ class ViewController: UIViewController {
     
   override func viewDidLoad() {
     super.viewDidLoad()
-    keyword = "10002"
+    if let zipcode = UserDefaults.standard.object(forKey: "ZipCodes") as? String{
+        keyword = zipcode
+    }
     ZipCodeHelper.getLocationName(from: keyword) { (error, data) in
         if let error = error {
             print(error)
@@ -53,6 +55,7 @@ class ViewController: UIViewController {
         }
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DetailSegue" {
             let detailVC = segue.destination as! DetailViewController
@@ -75,7 +78,7 @@ extension ViewController: UICollectionViewDataSource {
         cell.highTempLabel.text = "High: \(cellToSet.maxTempF)°F"
         cell.lowTempLabel.text = "Low: \(cellToSet.minTempF)°F"
         cell.forcastImage.image = UIImage(named: cellToSet.icon)
-        cell.dateLabel.text = WeatherDateHelper.formatISOToDate(dateString: cellToSet.dateTimeISO)
+        cell.dateLabel.text = DateTimeHelper.formatISOToDate(dateString: cellToSet.dateTimeISO)
         cell.layer.borderWidth = 3
         cell.layer.cornerRadius = 10
         cell.layer.borderColor = UIColor.black.cgColor
@@ -108,10 +111,12 @@ extension ViewController: UITextFieldDelegate {
                 if let error = error {
                     print(error)
                 } else if let data = data {
+                    UserDefaults.standard.set(keyword, forKey: "ZipCode")
                     self.location = data
                     self.searchTitle.text = "Weather Forcast for \(self.location)"
                 }
             }
+            UserDefaults.standard.set(keyword, forKey: "ZipCode")
             self.getWeather(keyword: keyword)
         }
         return true

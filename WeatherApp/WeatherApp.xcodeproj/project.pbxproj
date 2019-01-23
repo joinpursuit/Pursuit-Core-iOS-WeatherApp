@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		092381B021F8D95B003CF911 /* DataPersisteneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092381AF21F8D95B003CF911 /* DataPersisteneManager.swift */; };
+		092381B221F8D98B003CF911 /* FavoritedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092381B121F8D98B003CF911 /* FavoritedImage.swift */; };
+		092381B421F8D9D9003CF911 /* DataPersistenceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092381B321F8D9D9003CF911 /* DataPersistenceModel.swift */; };
 		09F5BD2E21F66E1E009ED11E /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F5BD2D21F66E1E009ED11E /* AppError.swift */; };
 		09F5BD3021F66E90009ED11E /* WeatherAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F5BD2F21F66E90009ED11E /* WeatherAPIClient.swift */; };
 		09F5BD3221F66EFA009ED11E /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F5BD3121F66EFA009ED11E /* NetworkHelper.swift */; };
@@ -19,6 +22,7 @@
 		09F5BD4321F697BE009ED11E /* ForcastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F5BD4221F697BE009ED11E /* ForcastCollectionViewCell.swift */; };
 		09F5BD4521F697F8009ED11E /* FavoriteImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F5BD4421F697F8009ED11E /* FavoriteImageTableViewCell.swift */; };
 		09F5BD4721F69862009ED11E /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F5BD4621F69862009ED11E /* String+Extension.swift */; };
+		09F5BD4921F7E8C9009ED11E /* PixabayAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F5BD4821F7E8C8009ED11E /* PixabayAPIClient.swift */; };
 		57EE008E21F15D7000D76A6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE008D21F15D7000D76A6E /* AppDelegate.swift */; };
 		57EE009021F15D7000D76A6E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE008F21F15D7000D76A6E /* ViewController.swift */; };
 		57EE009321F15D7100D76A6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57EE009121F15D7100D76A6E /* Main.storyboard */; };
@@ -39,6 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		092381AF21F8D95B003CF911 /* DataPersisteneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersisteneManager.swift; sourceTree = "<group>"; };
+		092381B121F8D98B003CF911 /* FavoritedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritedImage.swift; sourceTree = "<group>"; };
+		092381B321F8D9D9003CF911 /* DataPersistenceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceModel.swift; sourceTree = "<group>"; };
 		09F5BD2D21F66E1E009ED11E /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		09F5BD2F21F66E90009ED11E /* WeatherAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPIClient.swift; sourceTree = "<group>"; };
 		09F5BD3121F66EFA009ED11E /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
@@ -51,6 +58,7 @@
 		09F5BD4221F697BE009ED11E /* ForcastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForcastCollectionViewCell.swift; sourceTree = "<group>"; };
 		09F5BD4421F697F8009ED11E /* FavoriteImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteImageTableViewCell.swift; sourceTree = "<group>"; };
 		09F5BD4621F69862009ED11E /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		09F5BD4821F7E8C8009ED11E /* PixabayAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixabayAPIClient.swift; sourceTree = "<group>"; };
 		57EE008A21F15D7000D76A6E /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57EE008D21F15D7000D76A6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57EE008F21F15D7000D76A6E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -89,7 +97,10 @@
 				09F5BD3121F66EFA009ED11E /* NetworkHelper.swift */,
 				09F5BD3A21F67C70009ED11E /* ImageHelper.swift */,
 				09F5BD2D21F66E1E009ED11E /* AppError.swift */,
+				092381AF21F8D95B003CF911 /* DataPersisteneManager.swift */,
+				092381B321F8D9D9003CF911 /* DataPersistenceModel.swift */,
 				09F5BD2F21F66E90009ED11E /* WeatherAPIClient.swift */,
+				09F5BD4821F7E8C8009ED11E /* PixabayAPIClient.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -108,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				09F5BD3621F670A1009ED11E /* Weather.swift */,
+				092381B121F8D98B003CF911 /* FavoritedImage.swift */,
 				09F5BD3821F679F1009ED11E /* Pixabay.swift */,
 			);
 			path = Model;
@@ -276,12 +288,16 @@
 				09F5BD4321F697BE009ED11E /* ForcastCollectionViewCell.swift in Sources */,
 				57EE009021F15D7000D76A6E /* ViewController.swift in Sources */,
 				57EE008E21F15D7000D76A6E /* AppDelegate.swift in Sources */,
+				09F5BD4921F7E8C9009ED11E /* PixabayAPIClient.swift in Sources */,
+				092381B421F8D9D9003CF911 /* DataPersistenceModel.swift in Sources */,
 				09F5BD3221F66EFA009ED11E /* NetworkHelper.swift in Sources */,
 				09F5BD3021F66E90009ED11E /* WeatherAPIClient.swift in Sources */,
+				092381B021F8D95B003CF911 /* DataPersisteneManager.swift in Sources */,
 				09F5BD3921F679F1009ED11E /* Pixabay.swift in Sources */,
 				09F5BD3721F670A1009ED11E /* Weather.swift in Sources */,
 				09F5BD4121F6979F009ED11E /* FavoritesViewController.swift in Sources */,
 				09F5BD4721F69862009ED11E /* String+Extension.swift in Sources */,
+				092381B221F8D98B003CF911 /* FavoritedImage.swift in Sources */,
 				09F5BD3D21F684E7009ED11E /* SecretKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
