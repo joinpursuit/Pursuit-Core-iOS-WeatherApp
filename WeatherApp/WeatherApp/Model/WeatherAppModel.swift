@@ -15,14 +15,10 @@ struct WeatherFocasts: Codable {
     let periods:[PeriodsInformation]
 }
 struct PeriodsInformation: Codable {
-    let timestamp: Int
     let validTime: String
-    let dateTimeISO: String
     let maxTempF: Int
     let minTempF: Int
-    let humidity: Int
     let weather: String
-    let weatherPrimary: String
     let precipMM: Double
     let icon: String
     var images: String {
@@ -45,5 +41,34 @@ struct PeriodsInformation: Codable {
         }
         return formattedDate
     }
-}
+    
+    
+    
+    var sunriseTime: String {
+        let isoDateFormatter = ISO8601DateFormatter()
+        var formattedSunriseISO = sunriseISO
+        if let date = isoDateFormatter.date(from: sunriseISO){
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "hh:mm:ss"
+            
+            formattedSunriseISO = dateFormatter.string(from: date)
+            
+        }
+        return formattedSunriseISO
+    }
+    
+    var sunsetTime: String {
+        let isoDateFormatter = ISO8601DateFormatter()
+        var formattedSunsetISO = sunsetISO
+        if let date = isoDateFormatter.date(from: sunsetISO){
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "hh:mm:ss"
+            
+            formattedSunsetISO = dateFormatter.string(from: date)
+            
+        }
+        return formattedSunsetISO
 
+    }
+
+}

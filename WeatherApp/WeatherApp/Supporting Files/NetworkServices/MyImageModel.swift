@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class SavedImageModel {
     private static let filename = "FavoritedImages.plist"
@@ -25,6 +26,9 @@ final class SavedImageModel {
     static func save(image:SavedImage){
         savedImages.append(image)
         saveImage()
+    
+       
+    
     }
     
     static func getSavedImages() -> [SavedImage]{

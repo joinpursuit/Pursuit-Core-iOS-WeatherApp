@@ -24,6 +24,8 @@ class WeatherDetailedViewController: UIViewController {
     var weatherImage: ImageDetails?
     
     var cityName = ""
+       
+    
     var formattedCityName:String!{
         return cityName.replacingOccurrences(of: " ", with: "+")
     }
@@ -34,6 +36,16 @@ class WeatherDetailedViewController: UIViewController {
         backgrouundimage.image = UIImage.init(named: "morning")
     }
     
+    func setNotification(){
+        let alert = UIAlertController(title: "Saved", message: "Image saved successfully", preferredStyle: .alert)
+        
+        let saved = UIAlertAction.init(title:"Saved", style: .default){
+            _ in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(saved)
+        present(alert,animated: true,completion: nil)
+    }
     
     
     
@@ -46,6 +58,7 @@ class WeatherDetailedViewController: UIViewController {
             
             let favoritedImage = SavedImage.init(imageURL: self.weatherImage?.largeImageURL ?? "")
             SavedImageModel.save(image: favoritedImage)
+            self.setNotification()
             
             
         }
@@ -60,6 +73,18 @@ class WeatherDetailedViewController: UIViewController {
         
     }
     
+    func okay(){
+        let alert = UIAlertController(title: "Saved", message: "Successfully saved image", preferredStyle: .alert)
+        
+        let saved = UIAlertAction.init(title: "Saved", style: .default) {
+            _ in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(saved)
+        present(alert,animated: true , completion: nil)
+        
+    }
+    
     
     
     
@@ -68,25 +93,27 @@ class WeatherDetailedViewController: UIViewController {
     func SetupDetailView(){
         high.text = "High: \(weatherDetails.maxTempF) F"
         low.text = "Low: \(weatherDetails.minTempF) F"
-        sunset.text = "Sunset: \(weatherDetails.sunset) F"
-        sunrise.text = "Sunrise: \(weatherDetails.sunrise) F"
+        sunset.text = "Sunset: \(weatherDetails.sunsetTime) pm"
+        sunrise.text = "Sunrise: \(weatherDetails.sunriseTime) am"
         weatherDescription.text = weatherDetails.weather
         windSpeed.text = "Wind speed: \(weatherDetails.windSpeedMaxMPH) MPH"
         prescipitation.text = "Prescipitation: \(weatherDetails.precipMM) F"
         forecastName.text = "Weather Forecast for \(cityName) for \(weatherDetails.dateFormattedString)"
-        
-        
-        
+    
         WeatherAPIClient.getImages(city: formattedCityName) { (error, imageURL) in
             if let error = error {
                 print("Error: \(error)")
             } else if let data = imageURL {
-                
-                ImageHelper.shared.fetchImage(urlString: data[Int.random(in: 0...data.count-1)].largeImageURL) { (error, image) in
+                  let randomImage = data[Int.random(in: 0...data.count-1)]
+                DispatchQueue.main.async {
+                    self.weatherImage = randomImage
+                }
+                ImageHelper.shared.fetchImage(urlString: randomImage.largeImageURL) { (error, image) in
                     if let error = error {
                         print("Error: \(error)")
                     } else if let image = image {
                         self.weatherPhotoView.image = image
+                        
                     }
                 }
                 

@@ -24,10 +24,7 @@ class WeatherAppViewController: UIViewController {
         }
     }
     
-    @IBAction func save(_ sender: UIButton) {
-        
-        
-    }
+   
     
     
     
@@ -106,6 +103,7 @@ extension WeatherAppViewController: UICollectionViewDataSource, UICollectionView
         weatherDetailViewController.modalPresentationStyle = .currentContext
         weatherDetailViewController.weatherDetails = weatherInformation[indexPath.row]
         weatherDetailViewController.cityName = city
+        
         self.navigationController?.pushViewController(weatherDetailViewController, animated: true)
     }
     
