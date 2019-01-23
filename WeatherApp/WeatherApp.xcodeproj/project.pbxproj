@@ -24,6 +24,9 @@
 		935C338321F7B31400D7843B /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935C338221F7B31400D7843B /* SecretKeys.swift */; };
 		935C338721F7DBB900D7843B /* DateTimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935C338621F7DBB900D7843B /* DateTimeHelper.swift */; };
 		939E6D3221F7DFD800DD82F3 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939E6D3121F7DFD800DD82F3 /* Images.swift */; };
+		939E6D5421F8EEA900DD82F3 /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939E6D5321F8EEA900DD82F3 /* DataPersistenceManager.swift */; };
+		939E6D5621F8EEE900DD82F3 /* FavoriteImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939E6D5521F8EEE900DD82F3 /* FavoriteImages.swift */; };
+		939E6D5821F8F0FB00DD82F3 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939E6D5721F8F0FB00DD82F3 /* FavoriteViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +61,9 @@
 		935C338221F7B31400D7843B /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
 		935C338621F7DBB900D7843B /* DateTimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeHelper.swift; sourceTree = "<group>"; };
 		939E6D3121F7DFD800DD82F3 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		939E6D5321F8EEA900DD82F3 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
+		939E6D5521F8EEE900DD82F3 /* FavoriteImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteImages.swift; sourceTree = "<group>"; };
+		939E6D5721F8F0FB00DD82F3 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +148,7 @@
 				57EE008F21F15D7000D76A6E /* MainViewController.swift */,
 				935C337021F7678000D7843B /* MainCollectionViewCell.swift */,
 				935C336E21F7670700D7843B /* DetailViewController.swift */,
+				939E6D5721F8F0FB00DD82F3 /* FavoriteViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -150,6 +157,8 @@
 			isa = PBXGroup;
 			children = (
 				935C337D21F7ADFC00D7843B /* WeatherAPIClient.swift */,
+				939E6D5321F8EEA900DD82F3 /* DataPersistenceManager.swift */,
+				939E6D5521F8EEE900DD82F3 /* FavoriteImages.swift */,
 				57EE009F21F15E0F00D76A6E /* ZipCodeHelper.swift */,
 				935C337521F7AD8100D7843B /* NetworkHelper.swift */,
 				935C337721F7AD8A00D7843B /* AppError.swift */,
@@ -272,8 +281,11 @@
 			files = (
 				57EE00A021F15E0F00D76A6E /* ZipCodeHelper.swift in Sources */,
 				57EE009021F15D7000D76A6E /* MainViewController.swift in Sources */,
+				939E6D5621F8EEE900DD82F3 /* FavoriteImages.swift in Sources */,
 				935C337121F7678000D7843B /* MainCollectionViewCell.swift in Sources */,
+				939E6D5421F8EEA900DD82F3 /* DataPersistenceManager.swift in Sources */,
 				935C337E21F7ADFC00D7843B /* WeatherAPIClient.swift in Sources */,
+				939E6D5821F8F0FB00DD82F3 /* FavoriteViewController.swift in Sources */,
 				939E6D3221F7DFD800DD82F3 /* Images.swift in Sources */,
 				935C338721F7DBB900D7843B /* DateTimeHelper.swift in Sources */,
 				935C338121F7AE7900D7843B /* Weather.swift in Sources */,

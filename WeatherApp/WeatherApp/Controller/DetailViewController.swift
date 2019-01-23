@@ -12,7 +12,8 @@ class DetailViewController: UIViewController {
 
     var weatherDetail: WeatherInfo!
     var locationName: String!
-    // use locationName .replacingOccurrences(of: " ", with: "") to remove space
+    var weatherImage: String!
+    
     @IBOutlet weak var detailImageView: UIImageView!
     @IBOutlet weak var detailLocationDate: UILabel!
     @IBOutlet weak var detailWeatherLocation: UILabel!
@@ -22,10 +23,11 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailSunset: UILabel!
     @IBOutlet weak var detailWindspeed: UILabel!
     @IBOutlet weak var detailInchesOfSomething: UILabel!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
-        detailImageView.image = UIImage(named: weatherDetail.icon)
-        detailLocationDate.text = "Weather for LOCATION on \(WeatherDateHelper.formatISOToDate(dateString: weatherDetail.dateTimeISO))"
+        updateImage()
+        detailLocationDate.text = "Weather for \(locationName!) on \(WeatherDateHelper.formatISOToDate(dateString: weatherDetail.dateTimeISO))"
         detailWeatherLocation.text = "\(weatherDetail.weather)"
         detailHigh.text = "High: \(weatherDetail.maxTempF)℉"
         detailLow.text = "Low: \(weatherDetail.minTempF)℉"
@@ -33,5 +35,26 @@ class DetailViewController: UIViewController {
         detailSunrise.text = "Sunrise: \(WeatherDateHelper.formatISOToTime(dateString: weatherDetail.sunriseISO))"
         detailWindspeed.text = "Windspeed: \(weatherDetail.windSpeedMaxMPH) MPH"
         detailInchesOfSomething.text = "Inches of percipitation: \(weatherDetail.precipIN)"
+    }
+    func updateImage() {
+        WeatherAPIClient.getImage(keyword: locationName!.replacingOccurrences(of: " ", with: "")) { (error, url) in
+            if let error = error {
+                print("My code aint working \(error)")
+            } else if let url = url {
+                self.weatherImage = url.absoluteString
+                ImageHelper.shared.fetchImage(urlString: url.absoluteString, completionHandler: { (error, image) in
+                    if let error = error {
+                        print("error on the image helper: \(error)")
+                    } else if let image = image {
+                        DispatchQueue.main.async {
+                            self.detailImageView.image = image
+                        }
+                    }
+                })
+            }
+        }
+    }
+    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        FavoriteImageModel.addImage(image: weatherImage)
     }
 }

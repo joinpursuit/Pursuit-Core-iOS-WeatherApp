@@ -8,6 +8,10 @@
 
 import Foundation
 
-//struct <#name#> {
-//    <#fields#>
-//}
+struct Hits: Codable {
+    let hits: [Images]
+}
+
+struct Images: Codable {
+    let largeImageURL: URL
+}

@@ -27,21 +27,13 @@ class MainViewController: UIViewController {
     super.viewDidLoad()
     setupTextField()
     mainCollectionView.dataSource = self
+    mainCollectionView.delegate = self
   }
     func setupTextField() {
         mainZipCodeTextField.delegate = self
         mainZipCodeTextField.text = textfieldText
         mainZipCodeTextField.textColor = .lightGray
         
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "DetailSegue" {
-            let detailVC = segue.destination as! DetailViewController
-            let cell = sender as! UICollectionViewCell
-            let indexPaths = self.mainCollectionView.indexPath(for: cell)
-            detailVC.weatherDetail = weather[indexPaths!.row]
-            detailVC.locationName = self.location
-        }
     }
 }
 
@@ -63,7 +55,12 @@ extension MainViewController: UICollectionViewDataSource {
 }
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "DetailSegue", sender: self)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        let weatherInfo = weather[indexPath.row]
+        detailVC.weatherDetail = weatherInfo
+        detailVC.locationName = self.location
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 
