@@ -12,7 +12,7 @@ final class PixabayAPIClient {
     private init() {}
     static func searchCity(city: String, isCity: Bool, completionHandler: @escaping (AppError?, [ImageInfo]?) -> Void)
     {
-        let formattedCity = city.replacingOccurrences(of: "", with: "+")
+        let formattedCity = city.replacingOccurrences(of: " ", with: "+")
         let endpointURLString = "https://pixabay.com/api/?key=11366976-c35f7d4b69ca19818381ee8bd&q=\(formattedCity)&image_type=photo"
         
         guard let url = URL(string: endpointURLString) else {

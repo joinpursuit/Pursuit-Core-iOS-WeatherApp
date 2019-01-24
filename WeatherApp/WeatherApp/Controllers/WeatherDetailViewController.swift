@@ -78,13 +78,14 @@ class WeatherDetailViewController: UIViewController {
     private func updateUI() {
         if let dayInfo = dayInfo {
             weatherFor.text = cityName
-            tempDescription.text = dayInfo.validTime
+            tempDescription.text = ("\(dayInfo.dateFormattedTime)")
             
             //            cityImage.image = UIImage.init(named: images.largeImageURL)
             tempHigh.text = "High: \(dayInfo.maxTempF) °F"
             tempLow.text = "Low: \(dayInfo.minTempF) °F"
-            sunrise.text = "Sunrise: \(dayInfo.sunrise)"
-            sunset.text = "Sunset: \(dayInfo.sunset)"
+            
+            sunrise.text = "Sunrise: \(dayInfo.dateFormattedSunrise)"
+            sunset.text = "Sunset: \(dayInfo.dateFormattedSunset)"
             windspeed.text = "WindSpeed: \(dayInfo.windSpeedMPH) MPH"
             precipitation.text = "Precipitation (in.): \(dayInfo.precipIN) in."
         }

@@ -73,7 +73,7 @@ extension ViewController: UICollectionViewDataSource {
         guard let cell = weatherCV.dequeueReusableCell(withReuseIdentifier: "weatherCell", for: indexPath) as? WeatherCollectionViewCell else { return UICollectionViewCell()}
         let day = forecast[indexPath.row]
         forecastCity.text = "Weather forecast for \(cityName)"
-        cell.dayLabel.text = "\(day.validTime)"
+        cell.dayLabel.text = "\(day.dateFormattedTime)"
         cell.imageSet.image = UIImage(named: day.icon)
         cell.highLabel.text = "High:\(day.maxTempF) °F"
         cell.lowLabel.text = "Low:\(day.minTempF) °F"
