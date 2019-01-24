@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 struct SavedImage: Codable {
-    let imageURL: String
+    let imageURL: Data
+    let time: String
     
 }

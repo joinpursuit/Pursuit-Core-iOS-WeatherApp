@@ -95,7 +95,6 @@
 				57EE008F21F15D7000D76A6E /* WeatherAppViewController.swift */,
 				0433B42F21F59A82007B7F3A /* WeatherDetailedViewController.swift */,
 				0433B43121F59ADE007B7F3A /* FavoriteWeatherPicturesViewController.swift */,
-				0433B43821F65820007B7F3A /* WeatherAppSecretKeys.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -121,6 +120,7 @@
 		0433B44421F66BAF007B7F3A /* NetworkServices */ = {
 			isa = PBXGroup;
 			children = (
+				0433B43821F65820007B7F3A /* WeatherAppSecretKeys.swift */,
 				57EE009F21F15E0F00D76A6E /* ZipCodeHelper.swift */,
 				0433B44D21F6ABE8007B7F3A /* DataPersistenceManager.swift */,
 				0433B44B21F6A994007B7F3A /* MyImageModel.swift */,

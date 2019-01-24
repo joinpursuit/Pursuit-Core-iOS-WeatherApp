@@ -24,8 +24,7 @@ class WeatherAppViewController: UIViewController {
         }
     }
     
-   
-    
+
     
     
     var weatherInformation = [PeriodsInformation](){
@@ -117,7 +116,6 @@ extension WeatherAppViewController: UITextFieldDelegate {
             
             isZipcode = true
             for char in zip {
-              //  isZipcode = true
                 if Int(String(char)) == nil {
                     isZipcode = false
                     break

@@ -11,7 +11,7 @@ import UIKit
 class FavoriteWeatherPicturesViewController: UIViewController {
     @IBOutlet weak var savedPhotosTableView: UITableView!
     
-    var favoritedImages =  SavedImageModel.getSavedImages(){
+    var favoritedImages =  [SavedImage](){
         didSet {
             savedPhotosTableView.reloadData()
         }
@@ -30,7 +30,7 @@ class FavoriteWeatherPicturesViewController: UIViewController {
         loadFavorites()
     }
     func loadFavorites() {
-        favoritedImages = SavedImageModel.getSavedImages()
+        favoritedImages = SavedImageModel.getSavedImages().sorted {$0.time > $1.time}
     }
 
 
@@ -39,23 +39,14 @@ class FavoriteWeatherPicturesViewController: UIViewController {
 extension FavoriteWeatherPicturesViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
-        
-        
         return favoritedImages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = savedPhotosTableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as? SavedPicturesTableViewCell else {return UITableViewCell()}
   let image = favoritedImages[indexPath.row]
-        
-        ImageHelper.shared.fetchImage(urlString: image.imageURL) { (error, data) in
-            if let error = error {
-                print("Error: \(error)")
-            } else if let image = data {
-        cell.savedPictureView.image = image
-            }
-        }
-       
+        cell.imageView?.image = nil
+        cell.savedPictureView.image = UIImage.init(data: image.imageURL)
         
         return cell
     }

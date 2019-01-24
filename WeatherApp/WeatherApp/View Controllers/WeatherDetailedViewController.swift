@@ -55,9 +55,12 @@ class WeatherDetailedViewController: UIViewController {
         let alert = UIAlertController(title: "Options", message: "Save Image", preferredStyle: .actionSheet)
     
         let save = UIAlertAction.init(title: "Save", style: .default) { (alert: UIAlertAction) in
+    
+
             
-            let favoritedImage = SavedImage.init(imageURL: self.weatherImage?.largeImageURL ?? "")
-            SavedImageModel.save(image: favoritedImage)
+            self.savedImage(image: self.weatherPhotoView.image!)
+            
+            
             self.setNotification()
             
             
@@ -70,6 +73,26 @@ class WeatherDetailedViewController: UIViewController {
         alert.addAction(cancel)
         
         present(alert, animated: true, completion: nil)
+        
+    }
+    
+    
+    private func savedImage(image: UIImage){
+        if let imageData = image.jpegData(compressionQuality: 0.5) {
+            
+            let date = Date()
+            let isoDateFormatter =  ISO8601DateFormatter()
+            isoDateFormatter.formatOptions = [ .withFullDate,
+                                               .withFullTime,
+                                               .withInternetDateTime,
+                                               .withTimeZone,
+                                               .withDashSeparatorInDate]
+            
+            let imageSetTime = isoDateFormatter.string(from: date)
+
+            let image = SavedImage.init(imageURL: imageData, time: imageSetTime)
+            SavedImageModel.save(image: image)
+        }
         
     }
     
