@@ -9,13 +9,14 @@
 import Foundation
 
 struct WeatherTrack: Codable {
-    let response: [WeatherLocation]
+    let response: [WeatherLocation]?
 }
 
 struct WeatherLocation: Codable {
 //    let long: Double?
 //    let lat: Double?
-    let periods: [Weather]
+    let periods: [Weather]?
+    let profile: locationName?
 }
 
 struct Weather: Codable {
@@ -37,4 +38,8 @@ struct Weather: Codable {
         return imageArray[0]
     }
     let isDay: Bool
+
+}
+struct locationName: Codable {
+    let tz:String
 }
