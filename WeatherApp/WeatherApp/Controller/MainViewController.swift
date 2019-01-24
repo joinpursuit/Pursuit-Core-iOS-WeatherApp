@@ -30,7 +30,30 @@ class MainViewController: UIViewController {
     favoriteImages = FavoriteImageModel.getImages()
     mainCollectionView.dataSource = self
     mainCollectionView.delegate = self
+    checkForDefaultSearchSettings()
   }
+    private func checkForDefaultSearchSettings() {
+        if let searchKeyword = UserDefaults.standard.object(forKey: "Search Settings") as? String {
+            zipWeather(keyword: searchKeyword)
+        }
+    }
+    func zipWeather(keyword: String) {
+        ZipCodeHelper.getLocationName(from: keyword) { (error, string) in
+            if let error = error {
+                print("Your code is trash bro \(error)")
+            } else if let string = string {
+                self.location = string
+                self.mainLocationLabel.text = "Weather forcast for \(self.location)"
+                WeatherAPIClient.getWeather(keyword: keyword) { (error, data) in
+                    if let error = error {
+                        print("My code is trash bro \(error)")
+                    } else if let data = data {
+                        self.weather = data
+                    }
+                }
+            }
+        }
+    }
     func setupTextField() {
         mainZipCodeTextField.delegate = self
         mainZipCodeTextField.text = textfieldText
@@ -69,21 +92,8 @@ extension MainViewController: UICollectionViewDelegate {
 extension MainViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let keyword = textField.text {
-            ZipCodeHelper.getLocationName(from: keyword) { (error, string) in
-                if let error = error {
-                    print("Your code is trash bro \(error)")
-                } else if let string = string {
-                    self.location = string
-                     self.mainLocationLabel.text = "Weather forcast for \(self.location)"
-                    WeatherAPIClient.getWeather(keyword: keyword) { (error, data) in
-                        if let error = error {
-                            print("My code is trash bro \(error)")
-                        } else if let data = data {
-                            self.weather = data
-                        }
-                    }
-                }
-            }
+            UserDefaults.standard.set(keyword, forKey: "Search Settings")
+            zipWeather(keyword: keyword)
             textField.resignFirstResponder()
             return true
         }
