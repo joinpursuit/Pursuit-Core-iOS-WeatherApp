@@ -15,6 +15,8 @@ struct Weather: Codable {
 
 struct ResponseWrapper: Codable {
     let periods: [Periods]
+    let profile: locationName?
+    
 }
 
 struct Periods: Codable {
@@ -30,4 +32,8 @@ struct Periods: Codable {
     let windSpeedMPH: Int
     let precipIN: Double
     let icon: String
+}
+
+struct locationName: Codable {
+    let tz: String
 }

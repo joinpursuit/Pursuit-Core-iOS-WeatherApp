@@ -12,7 +12,8 @@ final class PixabayAPIClient {
     private init() {}
     static func searchCity(city: String, isCity: Bool, completionHandler: @escaping (AppError?, [ImageInfo]?) -> Void)
     {
-        let endpointURLString = "https://pixabay.com/api/?key=11366976-c35f7d4b69ca19818381ee8bd&q=\(city)&image_type=photo"
+        let formattedCity = city.replacingOccurrences(of: "", with: "+")
+        let endpointURLString = "https://pixabay.com/api/?key=11366976-c35f7d4b69ca19818381ee8bd&q=\(formattedCity)&image_type=photo"
         
         guard let url = URL(string: endpointURLString) else {
             completionHandler(AppError.badURL(endpointURLString), nil)
@@ -38,7 +39,7 @@ final class PixabayAPIClient {
                 let cityData = try JSONDecoder().decode(Pictures.self, from: data).hits
                 completionHandler(nil, cityData)
             } catch {
-                completionHandler(AppError.jsonDecodingError(error), nil)
+                completionHandler(AppError.decodingError(error), nil)
             }
         }
     }.resume()

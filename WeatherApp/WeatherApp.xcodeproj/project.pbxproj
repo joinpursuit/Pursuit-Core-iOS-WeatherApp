@@ -19,6 +19,8 @@
 		05014AC421F69F2A008C499E /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05014AC321F69F2A008C499E /* WeatherCollectionViewCell.swift */; };
 		05014AC621F7DBFF008C499E /* pixabayAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05014AC521F7DBFF008C499E /* pixabayAPIClient.swift */; };
 		05014AC821F7DD2D008C499E /* PixabayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05014AC721F7DD2D008C499E /* PixabayModel.swift */; };
+		056C510221F9227B00074031 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C510121F9227B00074031 /* ImageHelper.swift */; };
+		056C510421F9291800074031 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C510321F9291800074031 /* NetworkHelper.swift */; };
 		57EE008E21F15D7000D76A6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE008D21F15D7000D76A6E /* AppDelegate.swift */; };
 		57EE009021F15D7000D76A6E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE008F21F15D7000D76A6E /* ViewController.swift */; };
 		57EE009321F15D7100D76A6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57EE009121F15D7100D76A6E /* Main.storyboard */; };
@@ -51,6 +53,8 @@
 		05014AC321F69F2A008C499E /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
 		05014AC521F7DBFF008C499E /* pixabayAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pixabayAPIClient.swift; sourceTree = "<group>"; };
 		05014AC721F7DD2D008C499E /* PixabayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixabayModel.swift; sourceTree = "<group>"; };
+		056C510121F9227B00074031 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		056C510321F9291800074031 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		57EE008A21F15D7000D76A6E /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57EE008D21F15D7000D76A6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57EE008F21F15D7000D76A6E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +101,8 @@
 			isa = PBXGroup;
 			children = (
 				05014AB421F65B8A008C499E /* AppError.swift */,
+				056C510321F9291800074031 /* NetworkHelper.swift */,
+				056C510121F9227B00074031 /* ImageHelper.swift */,
 				05014AC521F7DBFF008C499E /* pixabayAPIClient.swift */,
 				05014AB721F65BE2008C499E /* WeatherAPIClient.swift */,
 				05014ABD21F68B41008C499E /* String+Extension.swift */,
@@ -286,11 +292,13 @@
 				05014AAC21F2C6B4008C499E /* WeatherDetailViewController.swift in Sources */,
 				05014ABE21F68B41008C499E /* String+Extension.swift in Sources */,
 				05014AAE21F2C6CF008C499E /* FavoritesViewController.swift in Sources */,
+				056C510421F9291800074031 /* NetworkHelper.swift in Sources */,
 				57EE008E21F15D7000D76A6E /* AppDelegate.swift in Sources */,
 				05014AB321F3FF5E008C499E /* WeatherModel.swift in Sources */,
 				05014ABC21F6868B008C499E /* CacheImageView.swift in Sources */,
 				05014AC421F69F2A008C499E /* WeatherCollectionViewCell.swift in Sources */,
 				05014ABA21F65FDD008C499E /* SecretKeys.swift in Sources */,
+				056C510221F9227B00074031 /* ImageHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +461,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9DV268QUJB;
 				INFOPLIST_FILE = WeatherApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -471,6 +480,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9DV268QUJB;
 				INFOPLIST_FILE = WeatherApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (

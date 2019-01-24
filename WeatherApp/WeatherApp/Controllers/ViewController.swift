@@ -13,6 +13,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var weatherCV: UICollectionView!
     @IBOutlet weak var searchButton: UITextField!
     
+    
+    public var cityName = ""
+    //var location = String()
+    
     public var forecast = [Periods](){
         didSet {
             DispatchQueue.main.async {
@@ -20,14 +24,15 @@ class ViewController: UIViewController {
             }
         }
     }
-    var location = String()
+    
+    
     private var imagePickerVC: UIImagePickerController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchButton.delegate = self
         weatherCV.dataSource = self
         weatherCV.delegate = self
+        searchButton.delegate = self
         print(DataPersistenceManager.documentsDirectory())
         
         WeatherAPIClient.searchWeather(zipcode: "11229", isZipcode: true) { (appError, periods) in
@@ -40,11 +45,8 @@ class ViewController: UIViewController {
             }
         }
     }
-//    override func viewWillAppear(_ animated: Bool) {
-//        weatherCV.reloadData()
-//    }
     
-    @IBAction func searchButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "FavoritesViewController") as! FavoritesViewController
         present(vc, animated: true, completion: nil)
@@ -52,11 +54,12 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destination = segue.destination as? WeatherDetailViewController
             else { return }
-       guard let cell = sender as? WeatherCollectionViewCell
-        else { return }
+        guard let cell = sender as? WeatherCollectionViewCell
+            else { return }
         guard let indexpath = weatherCV.indexPath(for: cell) else{return}
         let forecast = self.forecast[indexpath.row]
         destination.dayInfo = forecast
+        destination.cityName = self.cityName
         
     }
     
@@ -68,13 +71,12 @@ extension ViewController: UICollectionViewDataSource {
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = weatherCV.dequeueReusableCell(withReuseIdentifier: "weatherCell", for: indexPath) as? WeatherCollectionViewCell else { return UICollectionViewCell()}
- var day = forecast[indexPath.row]
+        let day = forecast[indexPath.row]
+        forecastCity.text = "Weather forecast for \(cityName)"
         cell.dayLabel.text = "\(day.validTime)"
         cell.imageSet.image = UIImage(named: day.icon)
         cell.highLabel.text = "High:\(day.maxTempF) °F"
         cell.lowLabel.text = "Low:\(day.minTempF) °F"
-        
-        
         
         return cell
     }
@@ -88,27 +90,33 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 
 extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let keyword = textField.text {
-            ZipCodeHelper.getLocationName(from: keyword) { (error, string) in
+        guard let text = textField.text else {return true}
+            ZipCodeHelper.getLocationName(from: text) { (error, cityName) in
                 if let error = error {
                     print(error)
-                } else if let string = string {
-                    self.location = string
-                    self.forecastCity.text = "Forecast for \(self.location)"
-                    print(self.location)
-                    WeatherAPIClient.searchWeather(zipcode: keyword, isZipcode: true, completionHandler: { (appError, periods) in
-                        if let appError = appError {
-                            print(appError)
-                        } else if let periods = periods {
-                            self.forecast = periods
-                        }
-                    })
+                } else if let cityName = cityName {
+                    self.cityName = cityName
                 }
-                
+                WeatherAPIClient.searchWeather(zipcode: text, isZipcode: true, completionHandler: { (error, periods) in
+                    if let periods = periods {
+                        self.forecast = periods
+                    }
+                })
             }
-    
+            textField.resignFirstResponder()
+            return true
         }
-        return true
-    }
-    
+        
+        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+                guard let destination = segue.destination as? WeatherDetailViewController
+                    else { return }
+                guard let cell = sender as? WeatherCollectionViewCell
+                    else { return }
+                guard let indexpath = weatherCV.indexPath(for: cell) else{return}
+                let forecast = self.forecast[indexpath.row]
+                destination.dayInfo = forecast
+                destination.cityName = self.cityName
+            }
+        }
 }
