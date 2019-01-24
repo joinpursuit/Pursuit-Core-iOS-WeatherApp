@@ -45,6 +45,7 @@ class MainViewController: UIViewController {
                 self.location = string
                 self.mainLocationLabel.text = "Weather forcast for \(self.location)"
                 WeatherAPIClient.getWeather(keyword: keyword) { (error, data) in
+                    UserDefaults.standard.set(keyword, forKey: "Search Settings")
                     if let error = error {
                         print("My code is trash bro \(error)")
                     } else if let data = data {
@@ -92,7 +93,6 @@ extension MainViewController: UICollectionViewDelegate {
 extension MainViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let keyword = textField.text {
-            UserDefaults.standard.set(keyword, forKey: "Search Settings")
             zipWeather(keyword: keyword)
             textField.resignFirstResponder()
             return true

@@ -17,8 +17,9 @@ final class WeatherAPIClient{
             } else if let data = data {
                 do {
                     var weather = try JSONDecoder().decode(Weather.self, from: data)
-                    
-                    completionHandler(nil,weather.response[0].periods)
+                    if weather.success {
+                        completionHandler(nil,weather.response[0].periods)
+                    }
                 } catch {
                     completionHandler(AppError.decodingError(error), nil)
                 }
@@ -33,8 +34,12 @@ final class WeatherAPIClient{
             } else if let data = data {
                 do {
                     let hits = try JSONDecoder().decode(Hits.self, from: data)
-                    let randNum = Int.random(in: 0...hits.hits.count - 1)
-                    completionHandler(nil,hits.hits[randNum].largeImageURL)
+                    if hits.totalHits > 0 {
+                        let randNum = Int.random(in: 0...hits.hits.count - 1)
+                        completionHandler(nil,hits.hits[randNum].largeImageURL)
+                    } else {
+                        print("No Images")
+                    }
                 } catch {
                     completionHandler(AppError.decodingError(error), nil)
                 }

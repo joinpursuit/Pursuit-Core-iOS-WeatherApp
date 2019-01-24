@@ -26,6 +26,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var saveButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.detailImageView.image = UIImage(named: self.weatherDetail.icon)
         updateImage()
         detailLocationDate.text = "Weather for \(locationName!) on \(WeatherDateHelper.formatISOToDate(dateString: weatherDetail.dateTimeISO))"
         detailWeatherLocation.text = "\(weatherDetail.weather)"

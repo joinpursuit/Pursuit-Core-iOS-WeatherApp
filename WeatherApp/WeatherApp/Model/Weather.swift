@@ -10,6 +10,7 @@ import Foundation
 
 struct Weather: Codable {
     var response: [Periods]
+    let success: Bool
 }
 
 struct Periods: Codable {

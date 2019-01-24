@@ -9,6 +9,7 @@
 import Foundation
 
 struct Hits: Codable {
+    let totalHits: Int
     let hits: [Images]
 }
 
