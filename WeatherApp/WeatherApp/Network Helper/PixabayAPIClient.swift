@@ -12,7 +12,7 @@ final class PixabayAPIClient {
     private init() {}
     
     static func getImageURLString(ofLocation: String, completionHandler: @escaping (AppError?, String?) -> Void) {
-        let endpointURLString = "https://pixabay.com/api/?key=\(SecretKeys.pixabayAPIKey)&q=\(ofLocation.replacingOccurrences(of: " ", with: ""))"
+        let endpointURLString = "https://pixabay.com/api/?key=\(SecretKeys.pixabayAPIKey)&q=\(ofLocation.replacingOccurrences(of: " ", with: "+"))"
         guard let url = URL(string: endpointURLString) else {
             completionHandler(AppError.badURL(endpointURLString), nil)
             return
