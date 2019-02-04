@@ -150,7 +150,7 @@ extension MainWeatherViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     override func size(forChildContentContainer container: UIContentContainer, withParentContainerSize parentSize: CGSize) -> CGSize {
-        return CGSize(width: 150, height: 200)
+        return CGSize(width: 150, height: 300)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
