@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E3C92F4220F8DC4006FEA3F /* FavoriteImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3C92F3220F8DC4006FEA3F /* FavoriteImageModel.swift */; };
+		2E3C9337221220FF006FEA3F /* ImageAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3C9336221220FF006FEA3F /* ImageAPIClient.swift */; };
+		2E3C933922122386006FEA3F /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3C933822122386006FEA3F /* ImageHelper.swift */; };
+		2E3C933B221223D2006FEA3F /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3C933A221223D2006FEA3F /* NetworkHelper.swift */; };
 		2E7812A221F78BEE00E0442D /* WeatherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7812A121F78BEE00E0442D /* WeatherDetailViewController.swift */; };
 		2E7812A421F78C0300E0442D /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7812A321F78C0300E0442D /* FavoriteViewController.swift */; };
 		2E7812A721F78C5500E0442D /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7812A621F78C5500E0442D /* AppError.swift */; };
@@ -39,6 +43,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E3C92F3220F8DC4006FEA3F /* FavoriteImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteImageModel.swift; sourceTree = "<group>"; };
+		2E3C9336221220FF006FEA3F /* ImageAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAPIClient.swift; sourceTree = "<group>"; };
+		2E3C933822122386006FEA3F /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		2E3C933A221223D2006FEA3F /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		2E7812A121F78BEE00E0442D /* WeatherDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailViewController.swift; sourceTree = "<group>"; };
 		2E7812A321F78C0300E0442D /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		2E7812A621F78C5500E0442D /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
@@ -86,6 +94,10 @@
 			isa = PBXGroup;
 			children = (
 				57EE008F21F15D7000D76A6E /* WeatherViewController.swift */,
+				2E3C92F3220F8DC4006FEA3F /* FavoriteImageModel.swift */,
+				2E3C9336221220FF006FEA3F /* ImageAPIClient.swift */,
+				2E3C933822122386006FEA3F /* ImageHelper.swift */,
+				2E3C933A221223D2006FEA3F /* NetworkHelper.swift */,
 				2E7812A121F78BEE00E0442D /* WeatherDetailViewController.swift */,
 				2E8FFC2A21F91ED50031DCB6 /* ImageModel.swift */,
 				2E7812A321F78C0300E0442D /* FavoriteViewController.swift */,
@@ -283,14 +295,18 @@
 				2E7812AB21F78CF400E0442D /* WeatherAPIClient .swift in Sources */,
 				2E7812B121F78DF800E0442D /* Weather.swift in Sources */,
 				2E7812A721F78C5500E0442D /* AppError.swift in Sources */,
+				2E3C92F4220F8DC4006FEA3F /* FavoriteImageModel.swift in Sources */,
 				2E7812BC21F7BA2100E0442D /* WeatherCell.swift in Sources */,
+				2E3C933B221223D2006FEA3F /* NetworkHelper.swift in Sources */,
 				2E7812B321F78E0400E0442D /* Favorite .swift in Sources */,
 				2E7812A421F78C0300E0442D /* FavoriteViewController.swift in Sources */,
+				2E3C933922122386006FEA3F /* ImageHelper.swift in Sources */,
 				2E7812AE21F78D4400E0442D /* CacheImageView.swift in Sources */,
 				2E7812B621F7AF8A00E0442D /* DataPersistenceManager.swift in Sources */,
 				2E7812A221F78BEE00E0442D /* WeatherDetailViewController.swift in Sources */,
 				2E7812B821F7B44900E0442D /* SecretAPIKey.swift in Sources */,
 				57EE008E21F15D7000D76A6E /* AppDelegate.swift in Sources */,
+				2E3C9337221220FF006FEA3F /* ImageAPIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

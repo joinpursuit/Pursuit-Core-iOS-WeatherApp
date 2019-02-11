@@ -8,25 +8,26 @@
 
 import Foundation
 
-extension String {
-    
-    public func formatFromISODateString(dateFormat: String) -> String {
+struct WeatherDateHelper {
+    static func formatISOToDate(dateString: String) -> String {
         let isoDateFormatter = ISO8601DateFormatter()
-        var formattedDate = self
-        if let date = isoDateFormatter.date(from: self) {
+        var formattedDate = dateString
+        if let date = isoDateFormatter.date(from: dateString) {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = dateFormat
+            dateFormatter.dateFormat = "yyyy-MM-dd"
             formattedDate = dateFormatter.string(from: date)
         }
         return formattedDate
+        
     }
-    
-    public func dateFromISODateString() -> Date {
+    static func formatISOToTime(dateString: String) -> String {
         let isoDateFormatter = ISO8601DateFormatter()
-        var date = Date()
-        if let isoDate = isoDateFormatter.date(from: self) {
-            date = isoDate
+        var formattedDate = dateString
+        if let date = isoDateFormatter.date(from: dateString) {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm:ss"
+            formattedDate = dateFormatter.string(from: date)
         }
-        return date
+        return formattedDate
     }
 }
