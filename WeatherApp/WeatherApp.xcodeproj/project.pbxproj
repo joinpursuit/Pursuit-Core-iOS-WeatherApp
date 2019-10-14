@@ -18,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4DFE465D23536D20007671E6 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		4DFE465D23536D20007671E6 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Secrets.swift; path = ../Secrets.swift; sourceTree = "<group>"; };
 		548CE04E234D33B500B5177D /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		548CE051234D33B500B5177D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		548CE053234D33B500B5177D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +41,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4DD39EA023551BCD003965D2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				548CE065234D33E600B5177D /* ZipCodeHelper.swift */,
+				4DFE465D23536D20007671E6 /* Secrets.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4DD39EA123551BD6003965D2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4DFE46602354B389007671E6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				548CE055234D33B500B5177D /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		548CE045234D33B500B5177D = {
 			isa = PBXGroup;
 			children = (
@@ -62,11 +86,11 @@
 			children = (
 				548CE051234D33B500B5177D /* AppDelegate.swift */,
 				548CE053234D33B500B5177D /* SceneDelegate.swift */,
-				548CE065234D33E600B5177D /* ZipCodeHelper.swift */,
-				548CE055234D33B500B5177D /* ViewController.swift */,
-				4DFE465D23536D20007671E6 /* Secrets.swift */,
-				548CE057234D33B500B5177D /* Main.storyboard */,
 				548CE05C234D33B600B5177D /* LaunchScreen.storyboard */,
+				4DD39EA123551BD6003965D2 /* Views */,
+				4DD39EA023551BCD003965D2 /* Models */,
+				4DFE46602354B389007671E6 /* Controllers */,
+				548CE057234D33B500B5177D /* Main.storyboard */,
 				548CE067234D340700B5177D /* Assets.xcassets */,
 				548CE05F234D33B600B5177D /* Info.plist */,
 			);
