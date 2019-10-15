@@ -43,6 +43,7 @@ class WeatherAppTests: XCTestCase {
                 lat = info.lat
             }
         }
+        //XCTAssertTrue(false, "\(lat)")
     }
 
 }
