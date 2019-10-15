@@ -34,6 +34,22 @@ class ViewController: UIViewController {
         collection.backgroundColor = #colorLiteral(red: 0.6798086851, green: 0.9229053351, blue: 0.9803921569, alpha: 1)
         return collection
     }()
+    var zipTextField: UITextField = {
+        let textField = UITextField()
+        textField.textAlignment = .center
+        textField.placeholder = "Zip Code"
+        textField.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        textField.keyboardType = .asciiCapableNumberPad
+        return textField
+    }()
+    
+    var enterZipLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .black
+        label.text = "Enter a Zipcode"
+        return label
+    }()
     
     //MARK: - Functions
     private func loadData() {
@@ -61,6 +77,7 @@ class ViewController: UIViewController {
     private func setupUI() {
         setupWeatherLabel()
         setupWeatherCollectionView()
+        setupZipTextField()
     }
     private func setupWeatherLabel() {
         view.addSubview(weatherLabel)
@@ -79,6 +96,23 @@ class ViewController: UIViewController {
             weatherCollectionView.heightAnchor.constraint(equalToConstant: weatherCollectionView.frame.height),
             weatherCollectionView.widthAnchor.constraint(equalToConstant: weatherCollectionView.frame.width)
         ])
+    }
+    private func setupZipTextField() {
+        view.addSubview(zipTextField)
+        zipTextField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            zipTextField.topAnchor.constraint(equalTo: weatherCollectionView.bottomAnchor, constant: 30),
+            zipTextField.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
+        ])
+        setupZipCodeLabel()
+        zipTextField.widthAnchor.constraint(equalTo: enterZipLabel.widthAnchor).isActive = true
+    }
+    private func setupZipCodeLabel() {
+        view.addSubview(enterZipLabel)
+        enterZipLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            enterZipLabel.topAnchor.constraint(equalTo: zipTextField.bottomAnchor, constant: 20),
+            enterZipLabel.centerXAnchor.constraint(equalTo: zipTextField.centerXAnchor)])
     }
     
     //MARK: - LifeCycle
