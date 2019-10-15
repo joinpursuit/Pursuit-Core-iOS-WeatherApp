@@ -9,9 +9,17 @@
 import UIKit
 
 class ViewController: UIViewController {
+    //MARK: Properties
     var weatherArray = [DataWrapper]() {
         didSet {
             self.weatherCollectionView.reloadData()
+        }
+    }
+    var zipSearch: String? = nil {
+        didSet {
+            guard let text = zipSearch else {return}
+            guard text != "" else {return}
+            loadData(search: text)
         }
     }
 
@@ -34,12 +42,13 @@ class ViewController: UIViewController {
         collection.backgroundColor = #colorLiteral(red: 0.6798086851, green: 0.9229053351, blue: 0.9803921569, alpha: 1)
         return collection
     }()
-    var zipTextField: UITextField = {
+    lazy var zipTextField: UITextField = {
         let textField = UITextField()
         textField.textAlignment = .center
         textField.placeholder = "Zip Code"
         textField.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-        textField.keyboardType = .asciiCapableNumberPad
+        textField.keyboardType = .numbersAndPunctuation
+        textField.delegate = self
         return textField
     }()
     
@@ -52,12 +61,13 @@ class ViewController: UIViewController {
     }()
     
     //MARK: - Functions
-    private func loadData() {
-        ZipCodeHelper.getLatLongName(fromZipCode: "11102") { (result) in
+    private func loadData(search: String) {
+        ZipCodeHelper.getLatLongName(fromZipCode: search) { (result) in
             switch result {
             case .failure(let error):
                 print(error)
             case .success(let info):
+                self.weatherLabel.text = "Weather Forcast for \(info.name)"
                 WeatherAPIHelper.manager.getDailyWeather(info: (lat: info.lat, long: info.long)) { (resultFromAPI) in
                     switch resultFromAPI {
                     case .failure(let error):
@@ -120,10 +130,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupUI()
-        loadData()
     }
 }
 
+//MARK: - Extension - CollectionView
 extension ViewController: UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return weatherArray.count
@@ -137,7 +147,7 @@ extension ViewController: UICollectionViewDelegate,UICollectionViewDataSource {
         cell.highLabel.text = "High: \(dailyWeather.temperatureHigh)"
         cell.lowLabel.text = "Low: \(dailyWeather.temperatureLow)"
         cell.weatherImage.image = getImageFrom(forcast: dailyWeather.icon)
-        cell.dateLabel.text = "date"
+        cell.dateLabel.text = dailyWeather.convertTimeToDate(time: dailyWeather.time)
         return cell
     }
 }
@@ -150,5 +160,12 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 200, height: 200)
+    }
+}
+//MARK: - Extention - TextField
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        zipSearch = textField.text
+        return true
     }
 }

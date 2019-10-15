@@ -21,4 +21,14 @@ struct DataWrapper: Codable {
     let icon: String
     let temperatureHigh: Double
     let temperatureLow: Double
+    let sunriseTime: Int
+    let sunsetTime: Int
+    let windSpeed: Double
+    let precipIntensityMax: Double
+    
+    func convertTimeToDate(time: Int) -> String {
+        let date = Date(timeIntervalSince1970: Double(time))
+        let dateComponents = date.description.components(separatedBy: " ")
+        return dateComponents[0]
+    }
 }
