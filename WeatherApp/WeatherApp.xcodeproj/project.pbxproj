@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4D792319235668D6003EB75D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D792318235668D6003EB75D /* DetailViewController.swift */; };
+		4D79231B23566DEF003EB75D /* PixabayAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D79231A23566DEF003EB75D /* PixabayAPIHelper.swift */; };
+		4D79231D23566E29003EB75D /* Pixabay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D79231C23566E29003EB75D /* Pixabay.swift */; };
+		4D79231F23566E55003EB75D /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D79231E23566E55003EB75D /* ImageHelper.swift */; };
+		4D7923212356708D003EB75D /* WeatherStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7923202356708D003EB75D /* WeatherStackView.swift */; };
 		4DD39ECB23555F21003965D2 /* WeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD39ECA23555F21003965D2 /* WeatherAppTests.swift */; };
 		4DD877F023555FC1007D4579 /* ZipCodeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548CE065234D33E600B5177D /* ZipCodeHelper.swift */; };
 		4DFE465E23536D20007671E6 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFE465D23536D20007671E6 /* Secrets.swift */; };
@@ -38,6 +42,10 @@
 
 /* Begin PBXFileReference section */
 		4D792318235668D6003EB75D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		4D79231A23566DEF003EB75D /* PixabayAPIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixabayAPIHelper.swift; sourceTree = "<group>"; };
+		4D79231C23566E29003EB75D /* Pixabay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixabay.swift; sourceTree = "<group>"; };
+		4D79231E23566E55003EB75D /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		4D7923202356708D003EB75D /* WeatherStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherStackView.swift; sourceTree = "<group>"; };
 		4DD39EC823555F21003965D2 /* WeatherAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DD39ECA23555F21003965D2 /* WeatherAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppTests.swift; sourceTree = "<group>"; };
 		4DD39ECC23555F21003965D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -85,8 +93,11 @@
 				4DFEA4E6235561C70079D5CD /* forcastToImage.swift */,
 				4DFEA4E8235563DD0079D5CD /* NetworkHelper.swift */,
 				4DFEA4EA235563ED0079D5CD /* AppError.swift */,
+				4D79231E23566E55003EB75D /* ImageHelper.swift */,
 				4DFEA4EC2355C8820079D5CD /* Weather.swift */,
+				4D79231C23566E29003EB75D /* Pixabay.swift */,
 				4DFEA4EE2355C98F0079D5CD /* WeatherAPIHelper.swift */,
+				4D79231A23566DEF003EB75D /* PixabayAPIHelper.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -95,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				4DFEA4F02355CCA10079D5CD /* ForcastCell.swift */,
+				4D7923202356708D003EB75D /* WeatherStackView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -263,13 +275,17 @@
 			files = (
 				4DFEA4E9235563DD0079D5CD /* NetworkHelper.swift in Sources */,
 				548CE066234D33E600B5177D /* ZipCodeHelper.swift in Sources */,
+				4D7923212356708D003EB75D /* WeatherStackView.swift in Sources */,
 				4DFE465E23536D20007671E6 /* Secrets.swift in Sources */,
 				4D792319235668D6003EB75D /* DetailViewController.swift in Sources */,
 				4DFEA4EF2355C98F0079D5CD /* WeatherAPIHelper.swift in Sources */,
 				4DFEA4F12355CCA10079D5CD /* ForcastCell.swift in Sources */,
 				548CE056234D33B500B5177D /* ViewController.swift in Sources */,
 				4DFEA4ED2355C8820079D5CD /* Weather.swift in Sources */,
+				4D79231B23566DEF003EB75D /* PixabayAPIHelper.swift in Sources */,
 				4DFEA4EB235563ED0079D5CD /* AppError.swift in Sources */,
+				4D79231D23566E29003EB75D /* Pixabay.swift in Sources */,
+				4D79231F23566E55003EB75D /* ImageHelper.swift in Sources */,
 				4DFEA4E7235561C70079D5CD /* forcastToImage.swift in Sources */,
 				548CE052234D33B500B5177D /* AppDelegate.swift in Sources */,
 				548CE054234D33B500B5177D /* SceneDelegate.swift in Sources */,
