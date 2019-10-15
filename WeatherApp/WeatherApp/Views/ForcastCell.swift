@@ -39,9 +39,9 @@ class ForcastCell: UICollectionViewCell {
         contentView.addSubview(weatherImage)
         weatherImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            weatherImage.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 3),
-            weatherImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            weatherImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+            weatherImage.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 10),
+            weatherImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 20),
+            weatherImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -20)
         ])
     }
     func setupHighLabel() {
@@ -51,8 +51,8 @@ class ForcastCell: UICollectionViewCell {
         highLabel.textAlignment = .center
         NSLayoutConstraint.activate([
             highLabel.topAnchor.constraint(equalTo: weatherImage.bottomAnchor, constant: 3),
-            highLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            highLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+            highLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 10),
+            highLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -10)
         ])
     }
     func setupLowLabel() {
@@ -69,9 +69,12 @@ class ForcastCell: UICollectionViewCell {
     }
     
     override init(frame: CGRect) {
-        super.init(frame: frame)
+        super.init(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        self.translatesAutoresizingMaskIntoConstraints = false
         setupUI()
         contentView.backgroundColor = .white
+        contentView.layer.cornerRadius = 20
     }
     
     required init?(coder: NSCoder) {
