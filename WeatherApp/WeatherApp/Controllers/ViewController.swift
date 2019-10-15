@@ -15,6 +15,7 @@ class ViewController: UIViewController {
             self.weatherCollectionView.reloadData()
         }
     }
+    var name: String?
     var zipSearch: String? = nil {
         didSet {
             guard let text = zipSearch else {return}
@@ -68,6 +69,7 @@ class ViewController: UIViewController {
                 print(error)
             case .success(let info):
                 self.weatherLabel.text = "Weather Forcast for \(info.name)"
+                self.name = info.name
                 WeatherAPIHelper.manager.getDailyWeather(info: (lat: info.lat, long: info.long)) { (resultFromAPI) in
                     switch resultFromAPI {
                     case .failure(let error):
@@ -144,11 +146,18 @@ extension ViewController: UICollectionViewDelegate,UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         let dailyWeather = weatherArray[indexPath.row]
-        cell.highLabel.text = "High: \(dailyWeather.temperatureHigh)"
-        cell.lowLabel.text = "Low: \(dailyWeather.temperatureLow)"
+        cell.highLabel.text = "High: \(dailyWeather.temperatureHigh)\u{00B0}F"
+        cell.lowLabel.text = "Low: \(dailyWeather.temperatureLow)\u{00B0}F"
         cell.weatherImage.image = getImageFrom(forcast: dailyWeather.icon)
         cell.dateLabel.text = dailyWeather.convertTimeToDate(time: dailyWeather.time)
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let dailyWeather = weatherArray[indexPath.row]
+        let detailVC = DetailViewController()
+        detailVC.dailyWeather = dailyWeather
+        detailVC.name = name
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 extension ViewController: UICollectionViewDelegateFlowLayout {
