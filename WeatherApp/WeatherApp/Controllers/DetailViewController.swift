@@ -21,17 +21,26 @@ class DetailViewController: UIViewController {
         label.textAlignment = .center
         return label
     }()
+    lazy var locationImage: UIImageView = {
+        let imageView = UIImageView()
+        if let dailyWeather = self.dailyWeather {
+            imageView.image = getImageFrom(forcast: dailyWeather.icon)
+        }
+        return imageView
+    }()
     var detailStackView = WeatherStackView()
     
     //MARK: - Constraints
     private func setupDetailUI() {
         setupStackView()
         setupWeatherLabel()
+        putInfoIntoLabels()
+        setupLocationImage()
     }
     private func setupStackView() {
         view.addSubview(detailStackView)
         NSLayoutConstraint.activate([
-            detailStackView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            detailStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -15),
             detailStackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)])
     }
     private func setupWeatherLabel() {
@@ -40,7 +49,31 @@ class DetailViewController: UIViewController {
         NSLayoutConstraint.activate([
             weatherLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 15),
             weatherLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            weatherLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)])
+            weatherLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+        ])
+        view.layoutIfNeeded()
+        weatherLabel.heightAnchor.constraint(equalToConstant: weatherLabel.frame.height).isActive = true
+    }
+    private func setupLocationImage() {
+        view.addSubview(locationImage)
+        locationImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            locationImage.topAnchor.constraint(equalTo: weatherLabel.bottomAnchor, constant: 20),
+            locationImage.bottomAnchor.constraint(equalTo: detailStackView.topAnchor, constant: -20),
+            locationImage.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            locationImage.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)])
+    }
+    
+    //MARK: - Functions
+    private func putInfoIntoLabels() {
+        guard let dailyWeather = dailyWeather else {return}
+        detailStackView.summaryLabel.text = dailyWeather.summary
+        detailStackView.highLabel.text = "High: \(dailyWeather.temperatureHigh)\u{00B0}F"
+        detailStackView.lowLabel.text = "Low: \(dailyWeather.temperatureLow)\u{00B0}F"
+        detailStackView.sunriseLabel.text = "Sunrise: \(dailyWeather.convertSunTime(time: dailyWeather.sunriseTime))"
+        detailStackView.sunsetLabel.text = "Sunset: \(dailyWeather.convertSunTime(time: dailyWeather.sunsetTime))"
+        detailStackView.windSpeedLabel.text = "WindSpeed: \(dailyWeather.windSpeed) MPH"
+        detailStackView.precipitationLabel.text = "Inches of Precipitation: \(dailyWeather.precipIntensityMax)"
     }
 
     override func viewDidLoad() {
