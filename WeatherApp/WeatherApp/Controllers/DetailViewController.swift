@@ -32,11 +32,6 @@ class DetailViewController: UIViewController {
         return imageView
     }()
     lazy var saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(savePressed))
-    lazy var saveButtons: UIBarButtonItem = {
-        let save = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.save, target: self, action: #selector(savePressed))
-        self.navigationItem.setRightBarButton(save, animated: true)
-        return save
-    }()
     var detailStackView = WeatherStackView()
     
     
