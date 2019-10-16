@@ -24,7 +24,9 @@ class PixabayAPIHelper {
                 do {
                     let pixabayWrapper = try JSONDecoder().decode(PhotoWrapper.self, from: data)
                     if pixabayWrapper.hits.count > 0 {
-                    completionHandler(.success(pixabayWrapper.hits[0].webformatURL))
+                        if let randomUrl = pixabayWrapper.hits.randomElement() {
+                            completionHandler(.success(randomUrl.webformatURL))
+                        }
                     } else {
                         completionHandler(.failure(.badURL))
                     }

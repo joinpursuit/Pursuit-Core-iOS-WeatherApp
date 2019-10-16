@@ -52,6 +52,9 @@ class FavViewController: UIViewController {
         setupFavUI()
         getFavs()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        getFavs()
+    }
 
 }
 
@@ -72,5 +75,8 @@ extension FavViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 414
+        
+    }
 }
