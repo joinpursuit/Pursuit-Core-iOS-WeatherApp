@@ -29,7 +29,15 @@ class DetailViewController: UIViewController {
         imageView.contentMode = .center
         return imageView
     }()
+    lazy var saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(savePressed))
+    lazy var saveButtons: UIBarButtonItem = {
+        let save = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.save, target: self, action: #selector(savePressed))
+        self.navigationItem.setRightBarButton(save, animated: true)
+        return save
+    }()
     var detailStackView = WeatherStackView()
+    
+    
     
     //MARK: - Constraints
     private func setupDetailUI() {
@@ -37,6 +45,7 @@ class DetailViewController: UIViewController {
         setupWeatherLabel()
         putInfoIntoLabels()
         setupLocationImage()
+        setupSaveButton()
     }
     private func setupStackView() {
         view.addSubview(detailStackView)
@@ -63,6 +72,9 @@ class DetailViewController: UIViewController {
             locationImage.bottomAnchor.constraint(equalTo: detailStackView.topAnchor, constant: -20),
             locationImage.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             locationImage.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)])
+    }
+    func setupSaveButton() {
+        self.navigationItem.rightBarButtonItem = saveButton
     }
     
     //MARK: - Functions
@@ -97,7 +109,24 @@ class DetailViewController: UIViewController {
             }
         }
     }
+    @objc func savePressed() {
+        if let data = locationImage.image?.pngData() {
+            do {
+               try SavedPicPersistance.manager.save(pictureData: data)
+                makeAlert()
+            } catch {
+                print(error)
+            }
+        }
+    }
+    private func makeAlert() {
+        let alert = UIAlertController(title: "Saved", message: "saved to favorites", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
+    }
 
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white

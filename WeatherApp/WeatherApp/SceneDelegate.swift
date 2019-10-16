@@ -23,7 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navVC = UINavigationController(rootViewController: vc)
         let tabBarVC = UITabBarController()
         tabBarVC.viewControllers = [navVC]
-        navVC.tabBarItem.title = "Weather"
+        let searchTabItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        navVC.tabBarItem = searchTabItem
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene
         window?.rootViewController = tabBarVC

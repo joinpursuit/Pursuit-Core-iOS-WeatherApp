@@ -23,7 +23,11 @@ class PixabayAPIHelper {
             case .success(let data):
                 do {
                     let pixabayWrapper = try JSONDecoder().decode(PhotoWrapper.self, from: data)
+                    if pixabayWrapper.hits.count > 0 {
                     completionHandler(.success(pixabayWrapper.hits[0].webformatURL))
+                    } else {
+                        completionHandler(.failure(.badURL))
+                    }
                 } catch {
                     completionHandler(.failure(.couldNotParseJSON(rawError: error)))
                 }
