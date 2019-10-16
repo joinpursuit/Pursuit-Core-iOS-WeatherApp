@@ -20,11 +20,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let vc = ViewController()
+        let favVC = FavViewController()
         let navVC = UINavigationController(rootViewController: vc)
         let tabBarVC = UITabBarController()
-        tabBarVC.viewControllers = [navVC]
+        tabBarVC.viewControllers = [navVC,favVC]
         let searchTabItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        let favTabItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
         navVC.tabBarItem = searchTabItem
+        favVC.tabBarItem = favTabItem
+        navVC.title = ";3c"
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene
         window?.rootViewController = tabBarVC

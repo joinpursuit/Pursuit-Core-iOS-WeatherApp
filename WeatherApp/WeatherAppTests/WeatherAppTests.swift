@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import CoreLocation
 @testable import WeatherApp
 class WeatherAppTests: XCTestCase {
 
@@ -40,7 +41,10 @@ class WeatherAppTests: XCTestCase {
             case .failure(let error):
                 XCTAssertTrue(false, "got error: \(error)")
             case .success(let info):
-                lat = info.lat
+                DispatchQueue.main.async {
+                    lat = info.lat
+                }
+                
             }
         }
         //XCTAssertTrue(false, "\(lat)")
