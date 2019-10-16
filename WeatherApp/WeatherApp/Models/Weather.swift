@@ -33,9 +33,9 @@ struct DataWrapper: Codable {
     }
     func convertSunTime(time: Int) -> String  {
         let date = Date(timeIntervalSince1970: Double(time))
-        print(date)
+        //print(date)
         let dateComponents = date.description.components(separatedBy: " ")
-        print(dateComponents)
+        //print(dateComponents)
         let oldDateTime = DateFormatter()
         oldDateTime.dateFormat = "HH:mm:ss"
         let newDateTime = DateFormatter()

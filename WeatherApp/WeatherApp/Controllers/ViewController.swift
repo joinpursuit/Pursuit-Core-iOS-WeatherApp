@@ -84,6 +84,12 @@ class ViewController: UIViewController {
             }
         }
     }
+    private func setUserDefaults() {
+        if let pastSearch = UserDefaultWrapper.manager.getZipCode() {
+            zipTextField.text = pastSearch
+            loadData(search: pastSearch)
+        }
+    }
     
     //MARK: - Setup Constraints
     private func setupUI() {
@@ -132,6 +138,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupUI()
+        setUserDefaults()
     }
 }
 
@@ -175,6 +182,9 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         zipSearch = textField.text
+        if let zipSearch = zipSearch {
+            UserDefaultWrapper.manager.set(value: zipSearch)
+        }
         return true
     }
 }
