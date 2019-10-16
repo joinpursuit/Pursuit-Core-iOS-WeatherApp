@@ -24,8 +24,10 @@ class DetailViewController: UIViewController {
     lazy var locationImage: UIImageView = {
         let imageView = UIImageView()
         if let dailyWeather = self.dailyWeather {
+            imageView.backgroundColor = #colorLiteral(red: 0.6798086851, green: 0.9229053351, blue: 0.9803921569, alpha: 1)
             imageView.image = getImageFrom(forcast: dailyWeather.icon)
         }
+        
         imageView.contentMode = .center
         return imageView
     }()
@@ -101,8 +103,10 @@ class DetailViewController: UIViewController {
                         print(error)
                     case .success(let image):
                         DispatchQueue.main.async {
-                            self.locationImage.contentMode = .scaleToFill
-                            self.locationImage.image = image
+                            UIView.transition(with: self.locationImage, duration: 1, options: [.transitionCurlUp,.curveEaseIn], animations: {
+                                self.locationImage.contentMode = .scaleToFill
+                                self.locationImage.image = image
+                            }, completion: nil)
                         }
                     }
                 }
