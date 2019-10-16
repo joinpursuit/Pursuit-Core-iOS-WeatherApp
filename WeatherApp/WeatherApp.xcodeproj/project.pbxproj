@@ -19,6 +19,8 @@
 		4DD877F023555FC1007D4579 /* ZipCodeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548CE065234D33E600B5177D /* ZipCodeHelper.swift */; };
 		4DEBC0212357549A00424B40 /* FavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEBC0202357549A00424B40 /* FavViewController.swift */; };
 		4DEBC0232357565200424B40 /* FavTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEBC0222357565200424B40 /* FavTableViewCell.swift */; };
+		4DEBC024235778D700424B40 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFEA4EC2355C8820079D5CD /* Weather.swift */; };
+		4DEBC02523577E5300424B40 /* forcastToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFEA4E6235561C70079D5CD /* forcastToImage.swift */; };
 		4DFE465E23536D20007671E6 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFE465D23536D20007671E6 /* Secrets.swift */; };
 		4DFEA4E7235561C70079D5CD /* forcastToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFEA4E6235561C70079D5CD /* forcastToImage.swift */; };
 		4DFEA4E9235563DD0079D5CD /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFEA4E8235563DD0079D5CD /* NetworkHelper.swift */; };
@@ -288,7 +290,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DD877F023555FC1007D4579 /* ZipCodeHelper.swift in Sources */,
+				4DEBC024235778D700424B40 /* Weather.swift in Sources */,
 				4DD39ECB23555F21003965D2 /* WeatherAppTests.swift in Sources */,
+				4DEBC02523577E5300424B40 /* forcastToImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

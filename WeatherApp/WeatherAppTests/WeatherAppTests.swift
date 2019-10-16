@@ -49,5 +49,28 @@ class WeatherAppTests: XCTestCase {
         }
         //XCTAssertTrue(false, "\(lat)")
     }
+    func testDataWrapper() {
+        let testSample = DataWrapper(time: 1571198400, summary: "Heavy rain starting in the afternoon.", icon: "rain", temperatureHigh: 68.62, temperatureLow: 48.94, sunriseTime: 1571224144, sunsetTime: 1571264140, windSpeed: 10.77, precipIntensityMax: 0.5187)
+        XCTAssertTrue(testSample.icon == "rain", "was expecting 'rain' but got \(testSample.icon)")
+    }
+    func testDateConverter() {
+        let testSample = DataWrapper(time: 1571198400, summary: "Heavy rain starting in the afternoon.", icon: "rain", temperatureHigh: 68.62, temperatureLow: 48.94, sunriseTime: 1571224144, sunsetTime: 1571264140, windSpeed: 10.77, precipIntensityMax: 0.5187)
+        
+        let testdate = testSample.convertTimeToDate(time: testSample.time)
+        let testSunrise = testSample.convertSunTime(time: testSample.sunriseTime)
+        let testSunset = testSample.convertSunTime(time: testSample.sunsetTime)
+        
+        let actual = "2019-10-16"
+        let actualSunrise = "11:09 AM"
+        let actualSunset = "10:15 PM"
+        
+        XCTAssertTrue(testdate == actual, "was expecting '2019-10-16' but got \(testdate)")
+        XCTAssertTrue(testSunrise == actualSunrise, "was expecting '11:09 AM' but got \(testSunrise)")
+        XCTAssertTrue(testSunset == actualSunset, "was expecting '11:09 AM' but got \(testSunset)")
+    }
+    func testImageFromForcast() {
+        let picForRain = getImageFrom(forcast: "rain")
+        XCTAssertTrue(picForRain == #imageLiteral(resourceName: "rainn"), "did not get right pic")
+    }
 
 }
