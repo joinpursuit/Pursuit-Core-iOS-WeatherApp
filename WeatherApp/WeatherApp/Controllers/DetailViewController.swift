@@ -26,6 +26,7 @@ class DetailViewController: UIViewController {
         if let dailyWeather = self.dailyWeather {
             imageView.image = getImageFrom(forcast: dailyWeather.icon)
         }
+        imageView.contentMode = .center
         return imageView
     }()
     var detailStackView = WeatherStackView()
@@ -75,11 +76,33 @@ class DetailViewController: UIViewController {
         detailStackView.windSpeedLabel.text = "WindSpeed: \(dailyWeather.windSpeed) MPH"
         detailStackView.precipitationLabel.text = "Inches of Precipitation: \(dailyWeather.precipIntensityMax)"
     }
+    private func loadImage() {
+        guard let name = name else {return}
+        PixabayAPIHelper.manager.getOnePictureUrl(nameOfPlace: name) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let urlString):
+                ImageHelper.shared.fetchImage(urlString: urlString) { (resultFromImageHelper) in
+                    switch resultFromImageHelper {
+                    case .failure(let error):
+                        print(error)
+                    case .success(let image):
+                        DispatchQueue.main.async {
+                            self.locationImage.contentMode = .scaleToFill
+                            self.locationImage.image = image
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupDetailUI()
+        loadImage()
     }
     
 
