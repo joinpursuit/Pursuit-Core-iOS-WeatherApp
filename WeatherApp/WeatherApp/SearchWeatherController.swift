@@ -12,6 +12,15 @@ class SearchWeatherController: UIViewController {
     
     private let searchWeatherView = SearchWeatherView()
     
+//    private var podcasts = [Podcast]() {
+//      didSet {
+//        // 13.
+//          DispatchQueue.main.async {
+//              self.podcastView.collectionView.reloadData()
+//          }
+//      }
+//    }
+    
     override func loadView() {
         view = searchWeatherView
     }
@@ -19,6 +28,7 @@ class SearchWeatherController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        navigationItem.title = "Weather Search"
     }
 
 }
