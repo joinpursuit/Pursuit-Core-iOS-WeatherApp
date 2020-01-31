@@ -10,9 +10,12 @@
 		0F50332123E4C1EC000E50CD /* WeatherTabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F50332023E4C1EC000E50CD /* WeatherTabBarControllerViewController.swift */; };
 		0F50332323E4C25A000E50CD /* SearchWeatherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F50332223E4C25A000E50CD /* SearchWeatherController.swift */; };
 		0F50332523E4C279000E50CD /* FavoriteImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F50332423E4C279000E50CD /* FavoriteImageController.swift */; };
+		0F50332723E4C8FD000E50CD /* SearchWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F50332623E4C8FD000E50CD /* SearchWeatherView.swift */; };
+		0F50332923E4C9AB000E50CD /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F50332823E4C9AB000E50CD /* FavoriteView.swift */; };
+		0F50332D23E4D0FC000E50CD /* WeatherCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F50332C23E4D0FC000E50CD /* WeatherCellCollectionViewCell.swift */; };
+		0F50332F23E4D120000E50CD /* WeatherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F50332E23E4D120000E50CD /* WeatherCell.xib */; };
 		548CE052234D33B500B5177D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548CE051234D33B500B5177D /* AppDelegate.swift */; };
 		548CE054234D33B500B5177D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548CE053234D33B500B5177D /* SceneDelegate.swift */; };
-		548CE056234D33B500B5177D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548CE055234D33B500B5177D /* ViewController.swift */; };
 		548CE05E234D33B600B5177D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 548CE05C234D33B600B5177D /* LaunchScreen.storyboard */; };
 		548CE066234D33E600B5177D /* ZipCodeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548CE065234D33E600B5177D /* ZipCodeHelper.swift */; };
 		548CE068234D340700B5177D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 548CE067234D340700B5177D /* Assets.xcassets */; };
@@ -22,10 +25,13 @@
 		0F50332023E4C1EC000E50CD /* WeatherTabBarControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTabBarControllerViewController.swift; sourceTree = "<group>"; };
 		0F50332223E4C25A000E50CD /* SearchWeatherController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWeatherController.swift; sourceTree = "<group>"; };
 		0F50332423E4C279000E50CD /* FavoriteImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteImageController.swift; sourceTree = "<group>"; };
+		0F50332623E4C8FD000E50CD /* SearchWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWeatherView.swift; sourceTree = "<group>"; };
+		0F50332823E4C9AB000E50CD /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
+		0F50332C23E4D0FC000E50CD /* WeatherCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		0F50332E23E4D120000E50CD /* WeatherCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherCell.xib; sourceTree = "<group>"; };
 		548CE04E234D33B500B5177D /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		548CE051234D33B500B5177D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		548CE053234D33B500B5177D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		548CE055234D33B500B5177D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		548CE05D234D33B600B5177D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		548CE05F234D33B600B5177D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		548CE065234D33E600B5177D /* ZipCodeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeHelper.swift; sourceTree = "<group>"; };
@@ -66,9 +72,12 @@
 				548CE053234D33B500B5177D /* SceneDelegate.swift */,
 				0F50332023E4C1EC000E50CD /* WeatherTabBarControllerViewController.swift */,
 				0F50332223E4C25A000E50CD /* SearchWeatherController.swift */,
+				0F50332623E4C8FD000E50CD /* SearchWeatherView.swift */,
 				0F50332423E4C279000E50CD /* FavoriteImageController.swift */,
+				0F50332823E4C9AB000E50CD /* FavoriteView.swift */,
 				548CE065234D33E600B5177D /* ZipCodeHelper.swift */,
-				548CE055234D33B500B5177D /* ViewController.swift */,
+				0F50332C23E4D0FC000E50CD /* WeatherCellCollectionViewCell.swift */,
+				0F50332E23E4D120000E50CD /* WeatherCell.xib */,
 				548CE067234D340700B5177D /* Assets.xcassets */,
 				548CE05C234D33B600B5177D /* LaunchScreen.storyboard */,
 				548CE05F234D33B600B5177D /* Info.plist */,
@@ -136,6 +145,7 @@
 			files = (
 				548CE05E234D33B600B5177D /* LaunchScreen.storyboard in Resources */,
 				548CE068234D340700B5177D /* Assets.xcassets in Resources */,
+				0F50332F23E4D120000E50CD /* WeatherCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,12 +156,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F50332D23E4D0FC000E50CD /* WeatherCellCollectionViewCell.swift in Sources */,
+				0F50332923E4C9AB000E50CD /* FavoriteView.swift in Sources */,
 				0F50332323E4C25A000E50CD /* SearchWeatherController.swift in Sources */,
 				548CE066234D33E600B5177D /* ZipCodeHelper.swift in Sources */,
-				548CE056234D33B500B5177D /* ViewController.swift in Sources */,
 				0F50332123E4C1EC000E50CD /* WeatherTabBarControllerViewController.swift in Sources */,
 				548CE052234D33B500B5177D /* AppDelegate.swift in Sources */,
 				0F50332523E4C279000E50CD /* FavoriteImageController.swift in Sources */,
+				0F50332723E4C8FD000E50CD /* SearchWeatherView.swift in Sources */,
 				548CE054234D33B500B5177D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
