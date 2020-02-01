@@ -24,6 +24,10 @@ Sunset
 Windspeed
 Inches of Precipitation
 """
+    public lazy var barButtonItem: UIBarButtonItem = {
+        let barButton = UIBarButtonItem()
+        return barButton
+    } ()
     
     public lazy var messageLabel: UILabel = {
         let label = UILabel()

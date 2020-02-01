@@ -10,21 +10,37 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    private let detailView = DetailView()
+    
+    override func loadView() {
+        view = detailView
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureNavBar()
     }
-    */
+    
+    private func configureNavBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(showSettings(_:)))
+    }
+    
+    @objc
+    private func showSettings(_ sender: UIBarButtonItem) {
+        //print("show settings")
+        
+        // segue to SettingsVC, basically == prepare for segue
+        
+        let favoriteVC = FavoriteImageController()
+        //navigationController?.presentedViewController(favoriteVC, animated: true)
+        
+        navigationController?.pushViewController(favoriteVC, animated: true)
+        // if it would be just VC instead of this line we would use PRESENT, instead of push
+        // IF WE WANT TO PRESENT IT MODALY USE THIS: present(settingsVC, animated: true)
+        // try this - different stype
+        //settingsVC.modalPresentationStyle = .overCurrentContext
+        //settingsVC.modalTransitionStyle = .flipHorizontal
+    }
+    
 
 }
