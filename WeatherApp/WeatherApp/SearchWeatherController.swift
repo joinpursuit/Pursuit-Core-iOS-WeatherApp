@@ -12,11 +12,11 @@ class SearchWeatherController: UIViewController {
     
     private let searchWeatherView = SearchWeatherView()
     
-//    private var podcasts = [Podcast]() {
+//    private var weather = [Weather]() { // is it correct?
 //      didSet {
 //        // 13.
 //          DispatchQueue.main.async {
-//              self.podcastView.collectionView.reloadData()
+//              self.searchWeatherView.collectionView.reloadData()
 //          }
 //      }
 //    }

@@ -10,10 +10,10 @@ import Foundation
 import NetworkHelper
 
 struct WeatherAPIClient {
-    static func fetchWeather(with coordinates: (Double, Double), // with coordinates or separatelly lat and long?
+    static func fetchWeather(with coordinate: (Double, Double), // with coordinates or separatelly lat and long?
                              completion: @escaping (Result<Weather, AppError>) -> ()) {
     let endpointURLString =
-        "https://api.darksky.net/forecast/\(SecretKey.apikey)/\(coordinates)"
+        "https://api.darksky.net/forecast/\(SecretKey.apikey)/\(coordinate)"
     guard let url = URL(string: endpointURLString) else {
       completion(.failure(.badURL(endpointURLString)))
       return
