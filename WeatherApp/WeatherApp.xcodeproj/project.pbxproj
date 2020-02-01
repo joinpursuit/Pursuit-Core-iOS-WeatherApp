@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,8 @@
 		548CE05E234D33B600B5177D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 548CE05C234D33B600B5177D /* LaunchScreen.storyboard */; };
 		548CE066234D33E600B5177D /* ZipCodeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548CE065234D33E600B5177D /* ZipCodeHelper.swift */; };
 		548CE068234D340700B5177D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 548CE067234D340700B5177D /* Assets.xcassets */; };
+		8D80C3E723E5C8C6003FAEA6 /* NetworkHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 8D80C3E623E5C8C6003FAEA6 /* NetworkHelper */; };
+		8D80C3EA23E5C8F4003FAEA6 /* ImageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8D80C3E923E5C8F4003FAEA6 /* ImageKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D80C3E723E5C8C6003FAEA6 /* NetworkHelper in Frameworks */,
+				8D80C3EA23E5C8F4003FAEA6 /* ImageKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +46,7 @@
 		548CE045234D33B500B5177D = {
 			isa = PBXGroup;
 			children = (
+				8D80C3E423E5C818003FAEA6 /* NetworkServices */,
 				548CE050234D33B500B5177D /* WeatherApp */,
 				548CE04F234D33B500B5177D /* Products */,
 			);
@@ -70,6 +75,13 @@
 			path = WeatherApp;
 			sourceTree = "<group>";
 		};
+		8D80C3E423E5C818003FAEA6 /* NetworkServices */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NetworkServices;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,6 +98,10 @@
 			dependencies = (
 			);
 			name = WeatherApp;
+			packageProductDependencies = (
+				8D80C3E623E5C8C6003FAEA6 /* NetworkHelper */,
+				8D80C3E923E5C8F4003FAEA6 /* ImageKit */,
+			);
 			productName = WeatherApp;
 			productReference = 548CE04E234D33B500B5177D /* WeatherApp.app */;
 			productType = "com.apple.product-type.application";
@@ -114,6 +130,10 @@
 				Base,
 			);
 			mainGroup = 548CE045234D33B500B5177D;
+			packageReferences = (
+				8D80C3E523E5C8C6003FAEA6 /* XCRemoteSwiftPackageReference "NetworkHelperSPM" */,
+				8D80C3E823E5C8F4003FAEA6 /* XCRemoteSwiftPackageReference "ImageKit" */,
+			);
 			productRefGroup = 548CE04F234D33B500B5177D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -340,6 +360,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8D80C3E523E5C8C6003FAEA6 /* XCRemoteSwiftPackageReference "NetworkHelperSPM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alexpaul/NetworkHelperSPM";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.6;
+			};
+		};
+		8D80C3E823E5C8F4003FAEA6 /* XCRemoteSwiftPackageReference "ImageKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alexpaul/ImageKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8D80C3E623E5C8C6003FAEA6 /* NetworkHelper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D80C3E523E5C8C6003FAEA6 /* XCRemoteSwiftPackageReference "NetworkHelperSPM" */;
+			productName = NetworkHelper;
+		};
+		8D80C3E923E5C8F4003FAEA6 /* ImageKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D80C3E823E5C8F4003FAEA6 /* XCRemoteSwiftPackageReference "ImageKit" */;
+			productName = ImageKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 548CE046234D33B500B5177D /* Project object */;
 }
