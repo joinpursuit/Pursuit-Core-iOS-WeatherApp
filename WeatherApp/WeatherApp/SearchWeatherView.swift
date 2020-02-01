@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ImageKit
 
 class SearchWeatherView: UIView {
 
@@ -69,7 +70,7 @@ class SearchWeatherView: UIView {
         addSubview(searchBar)
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            searchBar.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 40),
+            searchBar.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 50),
             searchBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 100),
             searchBar.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -100)
         ])
@@ -79,7 +80,7 @@ class SearchWeatherView: UIView {
         addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 40),
+            collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 20),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
