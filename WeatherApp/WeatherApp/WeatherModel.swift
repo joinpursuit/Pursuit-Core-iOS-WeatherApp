@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - Weather
 struct Weather: Codable {
-    let latitude, longitude: Double
+    let latitude, longitude: Double  // Tuple
     let timezone: String
     let currently: Currently
     let minutely: Minutely
