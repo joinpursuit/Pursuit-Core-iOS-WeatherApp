@@ -22,14 +22,12 @@ class SearchWeatherView: UIView {
         return label
     }()
     
-    public lazy var textField: UITextField = {
-        let textfield = UITextField()
-        textfield.backgroundColor = .systemBackground
-        textfield.layer.borderColor = UIColor.black.cgColor // does not work - search how to set it
-        textfield.placeholder = "Enter a Zip Code"
-        textfield.textAlignment = .center
-        textfield.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-        return textfield
+    public lazy var searchBar: UISearchBar = {
+        let searchbar = UISearchBar()
+        searchbar.backgroundColor = .systemBackground
+        //searchbar.layer.borderColor = UIColor.black.cgColor // does not work - search how to set it
+        searchbar.placeholder = "Enter a Zip Code"
+        return searchbar
     }()
     
     public lazy var collectionView: UICollectionView = {
@@ -53,7 +51,7 @@ class SearchWeatherView: UIView {
     
     private func commonInit() {
         setupMessageLabelConstraints()
-        setupTextFieldConstraints()
+        setupSearchBarConstraints()
         setupCollectionViewConstraints()
     }
     
@@ -67,13 +65,13 @@ class SearchWeatherView: UIView {
         ])
     }
     
-    private func setupTextFieldConstraints(){
-        addSubview(textField)
-        textField.translatesAutoresizingMaskIntoConstraints = false
+    private func setupSearchBarConstraints(){
+        addSubview(searchBar)
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            textField.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 40),
-            textField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+            searchBar.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 40),
+            searchBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 100),
+            searchBar.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -100)
         ])
     }
     
@@ -81,7 +79,7 @@ class SearchWeatherView: UIView {
         addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 40),
+            collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 40),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
