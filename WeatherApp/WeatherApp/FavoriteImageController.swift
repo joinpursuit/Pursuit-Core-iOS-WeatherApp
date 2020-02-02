@@ -19,6 +19,14 @@ class FavoriteImageController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        
+        // FIXME: write extension for this tableView:
+        //tableView.dataSource = self
+        //tableView.delegate = self
+        
+       // FIXME: I register here tableView cell, but I think I need to create tableView on FavoriteView.swift (look how did we do with collection view)
+        // tableView.register(UINib(nibName: "FavoriteImageCell", bundle: nil), forCellReuseIdentifier: "favoriteImageCell")))
     }
 
 }
+

@@ -52,7 +52,7 @@ class SearchWeatherController: UIViewController {
 
 extension SearchWeatherController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10 // will need to chang!
+        return 10 // will need to change!
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -70,15 +70,18 @@ extension SearchWeatherController: UICollectionViewDelegateFlowLayout {
         let itemWidth: CGFloat = maxSize.width * 0.5
         return CGSize(width: itemWidth, height: 350)
     }
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let podcast = podcasts[indexPath.row]
+func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//let podcast = podcasts[indexPath.row]
+    let detailVC = DetailViewController ()
+    
+    navigationController?.pushViewController(detailVC, animated: true)
 //        //print(podcast.collectionName)
-//        
+//        print("row selected \(indexPath.row)")
 //        // segue to the PodcastDetailController
 //        // access the PodcastDetailController from Storyboard
 //        
 //        // make sure that the storyboard id is set for the PodcastDetailController
-//        let podcastDetailStoryboard = UIStoryboard(name: "PodcastDetail", bundle: nil)
+//let podcastDetailStoryboard = UIStoryboard(name: "PodcastDetail", bundle: nil)
 //        guard let podcastDetailController = podcastDetailStoryboard.instantiateViewController(identifier: "PodcastDetailController") as? PodcastDetailController else {
 //            fatalError("coulod not downcast to PodcastDetailController")
 //        }
@@ -90,4 +93,5 @@ extension SearchWeatherController: UICollectionViewDelegateFlowLayout {
 //        
 //        //show(podcastDetailController, sender: nil)
 //    }
+}
 }
