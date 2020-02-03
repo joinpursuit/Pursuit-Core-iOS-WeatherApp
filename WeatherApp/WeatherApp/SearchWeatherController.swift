@@ -34,6 +34,8 @@ class SearchWeatherController: UIViewController {
         searchWeatherView.collectionView.delegate = self
         searchWeatherView.collectionView.register(UINib(nibName: "WeatherCell", bundle: nil), forCellWithReuseIdentifier: "weatherCell")
         
+        searchWeatherView.textField.delegate = self
+        
         //fetchPodcasts()
         }
         
@@ -94,4 +96,12 @@ func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPat
 //        //show(podcastDetailController, sender: nil)
 //    }
 }
+}
+
+extension SearchWeatherController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return true
+    }
 }
