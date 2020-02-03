@@ -10,11 +10,10 @@ import Foundation
 import NetworkHelper
 
 struct WeatherAPIClient {
-    static func fetchWeather(for zipCode: String, completion: @escaping (Result<Weather, AppError>) ->()) {
+    // do lat and long instead of zip
+    static func fetchWeather(for lat: Double, long: Double, completion: @escaping (Result<Weather, AppError>) ->()) {
         
-        let zipCode = zipCode.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "11221"
-        
-        let weatherEndpointUrl = "https://api.darksky.net/forecast/\(SecretKey.apikey)/\(zipCode)"
+        let weatherEndpointUrl = "https://api.darksky.net/forecast/\(SecretKey.apikey)/\(lat),\(long)"
         
         guard let url = URL(string: weatherEndpointUrl) else {
             completion(.failure(.badURL(weatherEndpointUrl)))

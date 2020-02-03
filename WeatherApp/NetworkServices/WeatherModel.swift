@@ -24,9 +24,9 @@ struct Daily: Codable {
     }
 
     struct DailyDatum: Codable {
-        //let time: Int
+        let time: Int
        // let summary: String
-        let icon: String?
+        let icon: String
         let sunriseTime: Int
         let sunsetTime: Int
         let precipType: String?
