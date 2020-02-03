@@ -16,6 +16,8 @@ class DetailViewController: UIViewController {
         view = detailView
     }
     
+    public var weather = [Weather]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavBar()

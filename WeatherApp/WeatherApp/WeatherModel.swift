@@ -12,11 +12,11 @@ import Foundation
 struct Weather: Codable {
     let latitude, longitude: Double  // Tuple
     let timezone: String
-    let currently: Currently
-    let minutely: Minutely
-    let hourly: Hourly
+//     let currently: Currently
+//    let minutely: Minutely
+//    let hourly: Hourly
     let daily: Daily
-    let alerts: [Alert]
+//    let alerts: [Alert]
     let flags: Flags
     let offset: Int
 }
@@ -83,7 +83,7 @@ struct Daily: Codable {
 struct DailyDatum: Codable {
     let time: Int
     let summary: String
-    let icon: Icon
+    let icon: String
     let sunriseTime, sunsetTime: Int
     let moonPhase, precipIntensity, precipIntensityMax: Double
     let precipIntensityMaxTime: Int

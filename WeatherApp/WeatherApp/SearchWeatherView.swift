@@ -26,7 +26,8 @@ class SearchWeatherView: UIView {
     public lazy var textField: UITextField = {
         let textfield = UITextField()
         textfield.backgroundColor = .systemBackground
-        textfield.layer.borderColor = UIColor.black.cgColor // does not work - search how to set it
+        //textfield.layer.borderColor = UIColor.black.cgColor // does not work - search how to set it
+        textfield.layer.borderColor = UIColor.black.cgColor
         textfield.textAlignment = .center
         textfield.placeholder = "Enter a Zip Code"
         return textfield

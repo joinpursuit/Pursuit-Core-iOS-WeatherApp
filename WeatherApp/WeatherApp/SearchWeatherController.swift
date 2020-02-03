@@ -12,14 +12,14 @@ class SearchWeatherController: UIViewController {
     
     private let searchWeatherView = SearchWeatherView()
     
-//    private var weather = [Weather]() { // is it correct?
-//      didSet {
-//        // 13.
-//          DispatchQueue.main.async {
-//              self.searchWeatherView.collectionView.reloadData()
-//          }
-//      }
-//    }
+    private var dailyWeather = [DailyDatum]() {
+      didSet {
+        // 13.
+          DispatchQueue.main.async {
+              self.searchWeatherView.collectionView.reloadData()
+          }
+      }
+    }
     
     override func loadView() {
         view = searchWeatherView
@@ -35,10 +35,19 @@ class SearchWeatherController: UIViewController {
         searchWeatherView.collectionView.register(UINib(nibName: "WeatherCell", bundle: nil), forCellWithReuseIdentifier: "weatherCell")
         
         searchWeatherView.textField.delegate = self
-        
-        //fetchPodcasts()
+        fetchWeather()
         }
         
+    private func fetchWeather(){
+        WeatherAPIClient.fetchWeather(coordinate1: 37.8267, coordinate2: -122.4233) {(result) in
+            switch result {
+            case .failure(let appError):
+                print("error fetching weather \(appError)")
+            case .success(let weather):
+                self.dailyWeather = weather.daily.data
+            }
+        }
+    }
 //        private func fetchPodcasts(_ name: String = "swift") {
 //          PodcastAPIClient.fetchPodcast(with: name) { (result) in
 //            switch result {
@@ -54,14 +63,16 @@ class SearchWeatherController: UIViewController {
 
 extension SearchWeatherController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10 // will need to change!
+        return dailyWeather.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "weatherCell", for: indexPath) as? WeatherCellCollectionViewCell else {
             fatalError("could not downcast to WeatherCellCollectionViewCell")
         }
+        let dayWeather = dailyWeather[indexPath.row]
         cell.backgroundColor = .white
+        cell.configureCell(weather: dayWeather )
         return cell
     }
 }
@@ -73,12 +84,12 @@ extension SearchWeatherController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: itemWidth, height: 350)
     }
 func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//let podcast = podcasts[indexPath.row]
+    let weatherData = dailyWeather[indexPath.row]
     let detailVC = DetailViewController ()
     
     navigationController?.pushViewController(detailVC, animated: true)
 //        //print(podcast.collectionName)
-//        print("row selected \(indexPath.row)")
+print("row selected \(indexPath.row)")
 //        // segue to the PodcastDetailController
 //        // access the PodcastDetailController from Storyboard
 //        
@@ -87,11 +98,11 @@ func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPat
 //        guard let podcastDetailController = podcastDetailStoryboard.instantiateViewController(identifier: "PodcastDetailController") as? PodcastDetailController else {
 //            fatalError("coulod not downcast to PodcastDetailController")
 //        }
-//        podcastDetailController.podcast = podcast
+   // detailVC.weather = dailyWeather
 //        
 //        // nest week we will pass data using initializer/dependancy injection e.g. PodcastDetailController(podcast: podcast)
 //        
-//        navigationController?.pushViewController(podcastDetailController, animated: true)
+          navigationController?.pushViewController(detailVC, animated: true)
 //        
 //        //show(podcastDetailController, sender: nil)
 //    }
