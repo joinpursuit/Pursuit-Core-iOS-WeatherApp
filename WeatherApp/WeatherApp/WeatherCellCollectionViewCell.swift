@@ -26,15 +26,13 @@ class WeatherCellCollectionViewCell: UICollectionViewCell {
     
     public func configureCell(weather: DailyDatum) {
        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-         
+       let dateFormatter = DateFormatter()
         let date = Date(timeIntervalSinceReferenceDate: TimeInterval(weather.time))
          
         // US English Locale (en_US)
         dateFormatter.locale = Locale(identifier: "en_US")
-        //print(dateFormatter.string(from: date)) // Jan 2, 2001
+        dateFormatter.setLocalizedDateFormatFromTemplate("MMMMd") // set template after setting locale
+        print(dateFormatter.string(from: date))
         
         dateLabel.text = dateFormatter.string(from: date)
         weatherImage.image = UIImage(named: weather.icon)
