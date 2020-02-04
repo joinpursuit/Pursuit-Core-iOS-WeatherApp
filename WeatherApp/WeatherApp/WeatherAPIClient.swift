@@ -13,7 +13,7 @@ struct WeatherAPIClient {
     static func fetchWeather(lat: Double, long: Double, // with coordinates or separatelly lat and long?
                              completion: @escaping (Result<Weather, AppError>) -> ()) {
         let endpointURLString = "https://api.darksky.net/forecast/\(SecretKey.apikey)/\(lat),\(long)"
-//        "https://api.darksky.net/forecast/\(SecretKey.apikey)\(coordinate1),\(coordinate2)"
+
     guard let url = URL(string: endpointURLString) else {
       completion(.failure(.badURL(endpointURLString)))
       return

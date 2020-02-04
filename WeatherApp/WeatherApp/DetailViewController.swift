@@ -16,11 +16,20 @@ class DetailViewController: UIViewController {
         view = detailView
     }
     
-    //public var weather = DailyDatum
+    public var weather: DailyDatum?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
         configureNavBar()
+        updateUI()
+    }
+    
+    func updateUI() {
+        guard let weatherCurrent = weather else {
+            fatalError("error")
+        }
+        detailView.messageLabel.text = weatherCurrent.summary
     }
     
     private func configureNavBar() {

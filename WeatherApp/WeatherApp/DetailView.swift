@@ -12,22 +12,27 @@ import ImageKit
 
 class DetailView: UIView {
     
-    let defaultMessage = "Weather Forecast for City for date"
+    //public var weather = Weather.()
+    
+    let defaultMessage = """
+    Weather Forecast for 
+    for
+"""
     
     let defaultMessage2 = "Partly Cloudy" // will be changed based on the data from API
     
     let defaultMessage3 = """
-High temperature
-Low Temperature
-Sunrise
-Sunset
-Windspeed
-Inches of Precipitation
+High temperature:
+Low Temperature:
+Sunrise:
+Sunset:
+Windspeed:
+Inches of Precipitation:
 """
-    public lazy var barButtonItem: UIBarButtonItem = {
-        let barButton = UIBarButtonItem()
-        return barButton
-    } ()
+//    public lazy var barButtonItem: UIBarButtonItem = {
+//        let barButton = UIBarButtonItem()
+//        return barButton
+//    } ()
     
     public lazy var messageLabel: UILabel = {
         let label = UILabel()
@@ -108,7 +113,7 @@ Inches of Precipitation
         addSubview(weatherLabel)
         weatherLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            weatherLabel.topAnchor.constraint(equalTo: imageView.topAnchor, constant:  20),
+            weatherLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant:  20),
             weatherLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             weatherLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
         ])
@@ -118,7 +123,7 @@ Inches of Precipitation
         addSubview(wholleWeatherInfoLabel)
         wholleWeatherInfoLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            wholleWeatherInfoLabel.topAnchor.constraint(equalTo: weatherLabel.topAnchor, constant:  20),
+            wholleWeatherInfoLabel.topAnchor.constraint(equalTo: weatherLabel.topAnchor, constant:  30),
             wholleWeatherInfoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             wholleWeatherInfoLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
         ])

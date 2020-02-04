@@ -13,7 +13,7 @@ class SearchWeatherView: UIView {
 
     private var weather = [Weather]()
     
-    let defaultMessage = "Weather Forecast For City"
+    let defaultMessage = "Weather Forecast For \(Weather.self)"
     
     public lazy var messageLabel: UILabel = {
         let label = UILabel()
@@ -32,8 +32,16 @@ class SearchWeatherView: UIView {
         textfield.layer.borderColor = UIColor.black.cgColor
         textfield.textAlignment = .center
         textfield.placeholder = "Enter a Zip Code"
+        updateView()
         return textfield
     }()
+    
+    private func updateView() {
+               // retrieve any values in UserDefaults as needed
+               if let userZipcode = UserPreference.shared.getUserZipcode() {
+                textField.text = userZipcode
+               }
+           }
     
     public lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()

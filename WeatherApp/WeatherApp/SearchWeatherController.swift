@@ -14,7 +14,7 @@ class SearchWeatherController: UIViewController {
     
     var zipCode = ""
     
-    private var dailyWeather = [DailyDatum]() {
+    public var dailyWeather = [DailyDatum]() {
       didSet {
         // 13.
           DispatchQueue.main.async {
@@ -26,7 +26,7 @@ class SearchWeatherController: UIViewController {
     override func loadView() {
         view = searchWeatherView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -37,7 +37,7 @@ class SearchWeatherController: UIViewController {
         searchWeatherView.collectionView.register(UINib(nibName: "WeatherCell", bundle: nil), forCellWithReuseIdentifier: "weatherCell")
         
         searchWeatherView.textField.delegate = self
-        fetchWeather(lat: 37.8267, long: -122.4233)
+        //fetchWeather(lat: , long: -122.4233)
         }
         
     private func fetchWeather(lat: Double, long: Double){
@@ -91,32 +91,8 @@ func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPat
     let weatherData = dailyWeather[indexPath.row]
     
     let detailVC = DetailViewController ()
- 
+    detailVC.weather = weatherData
     navigationController?.pushViewController(detailVC, animated: true)
-    
-    print("trying to segue")
-//           interfaceBuilderVC.area = area
-//           interfaceBuilderVC.location = location
-//    present(detailVC, animated: true, completion: nil)
-//    navigationController?
-//        //print(podcast.collectionName)
-//print("row selected \(indexPath.row)")
-//        // segue to the PodcastDetailController
-//        // access the PodcastDetailController from Storyboard
-//        
-//        // make sure that the storyboard id is set for the PodcastDetailController
-//let podcastDetailStoryboard = UIStoryboard(name: "PodcastDetail", bundle: nil)
-//        guard let podcastDetailController = podcastDetailStoryboard.instantiateViewController(identifier: "PodcastDetailController") as? PodcastDetailController else {
-//            fatalError("coulod not downcast to PodcastDetailController")
-//        }
-  //detailVC.weather = weatherData
-//        
-//        // nest week we will pass data using initializer/dependancy injection e.g. PodcastDetailController(podcast: podcast)
-//        
-//          navigationController?.pushViewController(detailVC, animated: true)
-//        
-//        //show(podcastDetailController, sender: nil)
-//    }
 }
 }
 
@@ -126,6 +102,6 @@ extension SearchWeatherController: UITextFieldDelegate {
         getZipCode(zipCode: zipCode)
        textField.resignFirstResponder()
         
-        return true
+    return true
     }
 }

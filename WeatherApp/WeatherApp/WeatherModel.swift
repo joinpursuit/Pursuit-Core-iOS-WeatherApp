@@ -50,7 +50,7 @@ struct Currently: Codable {
     let cloudCover: Double
     let uvIndex, visibility: Int
     let ozone: Double
-    let precipType: PrecipType?
+    let precipType: String?
 }
 
 enum Icon: String, Codable {
@@ -61,9 +61,9 @@ enum Icon: String, Codable {
     case partlyCloudyNight = "partly-cloudy-night"
 }
 
-enum PrecipType: String, Codable {
-    case rain = "rain"
-}
+//enum PrecipType: String, Codable {
+//    case rain = "rain"
+//}
 
 enum Summary: String, Codable {
     case clear = "Clear"
@@ -88,7 +88,7 @@ struct DailyDatum: Codable {
     let moonPhase, precipIntensity, precipIntensityMax: Double
     let precipIntensityMaxTime: Int
     let precipProbability: Double
-    let precipType: PrecipType?
+    let precipType: String?
     let temperatureHigh: Double
     let temperatureHighTime: Int
     let temperatureLow: Double
@@ -101,7 +101,7 @@ struct DailyDatum: Codable {
     let windGust: Double
     let windGustTime, windBearing: Int
     let cloudCover: Double
-    let uvIndex, uvIndexTime, visibility: Int
+    let uvIndex, uvIndexTime, visibility: Double
     let ozone, temperatureMin: Double
     let temperatureMinTime: Int
     let temperatureMax: Double
