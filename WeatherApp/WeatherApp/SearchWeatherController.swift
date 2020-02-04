@@ -14,6 +14,14 @@ class SearchWeatherController: UIViewController {
     
     var zipCode = ""
     
+    var weather: Weather? {
+        didSet{
+            DispatchQueue.main.async {
+                self.updateUI()
+            }
+        }
+    }
+    
     public var dailyWeather = [DailyDatum]() {
       didSet {
         // 13.
@@ -46,6 +54,7 @@ class SearchWeatherController: UIViewController {
             case .failure(let appError):
                 print("error fetching weather \(appError)")
             case .success(let weather):
+                self.weather = weather
                 self.dailyWeather = weather.daily.data
             }
         }
@@ -60,6 +69,12 @@ class SearchWeatherController: UIViewController {
                 self.fetchWeather(lat: lat, long: long)
             }
     }
+    }
+    
+    func updateUI() {
+        searchWeatherView.messageLabel.text = """
+Weather Forecast For \(weather?.timezone ?? "")
+"""
     }
 }
 

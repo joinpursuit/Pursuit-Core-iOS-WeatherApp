@@ -13,12 +13,13 @@ class SearchWeatherView: UIView {
 
     private var weather = [Weather]()
     
-    let defaultMessage = "Weather Forecast For \(Weather.self)"
+    let defaultMessage = "Weather Forecast For City"
     
     public lazy var messageLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .systemBackground
         label.textAlignment = .center
+        label.numberOfLines = 2
         label.font = UIFont.systemFont(ofSize: 25, weight: .bold)
         label.textColor = .systemTeal
         label.text = defaultMessage
@@ -28,7 +29,6 @@ class SearchWeatherView: UIView {
     public lazy var textField: UITextField = {
         let textfield = UITextField()
         textfield.backgroundColor = .systemBackground
-        //textfield.layer.borderColor = UIColor.black.cgColor // does not work - search how to set it
         textfield.layer.borderColor = UIColor.black.cgColor
         textfield.textAlignment = .center
         textfield.placeholder = "Enter a Zip Code"

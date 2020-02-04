@@ -37,6 +37,7 @@ Inches of Precipitation:
     public lazy var messageLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .systemBackground
+        label.numberOfLines = 2
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 25, weight: .bold)
         label.textColor = .black
