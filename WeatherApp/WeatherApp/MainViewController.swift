@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DataPersistence
 
 class MainViewController: UIViewController {
     
@@ -19,7 +20,15 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var zipCodeTextField: UITextField!
     
-    var weather: Weather?
+    var dataPersistance:DataPersistence<Weather>?
+    
+    var weather: Weather?{
+        didSet{
+            DispatchQueue.main.async {
+                self.updateUI()
+            }
+        }
+    }
     
     private var dailyWeather = [DailyDatum]() {
         didSet {
@@ -33,13 +42,22 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationLabel.text = weather?.timezone
+       // locationLabel.text = weather?.timezone
         collectionView.delegate = self
         collectionView.dataSource = self
         zipCodeTextField.delegate = self
-        getWeather(lat: 37.8267, long: -122.4233)
+
+        if let zipcodeUser = UserPreference.shared.getZipcode(){
+            getCityWeather(zipCode: zipcodeUser)
+        } else {
+            getCityWeather(zipCode: zipCode)
+        }
+       // getWeather(lat: 37.8267, long: -122.4233)
+        
        //
     }
+    
+   
     
     private func getWeather(lat: Double, long: Double) {
         WeatherAPIClient.fetchWeather(for: lat, long: long) { (result) in
@@ -47,6 +65,7 @@ class MainViewController: UIViewController {
             case .failure(let appError):
                 print(appError)
             case .success(let weather):
+                self.weather = weather
                 self.dailyWeather = weather.daily.data
             }
         }
@@ -63,6 +82,9 @@ class MainViewController: UIViewController {
         }
     }
 
+    private func updateUI() {
+        locationLabel.text = weather?.timezone
+    }
 
 }
 
@@ -92,13 +114,28 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let localWeather = dailyWeather[indexPath.row]
+       // let location = weather
+        let detailVC = DetailViewController()
+        detailVC.weather = localWeather
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
 }
-// call ZipCode helper in the delegate method for text field textfieldshouldreturn
+// call ZipCode helper. in the delegate method for text field textfieldshouldreturn
 extension MainViewController: UITextFieldDelegate {
+    
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         zipCode = textField.text ?? "11221"
         getCityWeather(zipCode: zipCode)
+        UserPreference.shared.updateZipcode(with: zipCode)
+        
+
         //locationLabel.text = weather?.timezone
         return true
     }
+    
 }

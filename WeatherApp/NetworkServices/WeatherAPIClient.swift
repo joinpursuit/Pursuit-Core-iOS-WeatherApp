@@ -9,6 +9,7 @@
 import Foundation
 import NetworkHelper
 
+
 struct WeatherAPIClient {
     // do lat and long instead of zip
     static func fetchWeather(for lat: Double, long: Double, completion: @escaping (Result<Weather, AppError>) ->()) {

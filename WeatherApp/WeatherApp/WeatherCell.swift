@@ -29,18 +29,15 @@ class WeatherCell: UICollectionViewCell {
         //dateLabel.text = weather.
         imageView.image = UIImage(named: weather.icon)
         
-//        imageView.getImage(with: weather.currently.icon) {[weak self] (result) in
-//            switch result {
-//            case .failure:
-//                DispatchQueue.main.async {
-//                    self?.imageView.image = UIImage(systemName: "excaimationmark.triangle")
-//                }
-//            case .success(let image):
-//                DispatchQueue.main.async {
-//                    self?.imageView.image = image
-//                }
-//            }
-//        }
-
+       let timeInterval: Double = Double(weather.time)
+        let date = Date(timeIntervalSince1970: timeInterval)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM d, yyyy"
+        let dateString = dateFormatter.string(from: date)
+         
+        dateLabel.text = dateString
+        
+        dateLabel.text = dateFormatter.string(from: date)
+ 
     }
 }

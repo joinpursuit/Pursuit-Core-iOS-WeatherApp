@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import DataPersistence
 
 class TabViewController: UITabBarController {
     
+    let dataPersistance = DataPersistence<Weather>(filename: "weather.plist")
     
     private lazy var mainVC: MainViewController = {
         // we need to get instance from storuboard and we need storyboard instance
@@ -31,8 +33,11 @@ class TabViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mainVC.dataPersistance = self.dataPersistance
 
-        viewControllers = [mainVC, FavoritesController()]
+        viewControllers = [UINavigationController(rootViewController: mainVC), UINavigationController(rootViewController: faveVC)]
+        //viewControllers = [mainVC, FavoritesController()]
     }
     
 
