@@ -12,6 +12,8 @@ class SearchWeatherController: UIViewController {
     
     private let searchWeatherView = SearchWeatherView()
     
+    var zipCode = ""
+    
     private var dailyWeather = [DailyDatum]() {
       didSet {
         // 13.
@@ -35,11 +37,11 @@ class SearchWeatherController: UIViewController {
         searchWeatherView.collectionView.register(UINib(nibName: "WeatherCell", bundle: nil), forCellWithReuseIdentifier: "weatherCell")
         
         searchWeatherView.textField.delegate = self
-        fetchWeather()
+        fetchWeather(lat: 37.8267, long: -122.4233)
         }
         
-    private func fetchWeather(){
-        WeatherAPIClient.fetchWeather(coordinate1: 37.8267, coordinate2: -122.4233) {(result) in
+    private func fetchWeather(lat: Double, long: Double){
+        WeatherAPIClient.fetchWeather(lat: lat, long: long) {(result) in
             switch result {
             case .failure(let appError):
                 print("error fetching weather \(appError)")
@@ -48,17 +50,17 @@ class SearchWeatherController: UIViewController {
             }
         }
     }
-//        private func fetchPodcasts(_ name: String = "swift") {
-//          PodcastAPIClient.fetchPodcast(with: name) { (result) in
-//            switch result {
-//            case .failure(let appError):
-//              print("error fetching podcasts: \(appError)")
-//            case .success(let podcasts):
-//              self.podcasts = podcasts
-//            }
-//          }
-//        }
-
+    
+    private func getZipCode(zipCode: String) {
+        ZipCodeHelper.getLatLong(fromZipCode: zipCode) {(result) in
+            switch result {
+            case .failure(let appError):
+                print(appError)
+            case .success(let lat, let long):
+                self.fetchWeather(lat: lat, long: long)
+            }
+    }
+    }
 }
 
 extension SearchWeatherController: UICollectionViewDataSource {
@@ -83,13 +85,22 @@ extension SearchWeatherController: UICollectionViewDelegateFlowLayout {
         let itemWidth: CGFloat = maxSize.width * 0.5
         return CGSize(width: itemWidth, height: 350)
     }
-func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    let weatherData = dailyWeather[indexPath.row]
-    let detailVC = DetailViewController ()
     
+func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+    let weatherData = dailyWeather[indexPath.row]
+    
+    let detailVC = DetailViewController ()
+ 
     navigationController?.pushViewController(detailVC, animated: true)
+    
+    print("trying to segue")
+//           interfaceBuilderVC.area = area
+//           interfaceBuilderVC.location = location
+//    present(detailVC, animated: true, completion: nil)
+//    navigationController?
 //        //print(podcast.collectionName)
-print("row selected \(indexPath.row)")
+//print("row selected \(indexPath.row)")
 //        // segue to the PodcastDetailController
 //        // access the PodcastDetailController from Storyboard
 //        
@@ -98,11 +109,11 @@ print("row selected \(indexPath.row)")
 //        guard let podcastDetailController = podcastDetailStoryboard.instantiateViewController(identifier: "PodcastDetailController") as? PodcastDetailController else {
 //            fatalError("coulod not downcast to PodcastDetailController")
 //        }
-   // detailVC.weather = dailyWeather
+  //detailVC.weather = weatherData
 //        
 //        // nest week we will pass data using initializer/dependancy injection e.g. PodcastDetailController(podcast: podcast)
 //        
-          navigationController?.pushViewController(detailVC, animated: true)
+//          navigationController?.pushViewController(detailVC, animated: true)
 //        
 //        //show(podcastDetailController, sender: nil)
 //    }
@@ -111,7 +122,9 @@ print("row selected \(indexPath.row)")
 
 extension SearchWeatherController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        zipCode = textField.text ?? "11215"
+        getZipCode(zipCode: zipCode)
+       textField.resignFirstResponder()
         
         return true
     }

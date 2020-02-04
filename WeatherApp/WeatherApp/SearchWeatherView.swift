@@ -11,6 +11,8 @@ import ImageKit
 
 class SearchWeatherView: UIView {
 
+    private var weather = [Weather]()
+    
     let defaultMessage = "Weather Forecast For City"
     
     public lazy var messageLabel: UILabel = {

@@ -16,7 +16,7 @@ class DetailViewController: UIViewController {
         view = detailView
     }
     
-    public var weather = [Weather]()
+    //public var weather = DailyDatum
     
     override func viewDidLoad() {
         super.viewDidLoad()

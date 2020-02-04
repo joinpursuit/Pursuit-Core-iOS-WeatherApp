@@ -75,7 +75,7 @@ enum Summary: String, Codable {
 // MARK: - Daily
 struct Daily: Codable {
     let summary: String
-    let icon: Icon
+    let icon: String
     let data: [DailyDatum]
 }
 

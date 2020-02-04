@@ -17,8 +17,26 @@ class WeatherCellCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var lowWeatherLabel: UILabel!
     
+    public func isodateFromString(_ isoDate: String) -> Date? {
+
+          let formatter = DateFormatter()
+          formatter.dateFormat = "yyyyMMdd'T'HHmmssZ"
+          return formatter.date(from: isoDate)
+      }
+    
     public func configureCell(weather: DailyDatum) {
-        dateLabel.text = String(weather.time)
+       
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+         
+        let date = Date(timeIntervalSinceReferenceDate: TimeInterval(weather.time))
+         
+        // US English Locale (en_US)
+        dateFormatter.locale = Locale(identifier: "en_US")
+        //print(dateFormatter.string(from: date)) // Jan 2, 2001
+        
+        dateLabel.text = dateFormatter.string(from: date)
         weatherImage.image = UIImage(named: weather.icon)
         highWeatherLabel.text = String("High: \(Int(weather.temperatureHigh)) F")
         lowWeatherLabel.text = String("Low: \(Int(weather.temperatureLow)) F")
