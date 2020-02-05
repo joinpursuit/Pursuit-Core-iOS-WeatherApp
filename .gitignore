@@ -69,3 +69,4 @@ fastlane/test_output
 
 #ignoring secrets
 Secrets.swift
+Secrets/
