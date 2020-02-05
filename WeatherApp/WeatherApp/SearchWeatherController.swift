@@ -31,6 +31,10 @@ class SearchWeatherController: UIViewController {
       }
     }
     
+    lazy var timezone = weather?.timezone
+    lazy var cityFromLocation = timezone?.split(separator: "/")
+    //print(cityFromLocation.last)
+    
     override func loadView() {
         view = searchWeatherView
     }
@@ -73,7 +77,7 @@ class SearchWeatherController: UIViewController {
     
     func updateUI() {
         searchWeatherView.messageLabel.text = """
-Weather Forecast For \(weather?.timezone ?? "")
+        Weather Forecast For \(cityFromLocation?.last ?? "")
 """
     }
 }

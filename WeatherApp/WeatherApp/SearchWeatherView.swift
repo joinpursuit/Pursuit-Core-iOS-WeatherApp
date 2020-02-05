@@ -11,9 +11,13 @@ import ImageKit
 
 class SearchWeatherView: UIView {
 
-    private var weather = [Weather]()
+    private var weatherInCity = [DailyDatum]()
     
-    let defaultMessage = "Weather Forecast For City"
+//    var timezone = "America/New_York"
+//    var cityFromLocation = timezone2.split(separator: "/")
+//    print(cityFromLocation.last)
+    
+    //let defaultMessage = "Weather Forecast For City"
     
     public lazy var messageLabel: UILabel = {
         let label = UILabel()
@@ -22,7 +26,7 @@ class SearchWeatherView: UIView {
         label.numberOfLines = 2
         label.font = UIFont.systemFont(ofSize: 25, weight: .bold)
         label.textColor = .systemTeal
-        label.text = defaultMessage
+       // label.text = defaultMessage
         return label
     }()
     
