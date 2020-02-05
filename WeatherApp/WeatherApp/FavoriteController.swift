@@ -12,7 +12,7 @@ class FavoriteController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemRed
         
         // FIXME: write extension for this tableView:
         //tableView.dataSource = self

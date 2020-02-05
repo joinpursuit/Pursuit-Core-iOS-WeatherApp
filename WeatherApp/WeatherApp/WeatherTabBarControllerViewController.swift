@@ -16,17 +16,23 @@ class WeatherTabBarControllerViewController: UITabBarController {
         return viewcontroller
        }()
     
+//    private lazy var favoriteImageController: FavoriteController = {
+//    let viewcontroller = FavoriteController()
+//        viewcontroller.tabBarItem = UITabBarItem(title: "Favorite", image: UIImage(systemName: "star"), tag: 1)
+//        return viewcontroller
+//    }()
+    
     private lazy var favoriteImageController: FavoriteController = {
-    let viewcontroller = FavoriteController()
+        let favoriteStoryboard = UIStoryboard(name: "FavoriteStoryboard", bundle: nil)
+        
+        guard let viewcontroller = favoriteStoryboard.instantiateViewController(identifier: "FavoriteController") as? FavoriteController else {
+            fatalError("could not load FavoriteController")
+        }
         viewcontroller.tabBarItem = UITabBarItem(title: "Favorite", image: UIImage(systemName: "star"), tag: 1)
         return viewcontroller
     }()
     
-//    private lazy var detailViewController: DetailViewController = {
-//    let viewcontroller = DetailViewController()
-//        //viewcontroller.tabBarItem = UITabBarItem(title: "Favorite", image: UIImage(systemName: "star"), tag: 1)
-//        return viewcontroller
-//    }()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
