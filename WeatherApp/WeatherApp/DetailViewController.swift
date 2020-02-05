@@ -42,7 +42,7 @@ class DetailViewController: UIViewController {
         
         // segue to SettingsVC, basically == prepare for segue
         
-        let favoriteVC = FavoriteImageController()
+        let favoriteVC = FavoriteController()
         //navigationController?.presentedViewController(favoriteVC, animated: true)
         
         navigationController?.pushViewController(favoriteVC, animated: true)

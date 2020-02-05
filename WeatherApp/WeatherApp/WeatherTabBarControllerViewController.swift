@@ -16,8 +16,8 @@ class WeatherTabBarControllerViewController: UITabBarController {
         return viewcontroller
        }()
     
-    private lazy var favoriteImageController: FavoriteImageController = {
-    let viewcontroller = FavoriteImageController()
+    private lazy var favoriteImageController: FavoriteController = {
+    let viewcontroller = FavoriteController()
         viewcontroller.tabBarItem = UITabBarItem(title: "Favorite", image: UIImage(systemName: "star"), tag: 1)
         return viewcontroller
     }()

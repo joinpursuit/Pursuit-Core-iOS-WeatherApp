@@ -8,13 +8,7 @@
 
 import UIKit
 
-class FavoriteImageController: UIViewController {
-    
-    private let favoriteView = FavoriteView()
-    
-    override func loadView() {
-        view = favoriteView
-    }
+class FavoriteController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
