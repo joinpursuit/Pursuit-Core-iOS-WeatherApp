@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Weather: Codable & Equatable {
+struct Weather: Codable  {
     
     
     
@@ -21,13 +21,13 @@ struct Weather: Codable & Equatable {
     
 }
 
-struct Daily: Codable & Equatable{
+struct Daily: Codable {
     let summary: String
         let icon: String?
         let data: [DailyDatum]
     }
 
-    struct DailyDatum: Codable & Equatable{
+    struct DailyDatum: Codable {
         let time: Int
        // let summary: String
         let icon: String
@@ -42,7 +42,7 @@ struct Daily: Codable & Equatable{
 
 
 
-struct Currently: Codable & Equatable {
+struct Currently: Codable {
     
     let summary: String?
     let icon: String

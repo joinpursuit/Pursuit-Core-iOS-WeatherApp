@@ -7,13 +7,18 @@
 //
 
 import UIKit
+import DataPersistence
 
 class DetailViewController: UIViewController {
+    private var images = [Hit]()
 
     private let detailView = WeatherDetailView()
+    public var weather: DailyDatum?
     
-    public var weather: DailyDatum? 
+    public var location: String?
     
+    
+    var dataPersistance = DataPersistence<ImageObject>(filename: "photo.plist")
     
     override func loadView() {
         view = detailView
@@ -23,8 +28,9 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         updateUI()
-    configureNavBar()
+        configureNavBar()
     }
+   
     
     func updateUI() {
         guard let weatherInfo = weather else {
@@ -32,11 +38,33 @@ class DetailViewController: UIViewController {
         }
         detailView.weatherLabel.text = weatherInfo.temperatureHigh.description
         detailView.weatherLabel.backgroundColor = .yellow
+        ImageAPIClient.getAllImageInfo(for: location!.replacingOccurrences(of: " ", with: ""), completion: { [weak self] (result) in
+            switch result {
+            case .failure(let appError):
+                print("could not fetch images with error \(appError)")
+            case .success(let images):
+                DispatchQueue.main.async {
+                    self!.detailView.weatherImage.getImage(with: (images.hits.randomElement()?.largeImageURL!)!) { (result) in
+                        switch result {
+                        case .failure(let appError):
+                            print("error: \(appError)")
+                        case .success(let image):
+                            DispatchQueue.main.async {
+                                self!.detailView.weatherImage.image = image
+                            }
+                        }
+                    }
+
+                }
+                
+            }
+        })
+
     }
     
     private func configureNavBar() {
         // set title of Navigation bar
-        navigationItem.title = "Programmatic UI"
+        navigationItem.title = "Weather"
         
         // adding UIBarButtonItem to Navigation bar
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(addToFave(_:)))
@@ -51,6 +79,22 @@ class DetailViewController: UIViewController {
        // present(settingsVC, animated: true)
        // settingsVC.modalPresentationStyle = .overCurrentContext
         //settingsVC.modalTransitionStyle = .flipHorizontal
+        
+        guard let image = detailView.weatherImage.image else {
+            return
+        }
+        if let imageData = image.jpegData(compressionQuality: 0.5){
+            let imageObjectData = ImageObject(image: imageData)
+            do {
+                       try dataPersistance.createItem(imageObjectData)
+                   } catch {
+                       print("error saviong \(error)")
+                   }
+        }
+        
+       
+
+        sender.isEnabled = false
     }
     
 }

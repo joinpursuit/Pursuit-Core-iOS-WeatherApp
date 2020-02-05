@@ -20,12 +20,13 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var zipCodeTextField: UITextField!
     
-    var dataPersistance:DataPersistence<Weather>?
+    var dataPersistance: DataPersistence<ImageObject>!
+    
     
     var weather: Weather?{
         didSet{
             DispatchQueue.main.async {
-                self.updateUI()
+                self.locationLabel.text = self.cityName()
             }
         }
     }
@@ -82,9 +83,17 @@ class MainViewController: UIViewController {
         }
     }
 
-    private func updateUI() {
-        locationLabel.text = weather?.timezone
+    private func cityName() -> String {
+        let arr = weather?.timezone.components(separatedBy: "/")
+        let str = arr?.last?.replacingOccurrences(of: "_", with: " ")
+        //locationLabel.text = str
+//        fetchImages(city: str ?? "NYC")
+        return str ?? "NYC"
     }
+    
+    
+    
+
 
 }
 
@@ -116,9 +125,11 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let localWeather = dailyWeather[indexPath.row]
-       // let location = weather
         let detailVC = DetailViewController()
         detailVC.weather = localWeather
+        detailVC.location = cityName()
+        
+    
         navigationController?.pushViewController(detailVC, animated: true)
     }
     
@@ -133,7 +144,8 @@ extension MainViewController: UITextFieldDelegate {
         getCityWeather(zipCode: zipCode)
         UserPreference.shared.updateZipcode(with: zipCode)
         
-
+        // after pressing enter this resets the textfield
+        textField.text = ""
         //locationLabel.text = weather?.timezone
         return true
     }

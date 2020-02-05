@@ -11,7 +11,7 @@ import DataPersistence
 
 class TabViewController: UITabBarController {
     
-    let dataPersistance = DataPersistence<Weather>(filename: "weather.plist")
+    let dataPersistance = DataPersistence<ImageObject>(filename: "photo.plist")
     
     private lazy var mainVC: MainViewController = {
         // we need to get instance from storuboard and we need storyboard instance
@@ -19,6 +19,7 @@ class TabViewController: UITabBarController {
         guard let viewController = storyboard.instantiateViewController(identifier: "MainViewController") as? MainViewController else {
             fatalError("could not downcast to MainViewController")
         }
+        viewController.tabBarItem = UITabBarItem(title: "Weather", image: UIImage(systemName: "1.circle"), tag: 0)
         return viewController
     }()
     
@@ -28,6 +29,7 @@ class TabViewController: UITabBarController {
         guard let viewController = storyboard.instantiateViewController(identifier: "FavoritesController") as? FavoritesController else {
             fatalError("could not downcast to FavoritesController")
         }
+        viewController.tabBarItem = UITabBarItem(title: "FAV", image: UIImage(systemName: "heart"), tag: 1)
         return viewController
     }()
 
@@ -35,6 +37,7 @@ class TabViewController: UITabBarController {
         super.viewDidLoad()
         
         mainVC.dataPersistance = self.dataPersistance
+        faveVC.dataPersistance = self.dataPersistance
 
         viewControllers = [UINavigationController(rootViewController: mainVC), UINavigationController(rootViewController: faveVC)]
         //viewControllers = [mainVC, FavoritesController()]
