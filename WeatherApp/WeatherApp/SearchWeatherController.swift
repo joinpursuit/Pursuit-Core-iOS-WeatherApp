@@ -110,7 +110,8 @@ func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPat
     let weatherData = dailyWeather[indexPath.row]
     
     let detailVC = DetailViewController ()
-    detailVC.weather = weatherData
+    detailVC.dailyWeather = weatherData
+    detailVC.weather = weather
     navigationController?.pushViewController(detailVC, animated: true)
 }
 }

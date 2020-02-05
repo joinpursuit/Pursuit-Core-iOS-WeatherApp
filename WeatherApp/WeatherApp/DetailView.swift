@@ -61,7 +61,7 @@ Inches of Precipitation:
         return weatherlabel
     }()
     
-    public lazy var wholleWeatherInfoLabel: UILabel = {
+    public lazy var wholeWeatherInfoLabel: UILabel = {
         let wholeweatherlabel = UILabel()
         wholeweatherlabel.numberOfLines = 6
         wholeweatherlabel.backgroundColor = .systemBackground
@@ -121,12 +121,12 @@ Inches of Precipitation:
     }
     
     private func setuppWholleWeatherInfoLabelConstraints() {
-        addSubview(wholleWeatherInfoLabel)
-        wholleWeatherInfoLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(wholeWeatherInfoLabel)
+        wholeWeatherInfoLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            wholleWeatherInfoLabel.topAnchor.constraint(equalTo: weatherLabel.topAnchor, constant:  30),
-            wholleWeatherInfoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            wholleWeatherInfoLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+            wholeWeatherInfoLabel.topAnchor.constraint(equalTo: weatherLabel.topAnchor, constant:  30),
+            wholeWeatherInfoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            wholeWeatherInfoLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
         ])
     }
     

@@ -16,22 +16,42 @@ class DetailViewController: UIViewController {
         view = detailView
     }
     
-    public var weather: DailyDatum?
+    public var dailyWeather: DailyDatum?
+    
+    public var weather: Weather?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         configureNavBar()
         updateUI()
+        
     }
     
     func updateUI() {
         guard let weatherCurrent = weather else {
-            fatalError("error")
+            fatalError("could not get data for weatherCurrent")
         }
-        detailView.messageLabel.text = weatherCurrent.summary
+        guard let dailyweather = dailyWeather else {
+            fatalError("could not get data for dailyweather")
+        }
+        var timezone = weather?.timezone
+        var cityFromLocation = timezone?.split(separator: "/")
+        detailView.messageLabel.text = "Weather For \(String(cityFromLocation?.last ?? "")) for \(dailyweather.time)"
+        
+        detailView.weatherLabel.text = dailyweather.summary
+        detailView.wholeWeatherInfoLabel.text = """
+        High temperature: \(dailyweather.temperatureHigh)
+        Low temperature: \(dailyweather.temperatureLow)
+        Sunrise: \(dailyweather.sunriseTime)
+        Sunset: \(dailyweather.sunsetTime)
+        Windspeed: \(dailyweather.windSpeed)
+        Inches of precipitation: \(dailyweather.precipProbability)
+"""
+        
+        
     }
-    
+
     private func configureNavBar() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(showSettings(_:)))
     }
