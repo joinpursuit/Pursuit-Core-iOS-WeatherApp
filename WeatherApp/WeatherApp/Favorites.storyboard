@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Favorites Controller-->
+        <scene sceneID="KsL-Fx-GSj">
+            <objects>
+                <viewController storyboardIdentifier="FavoritesController" id="lEw-4b-FRM" customClass="FavoritesController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5bs-uP-iw4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MRw-GS-kwL">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="faveCell" rowHeight="169" id="VBV-Kc-rct" customClass="FAvoritesCell" customModule="WeatherApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="169"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VBV-Kc-rct" id="kTy-5g-qdo">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="169"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="YBg-z5-Fl2">
+                                                    <rect key="frame" x="0.0" y="1" width="414" height="166.5"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="YBg-z5-Fl2" firstAttribute="leading" secondItem="kTy-5g-qdo" secondAttribute="leading" id="3Fn-UB-A4h"/>
+                                                <constraint firstItem="YBg-z5-Fl2" firstAttribute="top" secondItem="kTy-5g-qdo" secondAttribute="top" id="GCy-ph-Xvx"/>
+                                                <constraint firstAttribute="trailing" secondItem="YBg-z5-Fl2" secondAttribute="trailing" id="MbI-ZX-qOV"/>
+                                                <constraint firstAttribute="bottom" secondItem="YBg-z5-Fl2" secondAttribute="bottom" id="tMJ-9O-1EW"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cityImage" destination="YBg-z5-Fl2" id="3dt-hZ-n9N"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="MRw-GS-kwL" firstAttribute="trailing" secondItem="GQg-T0-wXX" secondAttribute="trailing" id="HWp-LY-HGQ"/>
+                            <constraint firstAttribute="bottom" secondItem="MRw-GS-kwL" secondAttribute="bottom" id="JZd-e7-yJT"/>
+                            <constraint firstItem="MRw-GS-kwL" firstAttribute="leading" secondItem="GQg-T0-wXX" secondAttribute="leading" id="afq-0O-L6g"/>
+                            <constraint firstItem="MRw-GS-kwL" firstAttribute="top" secondItem="5bs-uP-iw4" secondAttribute="top" id="vtt-QU-vNk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GQg-T0-wXX"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="MRw-GS-kwL" id="wNa-D5-3UF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9za-jB-Ak4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="327.536231884058" y="188.83928571428569"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="photo.fill" catalog="system" width="64" height="46"/>
+    </resources>
+</document>
