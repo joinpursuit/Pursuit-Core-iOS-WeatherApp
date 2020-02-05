@@ -7,26 +7,40 @@
 //
 
 import XCTest
+@testable import WeatherApp
 
 class WeatherAppTests: XCTestCase {
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    func testJSONFromEndpoint() {
+        let endpointURL = "https://pixabay.com/api/?key=\(APIKey.pixabayKey)&q=yellow+flowers"
+        let exp = XCTestExpectation(description: "Something")
+        
+        GenericCoderAPI.manager.getJSON(objectType: PixWrapper.self, with: endpointURL) { result in
+            switch result {
+            case .failure(let error):
+                XCTFail("Failure to decode JSON: \(error)")
+            case .success:
+                exp.fulfill()
+            }
+        }
+        
+        wait(for: [exp], timeout: 5)
     }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
+    
+    func testJSON2FromEndpoint() {
+        var forecast: Forecast? = nil
+        let endpointURL = "https://api.darksky.net/forecast/\(APIKey.darkSkyKey)/37.8267,-122.4233"
+        let exp = XCTestExpectation(description: "Failed to something")
+        
+        GenericCoderAPI.manager.getJSON(objectType: Forecast.self, with: endpointURL) { result in
+            switch result {
+            case .failure(let error):
+                XCTFail("Failed to get JSON: \(error)")
+            case .success(let forecastFromAPI):
+                forecast = forecastFromAPI
+                XCTAssertNotNil(forecast)
+                exp.fulfill()
+            }
         }
     }
 
