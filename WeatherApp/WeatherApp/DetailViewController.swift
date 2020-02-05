@@ -35,16 +35,36 @@ class DetailViewController: UIViewController {
         guard let dailyweather = dailyWeather else {
             fatalError("could not get data for dailyweather")
         }
+        
+        let timeInterval: Double = Double(dailyweather.time)
+        let date = Date(timeIntervalSince1970: timeInterval)
+        var dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM d, yyyy"
+        let dateString = dateFormatter.string(from: date)
+        
         var timezone = weather?.timezone
         var cityFromLocation = timezone?.split(separator: "/")
-        detailView.messageLabel.text = "Weather For \(String(cityFromLocation?.last ?? "")) for \(dailyweather.time)"
+        detailView.messageLabel.text = "Weather For \(String(cityFromLocation?.last ?? "")) for \(dateString)"
         
         detailView.weatherLabel.text = dailyweather.summary
+        
+        let timeIntervalForSunrise: Double = Double(dailyweather.sunriseTime)
+        let dateSR = Date(timeIntervalSince1970: timeIntervalForSunrise)
+        dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let dateStringSR = dateFormatter.string(from: dateSR)
+        
+        let timeIntervalForSunset: Double = Double(dailyweather.sunsetTime)
+        let dateSS = Date(timeIntervalSince1970: timeIntervalForSunset)
+        dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let dateStringSS = dateFormatter.string(from: dateSS)
+        
         detailView.wholeWeatherInfoLabel.text = """
         High temperature: \(dailyweather.temperatureHigh)
         Low temperature: \(dailyweather.temperatureLow)
-        Sunrise: \(dailyweather.sunriseTime)
-        Sunset: \(dailyweather.sunsetTime)
+        Sunrise: \(dateStringSR)
+        Sunset: \(dateStringSS)
         Windspeed: \(dailyweather.windSpeed)
         Inches of precipitation: \(dailyweather.precipProbability)
 """
