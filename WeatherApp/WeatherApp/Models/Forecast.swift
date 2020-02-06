@@ -47,7 +47,7 @@ struct Currently: Codable {
     let windBearing: Int
     let cloudCover: Double
     let uvIndex: Int
-    let visibility: Int
+    let visibility: Double
     let ozone: Double
     let precipType: String?
 

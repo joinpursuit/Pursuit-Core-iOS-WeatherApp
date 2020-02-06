@@ -32,6 +32,9 @@ class ForecastCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
+        self.backgroundColor = .systemBlue
+        self.layer.cornerRadius = 20
+        self.clipsToBounds = true
         setupDateLabel()
         setupHighLowLabel()
         setupImageView()
@@ -50,6 +53,7 @@ class ForecastCollectionViewCell: UICollectionViewCell {
     private func setupDateLabel() {
         contentView.addSubview(dateLabel)
         
+        
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             dateLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -64,7 +68,8 @@ class ForecastCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             highLowLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             highLowLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            highLowLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)])
+            highLowLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            highLowLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)])
     }
     
     private func setupImageView() {

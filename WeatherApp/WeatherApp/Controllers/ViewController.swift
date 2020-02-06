@@ -25,6 +25,14 @@ class ViewController: UIViewController {
         
     }()
     
+    private lazy var textField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Enter zipcode..."
+        tf.backgroundColor = .systemBackground
+        tf.borderStyle = .bezel
+        return tf
+    }()
+    
     private var zipcode: String = "11365"
     
     private var forecasts = [DailyDatum]() {
@@ -79,6 +87,7 @@ class ViewController: UIViewController {
         view.backgroundColor = .systemOrange
         setupCityLabel()
         setupCollectionView()
+        setupTextField()
     }
     
     private func setupCityLabel() {
@@ -104,6 +113,17 @@ class ViewController: UIViewController {
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.heightAnchor.constraint(equalToConstant: view.frame.height / 3)])
+    }
+    
+    private func setupTextField() {
+        textField.delegate = self
+        view.addSubview(textField)
+        
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            textField.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 20),
+            textField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            textField.widthAnchor.constraint(equalToConstant: view.frame.width / 3)])
     }
 
 
@@ -133,3 +153,23 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+extension ViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = textField.text ?? ""
+        
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+        
+        return updatedText.count <= 5
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let text = textField.text, text.count == 5 {
+            UserDefaultsWrapper.helper.store(zipcode: text)
+            loadData()
+        }
+        textField.resignFirstResponder()
+        return true
+    }
+}
