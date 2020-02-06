@@ -45,9 +45,13 @@ class ForecastCollectionViewCell: UICollectionViewCell {
     }
     
     public func configureCell(forecast: DailyDatum) {
-        dateLabel.text = "OK"
         highLowLabel.text = "High: \(forecast.temperatureHigh)℃ \nLow: \(forecast.temperatureLow)℃"
         imageView.image = UIImage(named: forecast.icon)
+        
+        let date = Date(timeIntervalSince1970: forecast.time)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateLabel.text = dateFormatter.string(from: date)
     }
     
     private func setupDateLabel() {

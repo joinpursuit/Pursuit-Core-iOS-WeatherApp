@@ -30,7 +30,7 @@ struct Forecast: Codable {
 
 // MARK: - Currently
 struct Currently: Codable {
-    let time: Int
+    let time: Double
     let summary: String
     let icon: String
     let nearestStormDistance: Int?
@@ -90,7 +90,7 @@ struct Daily: Codable {
 
 // MARK: - DailyDatum
 struct DailyDatum: Codable {
-    let time: Int
+    let time: Double
     let summary: String
     let icon: String
     let sunriseTime: Int
