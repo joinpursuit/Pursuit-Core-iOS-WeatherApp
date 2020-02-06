@@ -15,9 +15,15 @@ class ZipCodeHelper {
             geocoder.geocodeAddressString(zipCode){(placemarks, error) -> Void in
                 DispatchQueue.main.async {
                     if let placemark = placemarks?.first,
-                        let coordinate = placemark.location?.coordinate,
-                        let name = placemark.locality {
+                        let coordinate = placemark.location?.coordinate {
+                        
+                        if let name = placemark.locality {
                         completionHandler(.success((lat: coordinate.latitude, long: coordinate.longitude, placeName: name)))
+                        }
+                        
+                        else if let name = placemark.name {
+                            completionHandler(.success((lat: coordinate.latitude, long: coordinate.longitude, placeName: name)))
+                        }
                     } else {
                         let locationError: LocationFetchingError
                         if let error = error {
@@ -31,4 +37,6 @@ class ZipCodeHelper {
             }
         }
     }
+    
+    
 }

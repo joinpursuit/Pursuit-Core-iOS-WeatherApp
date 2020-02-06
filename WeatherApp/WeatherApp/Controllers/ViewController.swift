@@ -10,6 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    private lazy var cityLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        return label
+    }()
+    
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -18,16 +24,71 @@ class ViewController: UIViewController {
         return collectionView
         
     }()
+    
+    private var zipcode: String = "11365"
+    
+    private var forecasts = [DailyDatum]() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadData()
         configureView()
+    }
+    
+    private func loadData() {
+        if let zipcodeFromDefaults = UserDefaultsWrapper.helper.getZipcode() {
+            zipcode = zipcodeFromDefaults
+        }
+        
+        ZipCodeHelper.getLatLong(fromZipCode: zipcode) { result in
+            switch result {
+            case .success((let lat, let long, let placename)):
+                DispatchQueue.main.async {
+                    self.cityLabel.text = "Weather forecast for \(placename)"
+                    self.getForecast(lat, long: long)
+                }
+                
+            case .failure(let error):
+                // TODO: Show Alert Controller
+                print(error)
+            }
+        }
+    }
+    
+    private func getForecast(_ lat: Double, long: Double) {
+        let url = "https://api.darksky.net/forecast/\(APIKey.darkSkyKey)/\(lat),\(long)"
+        
+        GenericCoderAPI.manager.getJSON(objectType: Forecast.self, with: url) { result in
+            switch result {
+            case .success(let forecast):
+                DispatchQueue.main.async {
+                    self.forecasts = forecast.daily.data
+                }
+            case .failure(let error):
+                // TODO: Show Alert Controller
+                print(error)
+            }
+        }
     }
     
     private func configureView() {
         view.backgroundColor = .systemOrange
-        
+        setupCityLabel()
         setupCollectionView()
+    }
+    
+    private func setupCityLabel() {
+        view.addSubview(cityLabel)
+        cityLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            cityLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            cityLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            cityLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor)])
     }
     
     private func setupCollectionView() {
@@ -39,7 +100,7 @@ class ViewController: UIViewController {
         collectionView.backgroundColor = .systemGray
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.topAnchor.constraint(equalTo: cityLabel.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.heightAnchor.constraint(equalToConstant: view.frame.height / 3)])
@@ -50,7 +111,7 @@ class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return forecasts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -66,6 +127,8 @@ extension ViewController: UICollectionViewDataSource {
 extension ViewController: UICollectionViewDelegate {}
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width / 2, height: collectionView.frame.width / 2)
+    }
 }
 

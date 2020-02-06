@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import CoreLocation
 @testable import WeatherApp
 
 class WeatherAppTests: XCTestCase {
@@ -42,6 +43,43 @@ class WeatherAppTests: XCTestCase {
                 exp.fulfill()
             }
         }
+    }
+    
+    func testZipCodeHelper() {
+        var location: (lat: Double, long: Double, placeName: String) = (0, 0, "a")
+        
+        ZipCodeHelper.getLatLong(fromZipCode: "11365") { result in
+            switch result {
+            case .failure(let error):
+                XCTFail("\(error)")
+            case .success(let tuple):
+                location = tuple
+                print(location)
+                print("Lat: \(location.lat), Long: \(location.long), Place: \(location.placeName)")
+                print("OKKKK")
+            }
+        }
+    }
+    
+    func testZipcodeToCoordinates() {
+      // arrange
+      let zipcode = "10023"
+      
+      let exp = XCTestExpectation(description: "zipcode parsed")
+      
+      // act
+      ZipCodeHelper.getLatLong(fromZipCode: zipcode) { (result) in
+        switch result {
+        case .failure(let fetchingError):
+          XCTFail("coordinates fetching error: \(fetchingError)")
+        case .success(let coordinate):
+          // assert
+          XCTAssertEqual(coordinate.lat, 40.7754123)
+          exp.fulfill()
+        }
+      }
+      
+      wait(for: [exp], timeout: 3.0)
     }
 
 }

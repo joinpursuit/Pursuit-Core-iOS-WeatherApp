@@ -119,7 +119,7 @@ struct DailyDatum: Codable {
     let cloudCover: Double
     let uvIndex: Int
     let uvIndexTime: Int
-    let visibility: Int
+    let visibility: Double
     let ozone: Double
     let temperatureMin: Double
     let temperatureMinTime: Int
