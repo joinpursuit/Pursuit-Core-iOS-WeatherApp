@@ -34,6 +34,11 @@ class ViewController: UIViewController {
     }()
     
     private var zipcode: String = "11365"
+    private var place: String = "" {
+        didSet {
+            self.cityLabel.text = "Weather forecast for \(place)"
+        }
+    }
     
     private var forecasts = [DailyDatum]() {
         didSet {
@@ -56,7 +61,7 @@ class ViewController: UIViewController {
             switch result {
             case .success((let lat, let long, let placename)):
                 DispatchQueue.main.async {
-                    self.cityLabel.text = "Weather forecast for \(placename)"
+                    self.place = placename
                     self.getForecast(lat, long: long)
                 }
                 
@@ -145,7 +150,12 @@ extension ViewController: UICollectionViewDataSource {
     
 }
 
-extension ViewController: UICollectionViewDelegate {}
+extension ViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let forecast = forecasts[indexPath.row]
+        navigationController?.pushViewController(DetailViewController(forecast, placename: place), animated: true)
+    }
+}
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
