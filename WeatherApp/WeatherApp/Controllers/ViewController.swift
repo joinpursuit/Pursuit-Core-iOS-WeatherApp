@@ -119,6 +119,7 @@ extension ViewController: UICollectionViewDataSource {
             print("Error occured creating cell")
             return UICollectionViewCell()
         }
+        cell.configureCell(forecast: forecasts[indexPath.row])
         return cell
     }
     
