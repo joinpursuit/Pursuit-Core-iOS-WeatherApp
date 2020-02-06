@@ -8,6 +8,7 @@
 
 import XCTest
 import CoreLocation
+import DataPersistence
 @testable import WeatherApp
 
 class WeatherAppTests: XCTestCase {
@@ -80,6 +81,12 @@ class WeatherAppTests: XCTestCase {
       }
       
       wait(for: [exp], timeout: 3.0)
+    }
+    
+    func testDelete() {
+        let dataPersistence = DataPersistence<ImageObject>(filename: "favorites.plist")
+        let images = try! dataPersistence.loadItems()
+        try! dataPersistence.deleteItem(at: images.count - 1)
     }
 
 }

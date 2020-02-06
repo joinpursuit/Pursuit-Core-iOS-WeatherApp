@@ -45,7 +45,7 @@ class ForecastCollectionViewCell: UICollectionViewCell {
     }
     
     public func configureCell(forecast: DailyDatum) {
-        highLowLabel.text = "High: \(forecast.temperatureHigh)℃ \nLow: \(forecast.temperatureLow)℃"
+        highLowLabel.text = "High: \(forecast.temperatureHigh)℉ \nLow: \(forecast.temperatureLow)℉"
         imageView.image = UIImage(named: forecast.icon)
         
         let date = Date(timeIntervalSince1970: forecast.time)

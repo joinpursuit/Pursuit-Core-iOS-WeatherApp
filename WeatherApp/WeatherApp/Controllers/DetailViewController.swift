@@ -8,6 +8,7 @@
 
 import UIKit
 import ImageKit
+import DataPersistence
 
 
 class DetailViewController: UIViewController {
@@ -30,6 +31,11 @@ class DetailViewController: UIViewController {
         return l
     }()
     
+    private lazy var barButton: UIBarButtonItem = {
+        let bb = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(buttonPressed(_:)))
+        return bb
+    }()
+    
     private let forecast: DailyDatum
     private let placename: String
     
@@ -50,15 +56,54 @@ class DetailViewController: UIViewController {
         
     }
     
+    @objc private func buttonPressed(_ sender: UIBarButtonItem) {
+        let dataPersistence = DataPersistence<ImageObject>(filename: "favorites.plist")
+        guard let imageData = imageView.image?.jpegData(compressionQuality: 1.0) else {
+            return
+        }
+        let imageObject = ImageObject(name: placename, imageData: imageData)
+        
+        if dataPersistence.hasItemBeenSaved(imageObject) {
+            let alertvc = UIAlertController(title: "Error", message: "Pic has already been saved.", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertvc.addAction(alertAction)
+            present(alertvc, animated: true, completion: nil)
+        } else {
+            do {
+                try dataPersistence.createItem(imageObject)
+                let alertvc = UIAlertController(title: "Saved", message: "Image saved to Favorites.", preferredStyle: .alert)
+                let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                alertvc.addAction(alertAction)
+                present(alertvc, animated: true, completion: nil)
+            } catch {
+                let alertvc = UIAlertController(title: "Error", message: "Error ocurred saving image: \(error)", preferredStyle: .alert)
+                let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                alertvc.addAction(alertAction)
+                present(alertvc, animated: true, completion: nil)
+                
+            }
+        }
+    }
+    
     private func loadData() {
         let date = Date(timeIntervalSince1970: forecast.time)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         forecastLabel.text = "Weather forecast for \(placename) on \(dateFormatter.string(from: date))"
         
-        imageView.image = UIImage(systemName: "heart")
+        dateFormatter.dateFormat = "HH:mm"
         
-        detailLabel.text = "OK"
+        imageView.image = UIImage(systemName: "heart")
+        let sunrise = Date(timeIntervalSince1970: forecast.sunriseTime)
+        let sunset = Date(timeIntervalSince1970: forecast.sunsetTime)
+        
+        detailLabel.text = """
+        \(forecast.summary)
+        High: \(forecast.temperatureHigh)℉
+        Low: \(forecast.temperatureLow)℉
+        Sunrise: \(dateFormatter.string(from: sunrise))
+        Sunset: \(dateFormatter.string(from: sunset))
+        """
         
         getPix(placename)
     }
@@ -98,6 +143,7 @@ class DetailViewController: UIViewController {
         setupForecastLabel()
         setupImageView()
         setupDetailLabel()
+        setupBarButton()
     }
     
     private func setupForecastLabel() {
@@ -129,5 +175,8 @@ class DetailViewController: UIViewController {
             detailLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8)])
     }
     
+    private func setupBarButton() {
+        navigationItem.setRightBarButton(barButton, animated: true)
+    }
     
 }

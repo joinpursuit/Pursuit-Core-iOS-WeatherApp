@@ -93,8 +93,8 @@ struct DailyDatum: Codable {
     let time: Double
     let summary: String
     let icon: String
-    let sunriseTime: Int
-    let sunsetTime: Int
+    let sunriseTime: Double
+    let sunsetTime: Double
     let moonPhase: Double
     let precipIntensity: Double
     let precipIntensityMax: Double
