@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ImageKit
 
 class DetailViewController: UIViewController {
 
@@ -19,6 +20,14 @@ class DetailViewController: UIViewController {
     public var dailyWeather: DailyDatum?
     
     public var weather: Weather?
+    
+   // private var pictures = [Hit]? {
+//           didSet {
+//               DispatchQueue.main.async {
+//                self.pictures.
+//               }
+//           }
+//       }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,8 +78,20 @@ class DetailViewController: UIViewController {
         Inches of precipitation: \(dailyweather.precipProbability)
 """
         
-        
+//        // String(cityFromLocation?.last ?? "New York")
+//        detailView.imageView.getImage(with: ) {[weak self]
+//            (result) in
+//            switch result {
+//            case .failure(let appError):
+//                print("error \(appError)")
+//            case .success(let image):
+//                DispatchQueue.main.async {
+//                    self?.detailView.imageView.image = image
+//                }
+//            }
+//        }
     }
+ 
 
     private func configureNavBar() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(showSettings(_:)))

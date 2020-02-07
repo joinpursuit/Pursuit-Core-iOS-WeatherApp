@@ -10,10 +10,11 @@ import Foundation
 import NetworkHelper
 
 struct PictureSearchAPIClient {
-    static func fetchPicture(for searchQuery: String, completion: @escaping(Result<[Hit], AppError>) -> ()) {
-        let searchQuery = searchQuery.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "uk"
+    static func fetchPicture(for placeName: String, completion: @escaping(Result<[Hit], AppError>) -> ()) {
+        //let placeName = searchQuery.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "uk"
+        let placeName = placeName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "New York"
         
-        let pictureEndpointURL = "https://pixabay.com/api/?key=\(SecretKeyForPixabay.apikey2)&q=\(searchQuery)&image_type=photo"
+        let pictureEndpointURL = "https://pixabay.com/api/?key=\(SecretKeyForPixabay.apikey2)&q=\(placeName)&image_type=photo"
         
         guard let url = URL(string: pictureEndpointURL) else {
         completion(.failure(.badURL(pictureEndpointURL)))

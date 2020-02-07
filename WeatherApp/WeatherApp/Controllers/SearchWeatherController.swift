@@ -69,7 +69,7 @@ class SearchWeatherController: UIViewController {
             switch result {
             case .failure(let appError):
                 print(appError)
-            case .success(let lat, let long):
+            case .success(let lat, let long, let placeName):
                 self.fetchWeather(lat: lat, long: long)
             }
     }

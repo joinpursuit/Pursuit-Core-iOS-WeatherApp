@@ -78,6 +78,54 @@
 			path = Secrets;
 			sourceTree = "<group>";
 		};
+		0F678FB723EC9F01003E2921 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0F50332223E4C25A000E50CD /* SearchWeatherController.swift */,
+				0F57DCEE23E60258009D85CF /* DetailViewController.swift */,
+				0F50332423E4C279000E50CD /* FavoriteController.swift */,
+				0F50332023E4C1EC000E50CD /* WeatherTabBarControllerViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		0F678FB823EC9F1F003E2921 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0F57DCF223E60848009D85CF /* DetailView.swift */,
+				0F50332623E4C8FD000E50CD /* SearchWeatherView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0F678FB923ECA05F003E2921 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0F50332E23E4D120000E50CD /* WeatherCell.xib */,
+				0F50332C23E4D0FC000E50CD /* WeatherCellCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		0F678FC023EE1078003E2921 /* APIandModel */ = {
+			isa = PBXGroup;
+			children = (
+				0F57DCEA23E5F6F8009D85CF /* WeatherAPIClient.swift */,
+				0F57DCEC23E5F73F009D85CF /* WeatherModel.swift */,
+				0F57C65823EB13FF00D01EBC /* PictureAPIClient.swift */,
+				0F57C65C23EB15BC00D01EBC /* PictureModel.swift */,
+			);
+			path = APIandModel;
+			sourceTree = "<group>";
+		};
+		0F678FC123EE1088003E2921 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				548CE065234D33E600B5177D /* ZipCodeHelper.swift */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
 		548CE045234D33B500B5177D = {
 			isa = PBXGroup;
 			children = (
@@ -100,20 +148,12 @@
 			children = (
 				548CE051234D33B500B5177D /* AppDelegate.swift */,
 				548CE053234D33B500B5177D /* SceneDelegate.swift */,
-				0F50332023E4C1EC000E50CD /* WeatherTabBarControllerViewController.swift */,
-				0F50332223E4C25A000E50CD /* SearchWeatherController.swift */,
-				0F50332623E4C8FD000E50CD /* SearchWeatherView.swift */,
-				0F57DCEE23E60258009D85CF /* DetailViewController.swift */,
-				0F57DCF223E60848009D85CF /* DetailView.swift */,
-				0F50332423E4C279000E50CD /* FavoriteController.swift */,
+				0F678FB723EC9F01003E2921 /* Controllers */,
+				0F678FB823EC9F1F003E2921 /* View */,
 				0F57C65623EB121700D01EBC /* FavoriteStoryboard.storyboard */,
-				0F50332C23E4D0FC000E50CD /* WeatherCellCollectionViewCell.swift */,
-				0F50332E23E4D120000E50CD /* WeatherCell.xib */,
-				0F57DCEA23E5F6F8009D85CF /* WeatherAPIClient.swift */,
-				0F57DCEC23E5F73F009D85CF /* WeatherModel.swift */,
-				548CE065234D33E600B5177D /* ZipCodeHelper.swift */,
-				0F57C65823EB13FF00D01EBC /* PictureAPIClient.swift */,
-				0F57C65C23EB15BC00D01EBC /* PictureModel.swift */,
+				0F678FB923ECA05F003E2921 /* Cells */,
+				0F678FC023EE1078003E2921 /* APIandModel */,
+				0F678FC123EE1088003E2921 /* SupportingFiles */,
 				548CE067234D340700B5177D /* Assets.xcassets */,
 				548CE05C234D33B600B5177D /* LaunchScreen.storyboard */,
 				548CE05F234D33B600B5177D /* Info.plist */,
