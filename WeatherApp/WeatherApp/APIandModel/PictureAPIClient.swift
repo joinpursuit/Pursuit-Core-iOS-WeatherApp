@@ -10,11 +10,11 @@ import Foundation
 import NetworkHelper
 
 struct PictureSearchAPIClient {
-    static func fetchPicture(with string: String, completion: @escaping(Result<[Hit], AppError>) -> ()) {
+    static func fetchPicture(for search: String, completion: @escaping(Result<[Hit], AppError>) -> ()) {
         
-        let string = string.lowercased().addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "new york"
+        let searchQuery = search.lowercased().addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
         
-        let pictureEndpointURL = "https://pixabay.com/api/?key=\(SecretKeyForPixabay.apikey2)&q=\(string)&image_type=photo"
+        let pictureEndpointURL = "https://pixabay.com/api/?key=\(SecretKeyForPixabay.apikey2)&q=\(searchQuery ?? "los angeles")"
         
         guard let url = URL(string: pictureEndpointURL) else {
         completion(.failure(.badURL(pictureEndpointURL)))
@@ -26,12 +26,12 @@ struct PictureSearchAPIClient {
             switch result {
             case .failure(let appError):
                 completion(.failure(.networkClientError(appError)))
-            case .success(let imageData):
+            case .success(let data):
                 do {
 //                    let searchResults = try JSONDecoder().decode([Hit].self, from: data)
-                     let searchResults = try JSONDecoder().decode(Photos.self, from: imageData)
+                     let results = try JSONDecoder().decode(Photos.self, from: data)
             
-                    completion(.success(searchResults.hits))
+                    completion(.success(results.hits))
                 } catch {
                     completion(.failure(.decodingError(error)))
                 }

@@ -47,7 +47,8 @@ Inches of Precipitation:
     
     public lazy var imageView: UIImageView = {
         let cityImage = UIImageView()
-        cityImage.image = UIImage(systemName: "photo")
+        //cityImage.image = UIImage(systemName: "photo")
+        cityImage.contentMode = .scaleAspectFill
         return cityImage
     }()
     

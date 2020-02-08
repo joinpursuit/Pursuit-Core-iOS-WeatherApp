@@ -10,33 +10,24 @@ import UIKit
 import ImageKit
 
 class DetailViewController: UIViewController {
-
-    private let detailView = DetailView()
     
-    override func loadView() {
-        view = detailView
-    }
+    private let detailView = DetailView()
     
     public var dailyWeather: DailyDatum?
     
     public var weather: Weather?
     
-    private var picture: Hit?
+    public var picture: Hit?
     
-   // private var pictures = [Hit]? {
-//           didSet {
-//               DispatchQueue.main.async {
-//                self.pictures.
-//               }
-//           }
-//       }
+    override func loadView() {
+        view = detailView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         configureNavBar()
         updateUI()
-        
     }
     
     func updateUI() {
@@ -78,34 +69,23 @@ class DetailViewController: UIViewController {
         Sunset: \(dateStringSS)
         Windspeed: \(dailyweather.windSpeed)
         Inches of precipitation: \(dailyweather.precipProbability)
-"""
+        """
         
-        detailView.imageView.getImage(with: picture?.largeImageURL ?? "") {(result) in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let image):
-                DispatchQueue.main.async {
-                    self.detailView.imageView.image = image
+        detailView.imageView.getImage(with: picture?.largeImageURL ?? "") {[weak self] (result) in
+                switch result {
+                case .failure:
+                    print("cannot load image")
+                    DispatchQueue.main.async {
+                        self?.detailView.imageView.image = UIImage(systemName: "photo")
+                    }
+                case .success(let image):
+                    DispatchQueue.main.async {
+                        self?.detailView.imageView.image = image
+                    }
                 }
             }
         }
-        
-//        // String(cityFromLocation?.last ?? "New York")
-//        detailView.imageView.getImage(with: ) {[weak self]
-//            (result) in
-//            switch result {
-//            case .failure(let appError):
-//                print("error \(appError)")
-//            case .success(let image):
-//                DispatchQueue.main.async {
-//                    self?.detailView.imageView.image = image
-//                }
-//            }
-//        }
-    }
- 
-
+    
     private func configureNavBar() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(showSettings(_:)))
     }
@@ -127,5 +107,4 @@ class DetailViewController: UIViewController {
         //settingsVC.modalTransitionStyle = .flipHorizontal
     }
     
-
 }

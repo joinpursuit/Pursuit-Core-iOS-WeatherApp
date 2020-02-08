@@ -12,15 +12,16 @@ class SearchWeatherController: UIViewController {
     
     private let searchWeatherView = SearchWeatherView()
     
-    var zipCode = ""
+    //var zipcode = ""
     
-    var weather: Weather? {
-        didSet{
-            DispatchQueue.main.async {
-                self.updateUI()
-            }
-        }
-    }
+    var weather: Weather?
+//    {
+//        didSet{
+//            DispatchQueue.main.async {
+//                self.updateUI()
+//            }
+//        }
+//    }
     
     public var dailyWeather = [DailyDatum]() {
         didSet {
@@ -34,6 +35,14 @@ class SearchWeatherController: UIViewController {
     lazy var timezone = weather?.timezone
     lazy var cityFromLocation = timezone?.split(separator: "/")
     //print(cityFromLocation.last)
+    
+    private var photo = [Hit]()
+    
+    private var zipcode = String() {
+        didSet {
+            getCoordinates(zipCode: zipcode)
+        }
+    }
     
     override func loadView() {
         view = searchWeatherView
@@ -51,9 +60,9 @@ class SearchWeatherController: UIViewController {
         searchWeatherView.textField.delegate = self
         
         if let userzipcode = UserPreference.shared.getUserZipcode() {
-            getZipCode(zipCode: userzipcode)
+            getCoordinates(zipCode: userzipcode)
         } else {
-            getZipCode(zipCode: zipCode)
+            getCoordinates(zipCode: zipcode)
         }
     }
     
@@ -69,22 +78,39 @@ class SearchWeatherController: UIViewController {
         }
     }
     
-    private func getZipCode(zipCode: String) {
-        ZipCodeHelper.getLatLong(fromZipCode: zipCode) {(result) in
+    private func getCoordinates(zipCode: String) {
+        ZipCodeHelper.getLatLong(fromZipCode: zipCode) {[weak self](result) in
             switch result {
             case .failure(let appError):
                 print(appError)
-            case .success(let lat, let long, let placeName):
-                self.fetchWeather(lat: lat, long: long)
+            case .success(let coordinates):
+                self?.fetchWeather(lat: coordinates.lat, long: coordinates.long)
+                DispatchQueue.main.async {
+                    self?.searchWeatherView.messageLabel.text = """
+                    Weather Forecast For \(coordinates.placeName)
+                    """
+                    self?.loadPhotoData(photo: coordinates.placeName)
+                }
             }
         }
     }
     
-    func updateUI() {
-        searchWeatherView.messageLabel.text = """
-        Weather Forecast For \(cityFromLocation?.last ?? "")
-        """
+    public func loadPhotoData(photo: String) {
+        PictureSearchAPIClient.fetchPicture(for: photo) {[weak self] (result) in
+            switch result {
+            case .failure:
+                print("could not fetch pictures")
+            case .success(let picture):
+                self?.photo = picture
+            }
+            
+        }
     }
+//    func updateUI() {
+//        searchWeatherView.messageLabel.text = """
+//        Weather Forecast For \()
+//        """
+//    }
 }
 
 extension SearchWeatherController: UICollectionViewDataSource {
@@ -113,9 +139,9 @@ extension SearchWeatherController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let weatherData = dailyWeather[indexPath.row]
-        
         let detailVC = DetailViewController ()
         detailVC.dailyWeather = weatherData
+        detailVC.picture = photo[indexPath.row]
         detailVC.weather = weather
         navigationController?.pushViewController(detailVC, animated: true)
     }
@@ -124,9 +150,9 @@ extension SearchWeatherController: UICollectionViewDelegateFlowLayout {
 extension SearchWeatherController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        zipCode = textField.text ?? "11215"
-        getZipCode(zipCode: zipCode)
-        UserPreference.shared.updateUserZipcode(with: zipCode)
+        zipcode = textField.text ?? "11215"
+        //getCoordinates(zipCode: zipcode)
+        UserPreference.shared.updateUserZipcode(with: zipcode)
         
         textField.text = ""
         return true
