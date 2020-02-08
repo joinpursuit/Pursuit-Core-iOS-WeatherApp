@@ -13,7 +13,9 @@ struct UserPreferenceKey {
 }
 
 class UserPreference {
+    
     private init() {}
+    
     static let shared = UserPreference()
     
     func updateUserZipcode(with zipcode: String) {

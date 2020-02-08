@@ -92,8 +92,8 @@
 		0F678FB823EC9F1F003E2921 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0F57DCF223E60848009D85CF /* DetailView.swift */,
 				0F50332623E4C8FD000E50CD /* SearchWeatherView.swift */,
+				0F57DCF223E60848009D85CF /* DetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

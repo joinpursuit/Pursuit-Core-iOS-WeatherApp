@@ -36,16 +36,16 @@ class SearchWeatherView: UIView {
         textfield.layer.borderColor = UIColor.black.cgColor
         textfield.textAlignment = .center
         textfield.placeholder = "Enter a Zip Code"
-        updateView()
+       // updateView()
         return textfield
     }()
     
-    private func updateView() {
-               // retrieve any values in UserDefaults as needed
-               if let userZipcode = UserPreference.shared.getUserZipcode() {
-                textField.text = userZipcode
-               }
-           }
+//    private func updateView() {
+//               // retrieve any values in UserDefaults as needed
+//               if let userZipcode = UserPreference.shared.getUserZipcode() {
+//                
+//               }
+//           }
     
     public lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()

@@ -23,12 +23,12 @@ class SearchWeatherController: UIViewController {
     }
     
     public var dailyWeather = [DailyDatum]() {
-      didSet {
-        // 13.
-          DispatchQueue.main.async {
-              self.searchWeatherView.collectionView.reloadData()
-          }
-      }
+        didSet {
+            // 13.
+            DispatchQueue.main.async {
+                self.searchWeatherView.collectionView.reloadData()
+            }
+        }
     }
     
     lazy var timezone = weather?.timezone
@@ -49,9 +49,14 @@ class SearchWeatherController: UIViewController {
         searchWeatherView.collectionView.register(UINib(nibName: "WeatherCell", bundle: nil), forCellWithReuseIdentifier: "weatherCell")
         
         searchWeatherView.textField.delegate = self
-        //fetchWeather(lat: , long: -122.4233)
-        }
         
+        if let userzipcode = UserPreference.shared.getUserZipcode() {
+            getZipCode(zipCode: userzipcode)
+        } else {
+            getZipCode(zipCode: zipCode)
+        }
+    }
+    
     private func fetchWeather(lat: Double, long: Double){
         WeatherAPIClient.fetchWeather(lat: lat, long: long) {(result) in
             switch result {
@@ -72,13 +77,13 @@ class SearchWeatherController: UIViewController {
             case .success(let lat, let long, let placeName):
                 self.fetchWeather(lat: lat, long: long)
             }
-    }
+        }
     }
     
     func updateUI() {
         searchWeatherView.messageLabel.text = """
         Weather Forecast For \(cityFromLocation?.last ?? "")
-"""
+        """
     }
 }
 
@@ -105,23 +110,25 @@ extension SearchWeatherController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: itemWidth, height: 350)
     }
     
-func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    
-    let weatherData = dailyWeather[indexPath.row]
-    
-    let detailVC = DetailViewController ()
-    detailVC.dailyWeather = weatherData
-    detailVC.weather = weather
-    navigationController?.pushViewController(detailVC, animated: true)
-}
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let weatherData = dailyWeather[indexPath.row]
+        
+        let detailVC = DetailViewController ()
+        detailVC.dailyWeather = weatherData
+        detailVC.weather = weather
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
 }
 
 extension SearchWeatherController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         zipCode = textField.text ?? "11215"
         getZipCode(zipCode: zipCode)
-       textField.resignFirstResponder()
+        UserPreference.shared.updateUserZipcode(with: zipCode)
         
-    return true
+        textField.text = ""
+        return true
     }
 }
