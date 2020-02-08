@@ -9,16 +9,16 @@
 import Foundation
 
 // MARK: - Photos
-struct Photos: Codable {
-    let totalHits: Int
+struct Photos: Codable & Equatable {
+    //let totalHits: Int
     let hits: [Hit]
-    let total: Int
+   // let total: Int
 }
 
 // MARK: - Hit
-struct Hit: Codable {
-    let largeImageURL: String
-    let webformatHeight, webformatWidth, likes, imageWidth: Int
+struct Hit: Codable & Equatable {
+    let largeImageURL: String?
+    let webformatHeight, webformatWidth, likes, imageWidth: Double?
     let id, userID, views, comments: Int
     let pageURL: String
     let imageHeight: Int

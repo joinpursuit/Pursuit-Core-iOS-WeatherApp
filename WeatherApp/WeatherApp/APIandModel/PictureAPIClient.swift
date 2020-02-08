@@ -10,11 +10,11 @@ import Foundation
 import NetworkHelper
 
 struct PictureSearchAPIClient {
-    static func fetchPicture(for placeName: String, completion: @escaping(Result<[Hit], AppError>) -> ()) {
-        //let placeName = searchQuery.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "uk"
-        let placeName = placeName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "New York"
+    static func fetchPicture(with string: String, completion: @escaping(Result<[Hit], AppError>) -> ()) {
         
-        let pictureEndpointURL = "https://pixabay.com/api/?key=\(SecretKeyForPixabay.apikey2)&q=\(placeName)&image_type=photo"
+        let string = string.lowercased().addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "new york"
+        
+        let pictureEndpointURL = "https://pixabay.com/api/?key=\(SecretKeyForPixabay.apikey2)&q=\(string)&image_type=photo"
         
         guard let url = URL(string: pictureEndpointURL) else {
         completion(.failure(.badURL(pictureEndpointURL)))
@@ -26,13 +26,12 @@ struct PictureSearchAPIClient {
             switch result {
             case .failure(let appError):
                 completion(.failure(.networkClientError(appError)))
-            case .success(let data):
+            case .success(let imageData):
                 do {
-                    let searchResults = try JSONDecoder().decode([Hit].self, from: data)
-                    
-                  // Add how to map through countries
-                    //let countries = searchResults.ma
-                    completion(.success(searchResults))
+//                    let searchResults = try JSONDecoder().decode([Hit].self, from: data)
+                     let searchResults = try JSONDecoder().decode(Photos.self, from: imageData)
+            
+                    completion(.success(searchResults.hits))
                 } catch {
                     completion(.failure(.decodingError(error)))
                 }

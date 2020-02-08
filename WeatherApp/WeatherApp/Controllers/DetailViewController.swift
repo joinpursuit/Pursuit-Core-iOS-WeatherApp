@@ -21,6 +21,8 @@ class DetailViewController: UIViewController {
     
     public var weather: Weather?
     
+    private var picture: Hit?
+    
    // private var pictures = [Hit]? {
 //           didSet {
 //               DispatchQueue.main.async {
@@ -77,6 +79,17 @@ class DetailViewController: UIViewController {
         Windspeed: \(dailyweather.windSpeed)
         Inches of precipitation: \(dailyweather.precipProbability)
 """
+        
+        detailView.imageView.getImage(with: picture?.largeImageURL ?? "") {(result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let image):
+                DispatchQueue.main.async {
+                    self.detailView.imageView.image = image
+                }
+            }
+        }
         
 //        // String(cityFromLocation?.last ?? "New York")
 //        detailView.imageView.getImage(with: ) {[weak self]
