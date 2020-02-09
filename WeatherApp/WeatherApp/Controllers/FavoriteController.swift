@@ -15,17 +15,13 @@ class FavoriteController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-      // data for the table view
-    //    var animals = [ZooAnimal](){
-    //        didSet {
-    //            tableView.reloadData()
-    //        }
-    //    }
-    
     // Conforming to the DataPersistanceDelegate - Step 1
     private var savedPictures = [Hit]() {
         didSet {
             print("there are \(savedPictures.count) pictures")
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -36,21 +32,22 @@ class FavoriteController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        //fetchSavedPictures()
+        fetchSavedPictures()
         
-       // loadData()
+        //tableView.register(, forCellReuseIdentifier: <#T##String#>)
         
-        // FIXME: write extension for this tableView:
-        //tableView.dataSource = self
-        //tableView.delegate = self
+        // loadData()
         
-       // FIXME: I register here tableView cell, but I think I need to create tableView on FavoriteView.swift (look how did we do with collection view)
+        
+        // FIXME: I register here tableView cell, but I think I need to create tableView on FavoriteView.swift (look how did we do with collection view)
         // tableView.register(UINib(nibName: "FavoriteImageCell", bundle: nil), forCellReuseIdentifier: "favoriteImageCell")))
     }
     
-     //  func loadData() {
-    //        animals = ZooAnimal.zooAnimals
-    //    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        fetchSavedPictures()
+    }
+    
     
     // Conforming to the DataPersistanceDelegate - Step 2
     private func fetchSavedPictures() {
@@ -65,21 +62,19 @@ class FavoriteController: UIViewController {
 extension FavoriteController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // FIXME: return saved pictures
-        return 10
+        return savedPictures.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "favoritePictureCell", for: indexPath) as? FavoritePictureCell else {
-                    fatalError("failed to deque an FavoritePictureCell")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "favoritePictureCell", for: indexPath) as? FavoritePictureCell else {
+            fatalError("failed to deque an FavoritePictureCell")
+        }
         
-                }
-        //        // get the current object (animal) at the indexPath
-        //        let animal = animals[indexPath.row]
+        let favoritePic = savedPictures[indexPath.row]
+        // configure the cell
+        cell.configureCell(for: favoritePic)
         
-        //        // configure the cell
-        //        cell.configureCell(for: animal)
-    
-                return cell
-            }
+        return cell
+    }
 }
 
 extension FavoriteController: UITableViewDelegate {
@@ -91,7 +86,7 @@ extension FavoriteController: UITableViewDelegate {
 extension FavoriteController: DataPersistenceDelegate {
     func didSaveItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
         print("picture was saved")
-        fetchSavedPictures()
+        //fetchSavedPictures()
     }
     
     func didDeleteItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {

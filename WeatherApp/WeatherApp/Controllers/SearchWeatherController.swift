@@ -15,20 +15,10 @@ class SearchWeatherController: UIViewController {
     
     public var dataPersistance: DataPersistence<Hit>!
     
-    //var zipcode = ""
-    
     var weather: Weather?
-//    {
-//        didSet{
-//            DispatchQueue.main.async {
-//                self.updateUI()
-//            }
-//        }
-//    }
     
     public var dailyWeather = [DailyDatum]() {
         didSet {
-            // 13.
             DispatchQueue.main.async {
                 self.searchWeatherView.collectionView.reloadData()
             }
@@ -37,7 +27,6 @@ class SearchWeatherController: UIViewController {
     
     lazy var timezone = weather?.timezone
     lazy var cityFromLocation = timezone?.split(separator: "/")
-    //print(cityFromLocation.last)
     
     private var photo = [Hit]()
     
@@ -155,7 +144,6 @@ extension SearchWeatherController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         zipcode = textField.text ?? "11215"
-        //getCoordinates(zipCode: zipcode)
         UserPreference.shared.updateUserZipcode(with: zipcode)
         
         textField.text = ""
