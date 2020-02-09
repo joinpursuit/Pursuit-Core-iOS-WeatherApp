@@ -33,10 +33,7 @@ class FavoriteController: UIViewController {
         tableView.delegate = self
         
         fetchSavedPictures()
-        
-        //tableView.register(, forCellReuseIdentifier: <#T##String#>)
-        
-        // loadData()
+        navigationItem.title = "Favorited Pictures"
         
         
         // FIXME: I register here tableView cell, but I think I need to create tableView on FavoriteView.swift (look how did we do with collection view)

@@ -70,7 +70,7 @@ class SearchWeatherController: UIViewController {
         }
     }
     
-    private func getCoordinates(zipCode: String) {
+    public func getCoordinates(zipCode: String) {
         ZipCodeHelper.getLatLong(fromZipCode: zipCode) {[weak self](result) in
             switch result {
             case .failure(let appError):
@@ -135,6 +135,7 @@ extension SearchWeatherController: UICollectionViewDelegateFlowLayout {
         detailVC.dailyWeather = weatherData
         detailVC.picture = photo[indexPath.row]
         detailVC.weather = weather
+        detailVC.cityName = searchWeatherView.messageLabel.text ?? ""
         detailVC.dataPersistance = dataPersistance
         navigationController?.pushViewController(detailVC, animated: true)
     }

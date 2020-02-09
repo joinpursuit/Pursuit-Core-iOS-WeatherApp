@@ -12,6 +12,8 @@ import DataPersistence
 
 class DetailViewController: UIViewController {
     
+    public var cityName = ""
+    
     public var dataPersistance: DataPersistence<Hit>!
     
     private let detailView = DetailView()
@@ -49,7 +51,8 @@ class DetailViewController: UIViewController {
         
         var timezone = weather?.timezone
         var cityFromLocation = timezone?.split(separator: "/")
-        detailView.messageLabel.text = "Weather For \(String(cityFromLocation?.last ?? "")) for \(dateString)"
+        detailView.messageLabel.text = "\(cityName) for \(dateString)"
+        
         
         detailView.weatherLabel.text = dailyweather.summary
         
