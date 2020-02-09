@@ -49,7 +49,8 @@ class FavoriteController: UIViewController {
     // Conforming to the DataPersistanceDelegate - Step 2
     private func fetchSavedPictures() {
         do {
-            savedPictures = try dataPersistance.loadItems()
+            savedPictures = try dataPersistance.loadItems().reversed()
+    
         } catch {
             print("error fetching articles: \(error)")
         }
