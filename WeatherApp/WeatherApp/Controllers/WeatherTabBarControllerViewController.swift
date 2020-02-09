@@ -16,6 +16,7 @@ class WeatherTabBarControllerViewController: UITabBarController {
     private lazy var searchWeatherController: SearchWeatherController = {
            let viewcontroller = SearchWeatherController()
         viewcontroller.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 0)
+        viewcontroller.dataPersistance = dataPersistance
         return viewcontroller
        }()
     
@@ -26,6 +27,8 @@ class WeatherTabBarControllerViewController: UITabBarController {
             fatalError("could not load FavoriteController")
         }
         viewcontroller.tabBarItem = UITabBarItem(title: "Favorite", image: UIImage(systemName: "star"), tag: 1)
+        viewcontroller.dataPersistance = dataPersistance
+       // viewcontroller.dataPersistance.delegate = dataPersistance as! DataPersistenceDelegate
         return viewcontroller
     }()
     

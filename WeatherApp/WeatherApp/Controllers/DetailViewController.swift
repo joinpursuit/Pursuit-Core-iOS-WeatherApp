@@ -8,8 +8,11 @@
 
 import UIKit
 import ImageKit
+import DataPersistence
 
 class DetailViewController: UIViewController {
+    
+    public var dataPersistance: DataPersistence<Hit>!
     
     private let detailView = DetailView()
     
@@ -87,24 +90,18 @@ class DetailViewController: UIViewController {
         }
     
     private func configureNavBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(showSettings(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(saveFavoritePicturePressed(_:)))
     }
     
     @objc
-    private func showSettings(_ sender: UIBarButtonItem) {
-        //print("show settings")
-        
-        // segue to SettingsVC, basically == prepare for segue
-        
-        let favoriteVC = FavoriteController()
-        //navigationController?.presentedViewController(favoriteVC, animated: true)
-        
-        navigationController?.pushViewController(favoriteVC, animated: true)
-        // if it would be just VC instead of this line we would use PRESENT, instead of push
-        // IF WE WANT TO PRESENT IT MODALY USE THIS: present(settingsVC, animated: true)
-        // try this - different stype
-        //settingsVC.modalPresentationStyle = .overCurrentContext
-        //settingsVC.modalTransitionStyle = .flipHorizontal
+    private func saveFavoritePicturePressed(_ sender: UIBarButtonItem) {
+     //print("saved favorite picture pressed")
+        guard let picture = picture else { return }
+        do {
+            // saving to document directory
+            try dataPersistance.createItem(picture)
+        } catch {
+            print("error saving article: \(error)")
+        }
     }
-    
 }

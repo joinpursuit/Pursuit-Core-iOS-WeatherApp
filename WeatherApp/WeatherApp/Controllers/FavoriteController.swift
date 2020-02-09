@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import DataPersistence
 
 class FavoriteController: UIViewController {
+    
+    public var dataPersistance: DataPersistence<Hit>!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -19,12 +22,22 @@ class FavoriteController: UIViewController {
     //        }
     //    }
     
+    // Conforming to the DataPersistanceDelegate - Step 1
+    private var savedPictures = [Hit]() {
+        didSet {
+            print("there are \(savedPictures.count) pictures")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemPink
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        //fetchSavedPictures()
+        
        // loadData()
         
         // FIXME: write extension for this tableView:
@@ -38,6 +51,15 @@ class FavoriteController: UIViewController {
      //  func loadData() {
     //        animals = ZooAnimal.zooAnimals
     //    }
+    
+    // Conforming to the DataPersistanceDelegate - Step 2
+    private func fetchSavedPictures() {
+        do {
+            savedPictures = try dataPersistance.loadItems()
+        } catch {
+            print("error fetching articles: \(error)")
+        }
+    }
 }
 
 extension FavoriteController: UITableViewDataSource {
@@ -66,58 +88,16 @@ extension FavoriteController: UITableViewDelegate {
     }
 }
 
-//import UIKit
-//
-//class CustomCellViewController: UIViewController {
-//
-//    @IBOutlet weak var tableView: UITableView!
-//
-//    // data for the table view
-//    var animals = [ZooAnimal](){
-//        didSet {
-//            tableView.reloadData()
-//        }
-//    }
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        tableView.dataSource = self
-//        tableView.delegate = self
-//        loadData()
-//    }
-//
-//
+extension FavoriteController: DataPersistenceDelegate {
+    func didSaveItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
+        print("picture was saved")
+        fetchSavedPictures()
+    }
+    
+    func didDeleteItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
+        print("item was dleted")
+    }
+}
 
-//
-//
-//}
-//
-//
-//extension CustomCellViewController: UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return animals.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "pictureCell", for: indexPath) as? AnimalCell else {
-//            fatalError("failed to deque an animalCell") // crashes if AnimalCell is not setup correctly
-//
-//        }
-//
-//        // get the current object (animal) at the indexPath
-//        let animal = animals[indexPath.row]
-//
-//        // configure the cell
-//        cell.configureCell(for: animal)
-//
-//        return cell
-//    }
-//}
-//
-//extension CustomCellViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 140
-//
-//    }
-//}
+
 

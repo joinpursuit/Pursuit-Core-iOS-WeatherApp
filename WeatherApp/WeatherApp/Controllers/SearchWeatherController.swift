@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import DataPersistence
 
 class SearchWeatherController: UIViewController {
     
     private let searchWeatherView = SearchWeatherView()
+    
+    public var dataPersistance: DataPersistence<Hit>!
     
     //var zipcode = ""
     
@@ -143,6 +146,7 @@ extension SearchWeatherController: UICollectionViewDelegateFlowLayout {
         detailVC.dailyWeather = weatherData
         detailVC.picture = photo[indexPath.row]
         detailVC.weather = weather
+        detailVC.dataPersistance = dataPersistance
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
