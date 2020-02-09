@@ -7,20 +7,17 @@
 //
 
 import UIKit
+import DataPersistence
 
 class WeatherTabBarControllerViewController: UITabBarController {
+    
+    private var dataPersistance = DataPersistence<Hit>(filename: "savedPictures.plist")
     
     private lazy var searchWeatherController: SearchWeatherController = {
            let viewcontroller = SearchWeatherController()
         viewcontroller.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 0)
         return viewcontroller
        }()
-    
-//    private lazy var favoriteImageController: FavoriteController = {
-//    let viewcontroller = FavoriteController()
-//        viewcontroller.tabBarItem = UITabBarItem(title: "Favorite", image: UIImage(systemName: "star"), tag: 1)
-//        return viewcontroller
-//    }()
     
     private lazy var favoriteImageController: FavoriteController = {
         let favoriteStoryboard = UIStoryboard(name: "FavoriteStoryboard", bundle: nil)
@@ -37,7 +34,7 @@ class WeatherTabBarControllerViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // just this simple line of code embeds VC to NAvigation Controller
-        viewControllers = [UINavigationController(rootViewController: searchWeatherController), favoriteImageController]
+        viewControllers = [UINavigationController(rootViewController: searchWeatherController), UINavigationController(rootViewController: favoriteImageController)]
     }
 
 }
